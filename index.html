@@ -1,95 +1,604 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>UNIGAMES | FIDELIZA | CRM Recorrência</title><style>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UNIGAMES | FIDELIZA 6.0</title>
+<style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
-:root{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,sans-serif;color:#161b25;background:#f7f8fa;font-synthesis:none}*{box-sizing:border-box}body{margin:0;background:#f7f8fa;min-height:100vh}button,input,select{font-family:inherit}.app{max-width:1560px;margin:auto;padding:0 48px 65px}.top{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;background:#fff;border-bottom:1px solid #e9ebf0;padding:23px 48px;margin:0 -48px}.logo{display:flex;align-items:center;gap:13px}.mark{width:46px;height:46px;display:grid;place-items:center;background:#102b51;color:white;border-radius:10px;font-weight:800;font-size:17px;letter-spacing:-.04em}.muted{color:#818995;font-size:13px}.title{font-weight:800;font-family:Manrope,system-ui,sans-serif;font-size:19px;letter-spacing:-.045em}.top-actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap}button,.btn{cursor:pointer;border:1px solid #dce2e9;background:#fff;color:#172337;border-radius:8px;padding:12px 16px;font-weight:700;font-size:12px;text-decoration:none;transition:background .2s,border-color .2s,transform .2s}button:hover,.btn:hover{background:#f0f3f7;border-color:#b8c5d4;transform:translateY(-1px)}.primary{background:#102b51;border-color:#102b51;color:#fff}.primary:hover{background:#1b416d;color:#fff}.headline{position:relative;margin:35px 0 27px;background:#101b2b;border-radius:12px;padding:48px 48px 50px;overflow:hidden;color:#fff}.headline:after{content:'';position:absolute;right:-60px;top:-115px;width:430px;height:430px;border:1px solid #52687d;border-radius:50%;opacity:.35;box-shadow:0 0 0 63px rgba(145,169,191,.05),0 0 0 126px rgba(145,169,191,.03)}.eyebrow{font-size:11px;letter-spacing:.22em;font-weight:700;color:#aac4db;text-transform:uppercase}.headline h1{position:relative;z-index:1;margin:13px 0 9px;font-family:Manrope,sans-serif;font-size:clamp(27px,3vw,44px);font-weight:600;letter-spacing:-.055em;line-height:1.16}.headline p{position:relative;z-index:1;color:#b6c4d4;margin:0;font-size:14px;max-width:670px;line-height:1.65}.headline .accent{color:#d5e4f3}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}.metric,.panel,.customer{border:1px solid #e7eaf0;background:#fff;border-radius:11px;padding:23px;box-shadow:0 5px 23px rgba(17,27,43,.025)}.metric{min-height:153px}.metric .value{font-family:Manrope,sans-serif;font-size:37px;font-weight:700;letter-spacing:-.055em;margin-top:23px;color:#172235}.metric .label{color:#657284;font-size:12px;font-weight:600}.metric:before{content:'';display:block;width:24px;height:3px;background:#bdcedc;margin-bottom:16px;border-radius:20px}.section{display:grid;grid-template-columns:1.1fr .9fr;gap:13px;margin-top:13px}.panel h2{font-family:Manrope,sans-serif;font-size:17px;letter-spacing:-.035em;margin:0 0 23px}.bars{display:grid;gap:14px}.barline{display:grid;grid-template-columns:125px 1fr 30px;gap:12px;align-items:center;font-size:12px;color:#566174}.track{height:7px;border-radius:100px;background:#eef1f5;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#23486d,#809fbd);border-radius:100px}.regionnote{font-size:11px;color:#88919c;margin-top:20px;line-height:1.5}.controls-heading{display:flex;justify-content:space-between;align-items:center;margin:38px 0 14px;gap:20px}.controls-heading h2{font:700 21px Manrope,sans-serif;letter-spacing:-.045em;margin:0}.controls-heading span{font-size:12px;color:#87919e}.controls{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 19px;padding:16px;background:#fff;border:1px solid #e7eaf0;border-radius:11px}input,select{background:#fafbfd;color:#263647;border:1px solid #e0e6ed;border-radius:7px;padding:12px 13px;min-width:158px;font-size:12px;outline:none}input:focus,select:focus{border-color:#284f78;box-shadow:0 0 0 3px #d6e3f099}input.search{flex:1;min-width:235px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.customer{display:flex;flex-direction:column;gap:17px;transition:box-shadow .2s,transform .2s}.customer:hover{box-shadow:0 10px 28px rgba(17,27,43,.085);transform:translateY(-2px)}.ctop{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.name{font-size:17px;font-family:Manrope,sans-serif;letter-spacing:-.04em;font-weight:800;color:#182436;margin-bottom:4px}.tag{font-size:10px;padding:7px 10px;border-radius:5px;background:#edf2f8;color:#345f87;font-weight:800;white-space:nowrap}.tag.repeat{background:#edf5ef;color:#368355}.info{display:grid;gap:10px;color:#657083;font-size:12px;line-height:1.4}.cfooter{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #ecf0f3;padding-top:17px;gap:10px}.wa{display:inline-flex;align-items:center;justify-content:center;background:#162d47;color:white;padding:12px 16px;border-radius:7px;font-size:11px;text-decoration:none;font-weight:800;letter-spacing:.01em}.wa:hover{background:#23496c}.wa.disabled{background:#e8edf2;color:#8795a4;pointer-events:none}.empty{grid-column:1/-1;padding:40px;color:#7e8998;text-align:center}.foot{font-size:11px;color:#939ba5;line-height:1.75;margin-top:32px;padding:23px 0;border-top:1px solid #e4e8ed}.small{font-size:12px;line-height:1.7}.danger{color:#b45656}.hidden{display:none}#message{font-size:12px;color:#627286;margin:8px 0 21px}.panel .muted{line-height:1.7}.section-annotation{letter-spacing:.16em;font-size:10px;color:#8693a4;text-transform:uppercase;font-weight:800;margin-bottom:10px}.top-caption{font-size:10px;letter-spacing:.15em;color:#8995a6;font-weight:700;text-transform:uppercase}.control-divider{height:1px;background:#edf0f5;margin:6px 0}
-@media(max-width:1100px){.app{padding:0 24px 40px}.top{margin:0 -24px;padding:20px 24px}.metrics{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.section{grid-template-columns:1fr}}@media(max-width:650px){.app{padding:0 15px 30px}.top{margin:0 -15px;padding:16px}.top-actions{width:100%}.top-actions>*{flex:1;text-align:center}.headline{padding:33px 24px;margin-top:20px}.metrics,.grid{grid-template-columns:1fr}.controls{flex-direction:column}.controls input,.controls select,.controls button{width:100%}.barline{grid-template-columns:105px 1fr 26px}.controls-heading{align-items:flex-start;flex-direction:column;gap:4px}}
-
-
-/* FIDELIZA V3 — workspace premium */
-body{background:#f6f7f9}.app{max-width:none;margin:0;padding:0 38px 50px 286px}.sidebar{position:fixed;top:0;bottom:0;left:0;width:250px;background:#101925;color:#fff;display:flex;flex-direction:column;padding:30px 19px;z-index:20;box-shadow:12px 0 40px #1223390a}.side-brand{display:flex;align-items:center;gap:12px;margin-bottom:43px;padding:6px}.side-brand .mark{background:#fff;color:#122c4c}.brand-text{font-size:18px;letter-spacing:.08em;font-weight:800}.brand-sub{font-size:10px;color:#a6b4c8;letter-spacing:.08em;margin-top:4px}.side-caption{font-size:10px;letter-spacing:.17em;color:#7c8da6;text-transform:uppercase;padding:0 15px;margin-bottom:14px}.navlist{display:grid;gap:6px}.navitem{width:100%;display:flex;align-items:center;gap:12px;text-align:left;color:#abbad0;background:transparent;border:1px solid transparent;font-size:13px;font-weight:600;padding:14px 15px;border-radius:9px}.navitem:hover{background:#1b2a3c;color:white;transform:none;border-color:transparent}.navitem.active{background:#263b56;color:white;border-color:#354f6d}.navicon{font-size:18px;width:24px;text-align:center}.side-bottom{margin-top:auto;padding:18px 12px 5px;border-top:1px solid #26354a;font-size:11px;line-height:1.7;color:#96a5ba}.workspace-header{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:29px 0 19px}.workspace-header .crumb{color:#7f8996;font-size:12px;letter-spacing:.02em}.workspace-header h1{font:750 27px Manrope,sans-serif;letter-spacing:-.06em;margin:6px 0}.workspace-header .pill{padding:9px 13px;border-radius:99px;border:1px solid #e0e5eb;background:#fff;color:#526579;font-size:11px}.top{border:1px solid #e8edf1;border-radius:11px;margin:0 0 21px;padding:16px 22px}.top .logo{display:none}.headline{margin:0 0 21px;padding:37px 40px}.headline h1{font-size:35px}.view{display:none}.view.active{display:block}.page-heading{margin:0 0 18px}.page-heading h2{font:750 29px Manrope,sans-serif;letter-spacing:-.05em;margin:5px 0}.page-heading p{color:#798699;font-size:13px;margin:4px 0}.insight-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:17px}.insight{border:1px solid #e7eaf0;background:white;border-radius:11px;padding:25px}.insight .big{font:750 34px Manrope,sans-serif;letter-spacing:-.07em;color:#172b43;margin:13px 0 5px}.insight .mini{font-size:12px;color:#657387}.data-table{width:100%;border-collapse:collapse;font-size:12px}.data-table th,.data-table td{text-align:left;border-bottom:1px solid #ebeff2;padding:14px 11px}.data-table th{color:#7a8796;font-size:10px;text-transform:uppercase;letter-spacing:.09em}.data-table td{color:#2b3a4d}.report-line{display:flex;align-items:center;justify-content:space-between;padding:17px 0;border-bottom:1px solid #e7edf2;gap:10px}.report-line strong{color:#1d3149}.campaigns-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.campaign-card{background:#fff;border:1px solid #e6eaf0;border-radius:12px;padding:30px}.campaign-card h3{font:750 20px Manrope,sans-serif;letter-spacing:-.04em}.campaign-card p{line-height:1.7;color:#6c7b8a;font-size:13px}.campaign-card .stat{font:750 32px Manrope,sans-serif;color:#193550;margin:20px 0}.inline-actions{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:17px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:20px}.panel-head h2{margin:0}.panel-head .minor{font-size:11px;color:#8a97a5}.note{background:#f4f7fa;border:1px solid #e8edf2;padding:16px;border-radius:9px;font-size:12px;color:#637588;line-height:1.7}.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.chart-bar{height:10px;background:#eaf0f5;border-radius:20px;overflow:hidden;margin-top:9px}.chart-bar>div{height:100%;background:#203f63;border-radius:20px}.section{margin-bottom:13px}.foot{margin-bottom:20px}.nav-mobile{display:none}
-@media(max-width:1100px){.sidebar{width:210px}.app{padding:0 20px 40px 230px}.insight-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:750px){.sidebar{position:relative;width:auto;bottom:auto;padding:17px;box-shadow:none}.side-brand{margin-bottom:12px}.side-caption,.side-bottom{display:none}.navlist{display:flex;overflow:auto;gap:6px;padding-bottom:5px}.navitem{flex:0 0 auto;width:auto;padding:10px 12px;font-size:11px}.navicon{width:auto}.app{padding:0 14px 30px}.workspace-header{margin:23px 0}.workspace-header h1{font-size:24px}.top{padding:14px}.headline{padding:26px}.headline h1{font-size:27px}.insight-grid,.campaigns-grid,.report-grid{grid-template-columns:1fr}.data-table{font-size:11px}.data-table th,.data-table td{padding:9px 5px}.workspace-header .pill{display:none}}
-
-.store-subnav{border-left:1px solid #40516c;margin-left:13px;padding-left:10px}.store-subnav .navitem{padding:10px 13px;font-size:12px}.store-nav{letter-spacing:.035em}.store-context{border:1px solid #dce5ed;border-radius:8px;background:#edf2f8;padding:11px 14px;color:#25415e;font-weight:800;font-size:12px}.contact-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}.contact-kpis>div{padding:18px;background:#f7f9fb;border:1px solid #edf0f4;border-radius:9px;display:grid;gap:4px}.contact-kpis strong{font:750 29px Manrope,sans-serif;color:#102b51}.contact-kpis span{color:#657284;font-size:12px}.contact-tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}.contact-tools input{flex:1}.table-wrap{overflow-x:auto}.log-btn{padding:10px 11px;font-size:11px}.cfooter{flex-wrap:wrap}.sidebar{overflow:auto}@media(max-width:650px){.contact-kpis{grid-template-columns:1fr}.contact-tools>*{width:100%}}
-
-.store-group{width:100%;min-width:0}.store-name{flex:1}.store-chevron{font-size:12px;opacity:.65;transition:transform .2s}.store-nav[aria-expanded="true"] .store-chevron{transform:rotate(180deg)}.store-group .store-subnav{margin:3px 0 9px 25px;padding-left:9px;border-left:1px solid #364b63}.store-group .sub-nav{font-size:12px;padding:10px 10px;color:#aebed2}.store-group .sub-nav.active{background:#334b68;color:#fff}.store-group .sub-nav .navicon{font-size:14px;width:18px}.store-group .store-nav{justify-content:flex-start}.store-subnav.hidden{display:none!important}
-@media(max-width:750px){#storeNavigation{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:5px}.store-group .store-subnav{margin-left:8px}.store-group .sub-nav{width:100%;white-space:normal}.sidebar{max-height:none}}
-</style></head><body><aside class="sidebar" aria-label="Navegação principal"><div class="side-brand"><div class="mark">UN</div><div><div class="brand-text">FIDELIZA</div><div class="brand-sub">INTELIGÊNCIA COMERCIAL</div></div></div><div class="side-caption">PAINEL GERAL</div><nav class="navlist"><button type="button" class="navitem active" data-page="overview"><span class="navicon">◫</span>Visão Geral</button></nav><div class="side-caption" style="margin-top:25px">UNIDADES</div><nav class="navlist" id="storeNavigation"><div class="store-group" data-store-group="GUARARAPES"><button type="button" class="navitem store-nav" data-store="GUARARAPES" aria-expanded="false" aria-controls="menu-GUARARAPES"><span class="navicon">⌂</span><span class="store-name">GUARARAPES</span><span class="store-chevron">▾</span></button><div id="menu-GUARARAPES" class="store-subnav hidden"><button type="button" class="navitem sub-nav" data-page="clients" data-store-page="GUARARAPES"><span class="navicon">♙</span>Clientes</button><button type="button" class="navitem sub-nav" data-page="retention" data-store-page="GUARARAPES"><span class="navicon">↻</span>Recorrência</button><button type="button" class="navitem sub-nav" data-page="campaigns" data-store-page="GUARARAPES"><span class="navicon">◈</span>Campanhas</button><button type="button" class="navitem sub-nav" data-page="reports" data-store-page="GUARARAPES"><span class="navicon">▤</span>Relatórios</button></div></div><div class="store-group" data-store-group="RECIFE"><button type="button" class="navitem store-nav" data-store="RECIFE" aria-expanded="false" aria-controls="menu-RECIFE"><span class="navicon">⌂</span><span class="store-name">RECIFE</span><span class="store-chevron">▾</span></button><div id="menu-RECIFE" class="store-subnav hidden"><button type="button" class="navitem sub-nav" data-page="clients" data-store-page="RECIFE"><span class="navicon">♙</span>Clientes</button><button type="button" class="navitem sub-nav" data-page="retention" data-store-page="RECIFE"><span class="navicon">↻</span>Recorrência</button><button type="button" class="navitem sub-nav" data-page="campaigns" data-store-page="RECIFE"><span class="navicon">◈</span>Campanhas</button><button type="button" class="navitem sub-nav" data-page="reports" data-store-page="RECIFE"><span class="navicon">▤</span>Relatórios</button></div></div><div class="store-group" data-store-group="RIOMAR"><button type="button" class="navitem store-nav" data-store="RIOMAR" aria-expanded="false" aria-controls="menu-RIOMAR"><span class="navicon">⌂</span><span class="store-name">RIOMAR</span><span class="store-chevron">▾</span></button><div id="menu-RIOMAR" class="store-subnav hidden"><button type="button" class="navitem sub-nav" data-page="clients" data-store-page="RIOMAR"><span class="navicon">♙</span>Clientes</button><button type="button" class="navitem sub-nav" data-page="retention" data-store-page="RIOMAR"><span class="navicon">↻</span>Recorrência</button><button type="button" class="navitem sub-nav" data-page="campaigns" data-store-page="RIOMAR"><span class="navicon">◈</span>Campanhas</button><button type="button" class="navitem sub-nav" data-page="reports" data-store-page="RIOMAR"><span class="navicon">▤</span>Relatórios</button></div></div><div class="store-group" data-store-group="TACARUNA"><button type="button" class="navitem store-nav" data-store="TACARUNA" aria-expanded="false" aria-controls="menu-TACARUNA"><span class="navicon">⌂</span><span class="store-name">TACARUNA</span><span class="store-chevron">▾</span></button><div id="menu-TACARUNA" class="store-subnav hidden"><button type="button" class="navitem sub-nav" data-page="clients" data-store-page="TACARUNA"><span class="navicon">♙</span>Clientes</button><button type="button" class="navitem sub-nav" data-page="retention" data-store-page="TACARUNA"><span class="navicon">↻</span>Recorrência</button><button type="button" class="navitem sub-nav" data-page="campaigns" data-store-page="TACARUNA"><span class="navicon">◈</span>Campanhas</button><button type="button" class="navitem sub-nav" data-page="reports" data-store-page="TACARUNA"><span class="navicon">▤</span>Relatórios</button></div></div><div class="store-group" data-store-group="PATTEO"><button type="button" class="navitem store-nav" data-store="PATTEO" aria-expanded="false" aria-controls="menu-PATTEO"><span class="navicon">⌂</span><span class="store-name">PATTEO</span><span class="store-chevron">▾</span></button><div id="menu-PATTEO" class="store-subnav hidden"><button type="button" class="navitem sub-nav" data-page="clients" data-store-page="PATTEO"><span class="navicon">♙</span>Clientes</button><button type="button" class="navitem sub-nav" data-page="retention" data-store-page="PATTEO"><span class="navicon">↻</span>Recorrência</button><button type="button" class="navitem sub-nav" data-page="campaigns" data-store-page="PATTEO"><span class="navicon">◈</span>Campanhas</button><button type="button" class="navitem sub-nav" data-page="reports" data-store-page="PATTEO"><span class="navicon">▤</span>Relatórios</button></div></div><div class="store-group" data-store-group="PNWS"><button type="button" class="navitem store-nav" data-store="PNWS" aria-expanded="false" aria-controls="menu-PNWS"><span class="navicon">⌂</span><span class="store-name">PNWS</span><span class="store-chevron">▾</span></button><div id="menu-PNWS" class="store-subnav hidden"><button type="button" class="navitem sub-nav" data-page="clients" data-store-page="PNWS"><span class="navicon">♙</span>Clientes</button><button type="button" class="navitem sub-nav" data-page="retention" data-store-page="PNWS"><span class="navicon">↻</span>Recorrência</button><button type="button" class="navitem sub-nav" data-page="campaigns" data-store-page="PNWS"><span class="navicon">◈</span>Campanhas</button><button type="button" class="navitem sub-nav" data-page="reports" data-store-page="PNWS"><span class="navicon">▤</span>Relatórios</button></div></div><div class="store-group" data-store-group="QUIOSQUE"><button type="button" class="navitem store-nav" data-store="QUIOSQUE" aria-expanded="false" aria-controls="menu-QUIOSQUE"><span class="navicon">⌂</span><span class="store-name">QUIOSQUE</span><span class="store-chevron">▾</span></button><div id="menu-QUIOSQUE" class="store-subnav hidden"><button type="button" class="navitem sub-nav" data-page="clients" data-store-page="QUIOSQUE"><span class="navicon">♙</span>Clientes</button><button type="button" class="navitem sub-nav" data-page="retention" data-store-page="QUIOSQUE"><span class="navicon">↻</span>Recorrência</button><button type="button" class="navitem sub-nav" data-page="campaigns" data-store-page="QUIOSQUE"><span class="navicon">◈</span>Campanhas</button><button type="button" class="navitem sub-nav" data-page="reports" data-store-page="QUIOSQUE"><span class="navicon">▤</span>Relatórios</button></div></div></nav><div class="side-bottom">UNIGAMES<br>Plataforma de relacionamento<br><strong>Ambiente local demonstrativo</strong></div></aside><main class="app"><div class="workspace-header"><div><div class="crumb">UNIGAMES / CRM / <span id="breadcrumb">Visão Geral</span></div><h1 id="pageTitle">Visão Geral</h1></div><span class="pill">FIDELIZA • VERSÃO 5.0</span></div><header class="top"><div class="logo"><div class="mark">UN</div><div><div class="title">FIDELIZA | CRM Recorrência</div><div class="muted">UNIGAMES</div></div></div><div class="top-actions"><button id="template">Baixar modelo CSV</button><label class="btn primary" for="upload">Importar vendas CSV</label><input id="upload" type="file" accept=".csv,text/csv" class="hidden"><button id="clear">Limpar dados</button></div></header><div id="view-overview" class="view active"><section class="headline"><div class="eyebrow">Inteligência comercial / CRM</div><h1>Relacionamento que <span class="accent">gera recompra.</span></h1><p>Identifique clientes sem retorno, veja onde moram e entre em contato pelo WhatsApp.</p></section><div id="message" role="status"></div><section class="metrics"><div class="metric"><div class="label">Clientes cadastrados</div><div class="value" id="total">0</div></div><div class="metric"><div class="label">Clientes recorrentes</div><div class="value" id="recurring">0</div></div><div class="metric"><div class="label">Taxa de recorrência</div><div class="value" id="rate">0%</div></div><div class="metric"><div class="label">Sem compra há 90+ dias</div><div class="value" id="inactive">0</div></div></section><section class="panel" style="margin-top:14px"><div class="panel-head"><div><div class="section-annotation">ACOMPANHAMENTO COMERCIAL</div><h2>Registro de clientes contatados</h2></div><button type="button" id="exportContacts">Exportar contatos CSV</button></div><div class="contact-kpis" id="contactKpis"></div><div class="contact-tools"><select id="contactStore"><option value="">Todas as lojas</option></select><select id="contactStatus"><option value="">Todos os resultados</option><option value="Contato realizado">Contato realizado</option><option value="Sem resposta">Sem resposta</option><option value="Respondeu">Respondeu</option><option value="Retorno agendado">Retorno agendado</option><option value="Venda realizada">Venda realizada</option></select><input id="contactSearch" placeholder="Buscar cliente ou telefone" aria-label="Buscar contatos"></div><div id="contactsTable"></div><p class="regionnote">O registro é manual: abrir WhatsApp não confirma envio nem resposta. Nesta versão, as informações ficam apenas neste navegador; para equipes de lojas diferentes compartilharem os registros, será necessário login e banco de dados.</p></section><section class="section"><div class="panel"><div class="section-annotation">Distribuição geográfica</div><h2>Clientes por bairro / região</h2><div class="bars" id="regions"></div><div class="regionnote">O relatório de PDV não contém bairros. Para ver a distribuição por região, será necessária uma base cadastral com bairro/cidade. Não corresponde à localização em tempo real.</div></div><div class="panel"><div class="section-annotation">Guia da plataforma</div><h2>Como usar</h2><p class="muted">1. Importe diretamente o CSV do PDV UNIGAMES (como o relatório do Guararapes) ou o modelo de clientes.<br><br>2. O importador agrupa itens da mesma venda pelo Nº e identifica clientes pelo telefone ou nome.<br><br>3. Filtre por loja, forma de pagamento e clientes sem recompra. Exporte a lista filtrada em CSV. Bairro e cidade só são exibidos quando presentes no arquivo.<br><br>4. Abra o WhatsApp pelo card para pós-venda ou reativação.</p><p class="small danger">Protótipo local: os dados ficam neste navegador. Não publique base real de clientes no GitHub.</p></div></section></div><div id="view-clients" class="view"><div class="page-heading"><div class="section-annotation">Relacionamento</div><h2>Base de clientes</h2><p>Explore seus clientes e use os filtros para criar listas de contato.</p></div><div class="controls-heading"><h2>Base de clientes</h2><span>Filtre, analise e inicie conversas</span></div><div class="controls"><input class="search" id="search" placeholder="Buscar cliente, telefone ou bairro..." aria-label="Buscar clientes"><span class="store-context" id="storeContext">Selecione uma loja no menu</span><select id="region"><option value="">Todos os bairros</option></select><select id="payment"><option value="">Todas as formas de pagamento</option><option value="CREDIARIO">Crediário</option><option value="PIX">PIX</option><option value="DEBITO">Débito</option><option value="CREDITO">Cartão de crédito</option><option value="DINHEIRO">Dinheiro</option><option value="OUTROS">Outros</option></select><button id="export">Exportar lista filtrada CSV</button><select id="segment"><option value="">Todos os clientes</option><option value="unique">Compra única</option><option value="repeat">Recorrentes</option><option value="inactive">Inativos há 90+ dias</option></select></div><section id="cards" class="grid" aria-live="polite"></section></div><div id="view-retention" class="view"><div class="page-heading"><div class="section-annotation">Inteligência de relacionamento</div><h2>Recorrência e retenção</h2><p>Identifique recompra e oportunidades para reativar clientes.</p></div><div id="retentionMetrics" class="insight-grid"></div><div class="panel"><div class="panel-head"><h2>Clientes por frequência de compra</h2><span class="minor">Compras distintas por cliente</span></div><div id="retentionBars"></div><div class="note" style="margin-top:22px">A recorrência é estimada pela identificação de telefone ou nome, quando não existe um ID estável de cadastro. Confira registros homônimos.</div></div></div><div id="view-campaigns" class="view"><div class="page-heading"><div class="section-annotation">Ações de relacionamento</div><h2>Campanhas</h2><p>Segmente sua base e prepare abordagens de pós-venda e reativação.</p></div><div class="campaigns-grid" id="campaignGrid"></div><div class="note" style="margin-top:16px">As campanhas preparam filtros e mensagens para atendimento individual. O sistema não envia mensagens em massa nem registra automaticamente respostas.</div></div><div id="view-reports" class="view"><div class="page-heading"><div class="section-annotation">Dados da operação</div><h2>Relatórios</h2><p>Consolidação da base importada por loja e forma de pagamento.</p></div><div class="report-grid"><section class="panel"><h2>Indicadores desta loja</h2><div id="reportStores"></div></section><section class="panel"><h2>Modalidades de pagamento</h2><div id="reportPayments"></div></section></div><div class="panel" style="margin-top:15px"><div class="panel-head"><h2>Exportação de clientes</h2><span class="minor">CSV local</span></div><p class="muted">Abra a página Clientes, aplique os filtros desejados e exporte a lista. Os dados pessoais não devem ser enviados ao repositório público.</p><button id="goClients" class="primary">Ir para Clientes</button></div></div><div class="foot">Esta é uma demonstração estática e local, sem autenticação ou banco de dados compartilhado. Para operação real com várias lojas: login, permissões, armazenamento seguro, registro de consentimento/base legal e controle de acesso conforme a LGPD são indispensáveis.</div></main><script>
-
-const key='unigames-crm-v2';const contactKey='fideliza-contactos-v4';const stores=['GUARARAPES','RECIFE','RIOMAR','TACARUNA','PATTEO','PNWS','QUIOSQUE'];let activeStore='';const canonicalStore=s=>{const n=String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]/g,'');if(n.includes('GUARA'))return 'GUARARAPES';if(n.includes('RIOMAR'))return 'RIOMAR';if(n.includes('TACARUNA'))return 'TACARUNA';if(n.includes('PATTEO'))return 'PATTEO';if(n.includes('QUIOSQUE'))return 'QUIOSQUE';if(n.includes('PNWS')||n.includes('NORTHWAY')||n.includes('PAULISTA'))return 'PNWS';if(n.includes('RECIFE'))return 'RECIFE';return ''};const demo=[{id:'C001',nome:'Mariana Oliveira',telefone:'81999990001',loja:'Guararapes',bairro:'Piedade',cidade:'Jaboatão dos Guararapes',data:'2026-10-20',valor:249.9},{id:'C001',nome:'Mariana Oliveira',telefone:'81999990001',loja:'Guararapes',bairro:'Piedade',cidade:'Jaboatão dos Guararapes',data:'2026-08-15',valor:129.9},{id:'C002',nome:'Lucas Pereira',telefone:'81999990002',loja:'Recife',bairro:'Boa Viagem',cidade:'Recife',data:'2026-06-01',valor:899}];
-const $=id=>document.getElementById(id); const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let rows=[],isDemo=true;let visibleCustomers=[];try{const saved=JSON.parse(localStorage.getItem(key));if(Array.isArray(saved)){rows=saved;isDemo=false}else rows=demo}catch{rows=demo}
-const phoneKey=s=>{const t=String(s||'').replace(/\D/g,'');let n=t.startsWith('55')&&t.length>=12?t.slice(2):t;return (n.length===10||n.length===11)&&!/^0+$/.test(n)?n:''};
-const paymentKinds=s=>{const v=normalized(s).replace(/^TIPO PAGAMENTO\s*:\s*/,'');const types=new Set();if(/CREDI[AÁ]RIO|CREDIARIO|CREDIARIO PROPRIO/.test(v))types.add('CREDIARIO');if(/PIX/.test(v))types.add('PIX');if(/DEBITO/.test(v))types.add('DEBITO');if(/CREDITO|CARTAO DE CREDITO/.test(v))types.add('CREDITO');if(/DINHEIRO|ESPECIE/.test(v))types.add('DINHEIRO');if(v&&!types.size)types.add('OUTROS');return [...types]};const clean=s=>String(s||'').trim().replace(/\s+/g,' ');const normalized=s=>clean(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase();const generic=n=>['CLIENTES UNIGAMES','AVULSO','CONSUMIDOR FINAL','CLIENTE NAO IDENTIFICADO','CLIENTE AVULSO','NAO INFORMADO',''].includes(normalized(n));
-function records(storeFilter=""){const map=new Map();for(const r of rows){if(storeFilter&&canonicalStore(r.loja)!==storeFilter)continue;if(!r.nome||generic(r.nome))continue;const pk=phoneKey(r.telefone);const id=pk?'p:'+pk:r.id?.startsWith('p:')||r.id?.startsWith('n:')?r.id:'n:'+normalized(r.nome);if(!id)continue;let old=map.get(id);if(!old){map.set(id,{...r,id,count:1,spent:Number(r.valor)||0,payments:[...new Set(r.pagamentos||paymentKinds(r.pagamento||''))]});continue}old.count++;old.payments=[...new Set([...old.payments,...(r.pagamentos||paymentKinds(r.pagamento||''))])];old.spent+=(Number(r.valor)||0);if(r.data>old.data){for(const p of ['nome','telefone','loja','bairro','cidade','data'])old[p]=r[p]||old[p]}}return [...map.values()]}
-const days=s=>{const d=new Date(s+'T12:00:00');return Number.isFinite(+d)?Math.floor((new Date()-d)/86400000):0};const currency=n=>Number(n).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
-function setOptions(id,values,label){const el=$(id),old=el.value;el.innerHTML='<option value="">'+label+'</option>'+values.sort((a,b)=>a.localeCompare(b,'pt-BR')).map(s=>'<option value="'+esc(s)+'">'+esc(s)+'</option>').join('');el.value=values.includes(old)?old:''}
-function render(){const all=records(activeStore);setOptions('region',[...new Set(all.map(x=>x.bairro).filter(Boolean))],'Todos os bairros');const store=activeStore,region=$('region').value,seg=$('segment').value,payment=$('payment').value,q=$('search').value.toLocaleLowerCase('pt-BR');const scoped=all.filter(x=>(!store||canonicalStore(x.loja)===store)&&(!region||x.bairro===region));$('total').textContent=scoped.length;$('recurring').textContent=scoped.filter(x=>x.count>1).length;$('rate').textContent=scoped.length?Math.round(scoped.filter(x=>x.count>1).length*100/scoped.length)+'%':'0%';$('inactive').textContent=scoped.filter(x=>days(x.data)>=90).length;const counts={};for(const x of scoped)counts[x.bairro||'Não informado']=(counts[x.bairro||'Não informado']||0)+1;const regs=Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,7);$('regions').innerHTML=regs.length?regs.map(([n,v])=>'<div class="barline"><span>'+esc(n)+'</span><div class="track"><div class="fill" style="width:'+100*v/regs[0][1]+'%"></div></div><b>'+v+'</b></div>').join(''):'<div class="muted">Sem clientes nesse filtro.</div>';const filtered=scoped.filter(x=>(!payment||x.payments.includes(payment))&&(!q||[x.nome,x.telefone,x.bairro,x.cidade].some(v=>String(v||'').toLocaleLowerCase('pt-BR').includes(q)))&&(!seg||(seg==='unique'&&x.count===1)||(seg==='repeat'&&x.count>1)||(seg==='inactive'&&days(x.data)>=90))).sort((a,b)=>a.data<b.data?1:-1);visibleCustomers=filtered;$('cards').innerHTML=filtered.length?filtered.map(x=>{const tel=phoneKey(x.telefone),valid=!!tel;const msg=encodeURIComponent('Olá, '+x.nome.split(' ')[0]+'! Tudo bem? Aqui é da '+x.loja+'. Gostaríamos de saber como foi sua experiência conosco. Podemos ajudar em algo?');return '<article class="customer"><div class="ctop"><div><div class="name">'+esc(x.nome)+'</div><div class="muted">Cliente '+esc(x.id)+'</div></div><span class="tag '+(x.count>1?'repeat':'')+'">'+(x.count>1?'Recorrente':'Compra única')+'</span></div><div class="info"><div>📍 '+esc(x.bairro||'Bairro não informado')+' · '+esc(x.cidade||'Cidade não informada')+'</div><div>🏬 '+esc(x.loja||'Loja não informada')+'</div><div>📱 '+esc(x.telefone||'Sem telefone')+'</div><div>🛒 '+x.count+' compra(s) · '+currency(x.spent)+'</div><div>💳 '+esc(x.payments.length?x.payments.join(' / '):'Não informado')+'</div><div>📅 Última compra: '+esc(x.data||'Não informado')+(days(x.data)>=90?' · <strong class="danger">Reativar</strong>':'')+'</div></div><div class="cfooter"><button type="button" class="log-btn" data-log="'+esc(x.id)+'" data-name="'+esc(x.nome)+'" data-phone="'+esc(x.telefone)+'">Registrar contato</button>'+(valid?'<a class="wa" href="https://wa.me/55'+tel+'?text='+msg+'" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>':'<span class="wa disabled">Sem telefone válido</span>')+'</div></article>'}).join(''):'<div class="empty">Nenhum cliente encontrado.</div>';$('message').textContent=isDemo?'Visualização com dados fictícios. Importe o relatório de PDV para começar.':rows.length+' venda(s) de clientes identificados carregada(s) neste navegador. Recorrência estimada por telefone (preferencial) ou nome; confira homônimos e telefones compartilhados.'}
-['search','region','segment','payment'].forEach(id=>$(id).addEventListener(id==='search'?'input':'change',render));
-function parseCSV(t){t=t.replace(/^\uFEFF/,'');const first=(t.match(/[^\r\n]+/)||[''])[0];const sep=(first.match(/;/g)||[]).length>=(first.match(/,/g)||[]).length?';':',';const out=[];let cell='',record=[],quoted=false;for(let i=0;i<t.length;i++){const c=t[i];if(c==='"'){if(quoted&&t[i+1]==='"'){cell+='"';i++}else quoted=!quoted}else if(c===sep&&!quoted){record.push(cell.trim());cell=''}else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&t[i+1]==='\n')i++;record.push(cell.trim());if(record.some(x=>x))out.push(record);record=[];cell=''}else cell+=c}record.push(cell.trim());if(record.some(x=>x))out.push(record);return out}
-const numberBR=s=>{let n=String(s||'').trim().replace(/R\$|\s/g,'');if(n.includes(','))n=n.replace(/\./g,'').replace(',','.');return Number(n)||0};const dateBR=s=>{const m=String(s||'').match(/^(\d{2})\/(\d{2})\/(\d{4})$/);return m?`${m[3]}-${m[2]}-${m[1]}`:s};
-function importData(text){const lines=parseCSV(text);let headerIndex=lines.findIndex(r=>r.some(c=>normalized(c)==='Nº'||normalized(c)==='NO')&&r.some(c=>normalized(c)==='CLIENTE')&&r.some(c=>normalized(c)==='DATA VENDA'));
-if(headerIndex>=0){const h=lines[headerIndex].map(normalized),idx=(...a)=>a.map(x=>h.indexOf(normalized(x))).find(x=>x>=0)??-1;const at=(r,i)=>i<0?'':r[i]||'';const paymentIdx=idx('Tipo Pgto','Tipo Pagamento'),saleIdx=idx('Nº','N°'),dateIdx=idx('Data Venda'),nameIdx=idx('Cliente'),phoneIdx=idx('Fone'),statusIdx=idx('Status'),totalIdx=idx('Total da Venda');if([saleIdx,dateIdx,nameIdx,totalIdx].some(x=>x<0))throw Error('Faltam campos obrigatórios do relatório PDV');let loja=activeStore||'';const title=normalized(lines.slice(0,headerIndex).flat().join(' '));for(const n of ['GUARARAPES','RIOMAR','TACARUNA','PATTEO','NORTH WAY','NORTHWAY','RECIFE','QUIOSQUE','PNWS','PAULISTA'])if(title.includes(n)){loja=canonicalStore(n)||'GUARARAPES';break}if(!loja)throw Error('Selecione primeiro a loja no menu lateral para importar o relatório.');const sales=new Map();let skipped=0;for(const r of lines.slice(headerIndex+1)){const n=clean(at(r,saleIdx)),nome=clean(at(r,nameIdx));if(!/^\d+$/.test(n)||generic(nome)||normalized(at(r,statusIdx))!=='FINALIZADO'){skipped++;continue}const d=dateBR(at(r,dateIdx));if(!/^\d{4}-\d{2}-\d{2}$/.test(d))continue;const phone=phoneKey(at(r,phoneIdx));const identity=phone?'p:'+phone:'n:'+normalized(nome);const k=loja+':'+n;const val=numberBR(at(r,totalIdx));const prev=sales.get(k);const pagamentos=paymentKinds(at(r,paymentIdx));if(!prev){sales.set(k,{id:identity,nome,telefone:phone,loja,bairro:'',cidade:'',data:d,valor:val,pagamentos})}else{prev.pagamentos=[...new Set([...(prev.pagamentos||[]),...pagamentos])];if(val>prev.valor)prev.valor=val}}return {rows:[...sales.values()],message:`Importação do PDV: ${sales.size} vendas de clientes identificados. ${skipped} linhas descartadas (inclusive clientes genéricos). Registros duplicados de produtos consolidados por número da venda.`}}
-const i=lines.findIndex(r=>r.map(normalized).includes('ID')&&r.map(normalized).includes('NOME'));if(i<0)throw Error('Não reconheci o formato. Envie o CSV original do PDV ou o modelo do FIDELIZA.');const h=lines[i].map(x=>normalized(x).toLowerCase());const required=['id','nome','telefone','loja','bairro','cidade','data','valor'];if(required.some(v=>!h.includes(v)))throw Error('O modelo exige: '+required.join(', '));const result=[];for(const line of lines.slice(i+1)){const r={};h.forEach((x,j)=>r[x]=line[j]||'');if(!r.id||generic(r.nome))continue;r.data=dateBR(r.data);r.valor=numberBR(r.valor);r.telefone=phoneKey(r.telefone);r.pagamentos=paymentKinds(r.pagamento||r['tipo pgto']||r['tipo pagamento']||'');if(!/^\d{4}-\d{2}-\d{2}$/.test(r.data))continue;result.push(r)}return {rows:result,message:`Modelo importado: ${result.length} registros.`}}
-async function fileText(f){const b=await f.arrayBuffer();try{return new TextDecoder('utf-8',{fatal:true}).decode(b)}catch{return new TextDecoder('windows-1252').decode(b)}}
-$('upload').addEventListener('change',async e=>{const f=e.target.files?.[0];if(!f)return;try{const result=importData(await fileText(f));if(!result.rows.length)throw Error('Nenhuma compra válida de cliente identificado encontrada.');const incomingStores=new Set(result.rows.map(r=>canonicalStore(r.loja)));rows=[...rows.filter(r=>!incomingStores.has(canonicalStore(r.loja))),...result.rows];try{localStorage.setItem(key,JSON.stringify(rows))}catch{alert('Importado para esta sessão, mas o armazenamento do navegador está cheio. Os dados não serão mantidos após fechar a página.')}isDemo=false;render();alert(result.message)}catch(err){alert('Não foi possível importar: '+err.message)}e.target.value=''});
-$('export').onclick=()=>{if(!visibleCustomers.length){alert('Nenhum cliente para exportar.');return}const head=['Nome','Telefone','Loja da última compra','Bairro','Cidade','Última compra','Quantidade de compras','Gasto total','Formas de pagamento'];const safe=v=>{let s=String(v??'');if(/^[\s]*[=+@\-]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'};const lines=[head,...visibleCustomers.map(x=>[x.nome,x.telefone,x.loja,x.bairro,x.cidade,x.data,x.count,currency(x.spent),x.payments.join(' / ')])];const csv='\ufeff'+lines.map(x=>x.map(safe).join(';')).join('\r\n');const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));const a=document.createElement('a');a.href=url;a.download='fideliza_'+activeStore.toLowerCase()+'_clientes_'+($('payment').value||'todos').toLowerCase()+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}; $('clear').onclick=()=>{if(confirm('Remover a base de vendas deste navegador? Os registros de contatos serão preservados.')){rows=[];localStorage.removeItem(key);localStorage.setItem(key,'[]');isDemo=false;render()}};
-$('template').onclick=()=>{const example='id;nome;telefone;loja;bairro;cidade;data;valor;pagamento\nC001;Cliente Exemplo;81999999999;Guararapes;Piedade;Jaboatão dos Guararapes;2026-10-01;199,90;Crediário\nC001;Cliente Exemplo;81999999999;Guararapes;Piedade;Jaboatão dos Guararapes;2026-10-20;89,90;PIX\n';const blob=new Blob(['\ufeff'+example],{type:'text/csv;charset=utf-8;'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='modelo_clientes_crm.csv';a.click();URL.revokeObjectURL(a.href)};render();
-
-
-// Navegação entre módulos e painéis analíticos — versão 3.0
-const pageNames={overview:'Visão Geral',clients:'Clientes',retention:'Recorrência',campaigns:'Campanhas',reports:'Relatórios'};
-function navigate(page){
- if(!pageNames[page]||(!activeStore&&page!=='overview'))return;
- document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+page));
- document.querySelectorAll('[data-store-group]').forEach(g=>{
-   const isCurrent=g.dataset.storeGroup===activeStore;
-   const menu=g.querySelector('.store-subnav');
-   const opener=g.querySelector('.store-nav');
-   const expanded=isCurrent&&page!=='overview';
-   menu.classList.toggle('hidden',!expanded);
-   opener.setAttribute('aria-expanded',String(expanded));
- });
- document.querySelectorAll('.navitem').forEach(b=>{
-   const active=(page==='overview'&&b.dataset.page==='overview')||(b.dataset.storePage===activeStore&&b.dataset.page===page)||(b.classList.contains('store-nav')&&b.dataset.store===activeStore&&page!=='overview');
-   b.classList.toggle('active',active);
-   if(active)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');
- });
- $('breadcrumb').textContent=page==='overview'?'Visão Geral':activeStore+' / '+pageNames[page];
- $('pageTitle').textContent=page==='overview'?'Visão Geral':activeStore+' — '+pageNames[page];
- $('storeContext').textContent=activeStore||'Selecione uma loja';
- window.scrollTo({top:0,behavior:'instant'});
+:root{
+  --bg:#f5f7fa; --panel:#ffffff; --line:#e5ebf2; --text:#182332; --muted:#6d7888;
+  --nav:#101925; --nav2:#23354c; --nav3:#314965; --brand:#102b51; --soft:#eef3f8;
+  --green:#1f7a4f; --gold:#d6ad4f; --red:#b34d4d; --shadow:0 10px 30px rgba(16,25,37,.05);
 }
-function selectStore(s,page='clients'){
- if(!stores.includes(s))return;
- activeStore=s;
- $('region').value='';$('payment').value='';$('segment').value='';$('search').value='';
- render();navigate(page);
-}
-document.querySelectorAll('.store-nav').forEach(b=>b.addEventListener('click',()=>selectStore(b.dataset.store)));
-document.querySelectorAll('.sub-nav').forEach(b=>b.addEventListener('click',()=>{
- if(activeStore!==b.dataset.storePage)selectStore(b.dataset.storePage,b.dataset.page);
- else navigate(b.dataset.page);
-}));
-document.querySelector('[data-page="overview"]').addEventListener('click',()=>{activeStore='';render();navigate('overview')});
-$('goClients').addEventListener('click',()=>navigate('clients'));
-function buildExtras(){const all=records(activeStore),repeat=all.filter(x=>x.count>1),inactive=all.filter(x=>days(x.data)>=90),single=all.filter(x=>x.count===1);const percentage=n=>all.length?Math.round(n/all.length*100)+'%':'0%';const tile=(label,value,detail)=>'<div class="insight"><div class="top-caption">'+label+'</div><div class="big">'+value+'</div><div class="mini">'+detail+'</div></div>';
-$('retentionMetrics').innerHTML=tile('Base identificada',all.length.toLocaleString('pt-BR'),'Clientes identificados')+tile('Clientes recorrentes',repeat.length.toLocaleString('pt-BR'),percentage(repeat.length)+' da base')+tile('Sem compra há 90+ dias',inactive.length.toLocaleString('pt-BR'),percentage(inactive.length)+' da base');const segments=[['Compra única',single.length],['Duas compras',all.filter(x=>x.count===2).length],['Três ou mais compras',all.filter(x=>x.count>=3).length]];const max=Math.max(1,...segments.map(x=>x[1]));$('retentionBars').innerHTML=segments.map(([label,num])=>'<div style="padding:12px 0"><div class="report-line" style="border:0;padding:0"><strong>'+label+'</strong><span>'+num.toLocaleString('pt-BR')+' clientes</span></div><div class="chart-bar"><div style="width:'+(num/max*100)+'%"></div></div></div>').join('');
-const camp=[{title:'Reativação de clientes',description:'Pessoas sem compra há 90 dias ou mais.',count:inactive.length,segment:'inactive',button:'Ver clientes inativos'},{title:'Primeira recompra',description:'Clientes que fizeram apenas uma compra.',count:single.length,segment:'unique',button:'Ver compras únicas'},{title:'Relacionamento VIP',description:'Clientes com duas ou mais compras identificadas.',count:repeat.length,segment:'repeat',button:'Ver recorrentes'},{title:'Campanha de crediário',description:'Clientes que já utilizaram a modalidade crediário.',count:all.filter(x=>x.payments.includes('CREDIARIO')).length,segment:'',payment:'CREDIARIO',button:'Ver clientes de crediário'}];$('campaignGrid').innerHTML=camp.map((c,i)=>'<article class="campaign-card"><div class="section-annotation">Campanha 0'+(i+1)+'</div><h3>'+c.title+'</h3><p>'+c.description+'</p><div class="stat">'+c.count.toLocaleString('pt-BR')+' <span class="muted">clientes</span></div><button class="primary" data-campaign="'+i+'">'+c.button+' →</button></article>').join('');document.querySelectorAll('[data-campaign]').forEach(b=>b.onclick=()=>{const c=camp[Number(b.dataset.campaign)];$('search').value='';$('region').value='';$('segment').value=c.segment;$('payment').value=c.payment||'';render();navigate('clients')});
-const tally=(fn)=>{const m=new Map();for(const x of all){const a=fn(x);for(const v of new Set(Array.isArray(a)?a:[a])){const k=v||'Não informado';m.set(k,(m.get(k)||0)+1)}}return [...m.entries()].sort((a,b)=>b[1]-a[1])};const rowsHTML=(data)=>data.length?'<table class="data-table"><thead><tr><th>Categoria</th><th>Clientes</th></tr></thead><tbody>'+data.map(([label,count])=>'<tr><td>'+esc(label)+'</td><td>'+count.toLocaleString('pt-BR')+'</td></tr>').join('')+'</tbody></table>':'<div class="muted">Sem dados importados.</div>';$('reportStores').innerHTML=rowsHTML(tally(x=>x.loja));const paymentNames={CREDIARIO:'Crediário',PIX:'PIX',DEBITO:'Débito',CREDITO:'Cartão de crédito',DINHEIRO:'Dinheiro',OUTROS:'Outros'};$('reportPayments').innerHTML=rowsHTML(tally(x=>x.payments.length?x.payments.map(p=>paymentNames[p]||p):['Não informado']));}
-const renderBase=render;render=function(){renderBase();buildExtras()};render();
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,sans-serif}
+button,input,select{font:inherit}
+.hidden{display:none!important}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:260px;background:var(--nav);color:#fff;padding:28px 18px;overflow:auto;box-shadow:10px 0 40px rgba(16,25,37,.12)}
+.side-brand{display:flex;align-items:center;gap:12px;padding:6px 8px;margin-bottom:26px}
+.mark{width:46px;height:46px;border-radius:11px;background:#fff;color:var(--brand);display:grid;place-items:center;font-weight:800;letter-spacing:-.04em}
+.brand-title{font-size:18px;font-weight:800;letter-spacing:.08em}.brand-sub{font-size:10px;color:#a8b7c9;letter-spacing:.18em;margin-top:4px}
+.side-caption{font-size:10px;letter-spacing:.16em;color:#7f91a9;text-transform:uppercase;padding:0 12px;margin:20px 0 10px}
+.navlist{display:grid;gap:5px}
+.navitem{display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:transparent;border:1px solid transparent;color:#aebcd0;padding:13px 14px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer}
+.navitem:hover{background:#182636;color:#fff}.navitem.active{background:var(--nav3);color:#fff}.navicon{width:20px;text-align:center;font-size:14px}
+.store-group .store-subnav{margin:4px 0 8px 24px;padding-left:8px;border-left:1px solid #334963}.store-subnav .navitem{padding:10px 11px;font-size:12px}
+.store-chevron{margin-left:auto;opacity:.65;transition:transform .2s}.store-nav[aria-expanded="true"] .store-chevron{transform:rotate(180deg)}
+.side-bottom{margin-top:22px;padding:14px 12px;border-top:1px solid #26374e;color:#98a7bb;font-size:11px;line-height:1.65}
+.main{padding:28px 36px 44px 296px}
+.workspace-header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.crumb{font-size:12px;color:#7a8595}.workspace-header h1{font:750 30px Manrope,sans-serif;letter-spacing:-.06em;margin:6px 0 0}.pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:10px 14px;font-size:11px;color:#5f6d80}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);padding:16px 18px;border-radius:13px;box-shadow:var(--shadow);margin-bottom:18px}
+.topbar-actions{display:flex;gap:10px;flex-wrap:wrap}
+button,.btn,select,input{border:1px solid #d9e2ec;background:#fff;border-radius:10px;padding:12px 14px;color:#1b2b3c}
+button,.btn{cursor:pointer;font-weight:700;text-decoration:none}.primary{background:var(--brand);border-color:var(--brand);color:#fff}.primary:hover{background:#173a69}.btn:hover,button:hover{transform:translateY(-1px)}
+input:focus,select:focus{outline:none;border-color:#29527e;box-shadow:0 0 0 3px rgba(67,125,183,.15)}
+.hero{position:relative;background:#101b2b;color:#fff;border-radius:15px;padding:34px 36px;overflow:hidden;margin-bottom:18px}
+.hero:after{content:'';position:absolute;right:-70px;top:-110px;width:390px;height:390px;border-radius:50%;border:1px solid rgba(205,220,235,.25);box-shadow:0 0 0 60px rgba(182,202,220,.05),0 0 0 120px rgba(182,202,220,.03)}
+.eyebrow{position:relative;z-index:1;font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:#a9c1d8;font-weight:700}.hero h2{position:relative;z-index:1;font:650 clamp(28px,3vw,42px) Manrope,sans-serif;letter-spacing:-.06em;line-height:1.12;margin:12px 0 10px}.hero p{position:relative;z-index:1;color:#bed0e1;max-width:760px;line-height:1.7;margin:0}
+.metrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-bottom:16px}
+.metric,.panel,.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+.metric{padding:22px}.metric .label{font-size:12px;color:var(--muted);font-weight:700}.metric .value{font:760 36px Manrope,sans-serif;letter-spacing:-.06em;margin-top:18px}.metric:before{content:'';display:block;width:26px;height:3px;background:#b7c8d9;border-radius:999px;margin-bottom:16px}
+.section-title{display:flex;justify-content:space-between;align-items:end;gap:10px;margin-bottom:10px;flex-wrap:wrap}.section-title h3{margin:0;font:750 20px Manrope,sans-serif;letter-spacing:-.04em}.section-title span{font-size:12px;color:var(--muted)}
+.overview-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-bottom:15px}
+.panel{padding:22px}
+.chart-panel{min-height:360px}
+.chart-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.chart-wrap{display:flex;align-items:flex-end;gap:16px;height:250px;padding:20px 8px 4px;border-bottom:1px solid #ecf0f5}
+.col{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0}.bar-box{height:190px;width:100%;display:flex;align-items:flex-end;justify-content:center}.bar{width:50px;max-width:100%;background:linear-gradient(180deg,#8ca9c6 0%,#183a63 100%);border-radius:12px 12px 4px 4px;min-height:6px;position:relative}.bar small{position:absolute;top:-24px;left:50%;transform:translateX(-50%);font-size:11px;color:#506074;font-weight:700;white-space:nowrap}.col label{font-size:11px;color:#617082;text-align:center;font-weight:700;line-height:1.3}.chart-legend{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:14px;font-size:12px;color:var(--muted)}
+.podium{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:end;margin-top:6px}
+.podium-card{padding:16px 14px;border-radius:14px;text-align:center;background:#f7f9fc;border:1px solid #e8edf3}.podium-card.first{background:linear-gradient(180deg,#fff7de,#f7e8ae);border-color:#ead68e}.podium-card.second{background:#f3f6fa}.podium-card.third{background:#faf3ec}
+.podium-rank{font:800 12px Manrope,sans-serif;letter-spacing:.12em;color:#7b8695;text-transform:uppercase}.podium-store{font:800 18px Manrope,sans-serif;letter-spacing:-.04em;margin:10px 0 6px}.podium-value{font:800 26px Manrope,sans-serif;letter-spacing:-.05em}.podium-meta{font-size:12px;color:#657284;line-height:1.55}.trophy{font-size:28px}
+.contact-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:14px}.contact-kpis>div{padding:18px;background:#f7f9fb;border:1px solid #edf1f5;border-radius:10px}.contact-kpis strong{display:block;font:760 30px Manrope,sans-serif;color:var(--brand);margin-bottom:4px}.contact-kpis span{font-size:12px;color:var(--muted)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}.tools input.search{flex:1;min-width:220px}.store-context{padding:12px 14px;background:#edf3f8;border-radius:10px;border:1px solid #dbe6f0;color:#25415e;font-weight:800;font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{padding:20px;display:flex;flex-direction:column;gap:14px}.card:hover{box-shadow:0 14px 34px rgba(16,25,37,.08)}.ctop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.name{font:800 18px Manrope,sans-serif;letter-spacing:-.04em}.mini{font-size:12px;color:var(--muted);line-height:1.55}.tag{font-size:10px;font-weight:800;padding:7px 10px;border-radius:999px;background:#edf3f8;color:#2a567f;letter-spacing:.04em}.tag.repeat{background:#edf7f0;color:var(--green)}.tag.inactive{background:#fbefef;color:var(--red)}
+.kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.kpi-box{padding:11px 12px;background:#f8fafc;border:1px solid #edf2f6;border-radius:10px}.kpi-box strong{display:block;font:800 16px Manrope,sans-serif;margin-bottom:4px}.kpi-box span{font-size:11px;color:var(--muted)}
+.list{display:grid;gap:8px}.list-row{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:#516173;padding-bottom:8px;border-bottom:1px solid #eef2f6}.list-row strong{color:#1f2c3b}
+.card-actions{display:flex;gap:10px;flex-wrap:wrap;border-top:1px solid #edf1f5;padding-top:14px}.wa{display:inline-flex;align-items:center;justify-content:center;background:var(--brand);color:#fff;border-radius:10px;padding:11px 14px;font-size:11px;font-weight:800;text-decoration:none;letter-spacing:.02em}.wa.disabled{background:#e7edf4;color:#8d9cad;pointer-events:none}.ghost{background:#fff}
+.empty{padding:40px 20px;text-align:center;color:#748191;border:1px dashed #d5dfe9;border-radius:14px;background:#fff}
+.insight-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:16px}.insight{padding:22px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}.insight .big{font:760 34px Manrope,sans-serif;letter-spacing:-.06em;margin:12px 0 4px}.insight .mini{font-size:12px;color:var(--muted)}
+.chart-bar{height:9px;background:#edf2f7;border-radius:999px;overflow:hidden;margin-top:8px}.chart-bar>div{height:100%;background:linear-gradient(90deg,#1b416d,#90aac4);border-radius:999px}
+.campaign-grid,.report-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.campaign-card{padding:24px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}.campaign-card h4{margin:6px 0 8px;font:760 20px Manrope,sans-serif;letter-spacing:-.04em}.campaign-card p{font-size:13px;color:#6d7a8a;line-height:1.7}.campaign-card .stat{font:760 30px Manrope,sans-serif;margin:16px 0 18px}
+.table-wrap{overflow:auto}.data-table{width:100%;border-collapse:collapse;font-size:12px}.data-table th,.data-table td{padding:13px 10px;border-bottom:1px solid #ebf0f4;text-align:left;white-space:nowrap}.data-table th{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7a8796}.data-table td{color:#2a3b4e}.foot{font-size:11px;color:#8a95a4;line-height:1.7;border-top:1px solid #e4eaf0;padding:20px 0 10px;margin-top:24px}
+.note{font-size:12px;color:#697686;line-height:1.7}.section-space{margin-top:16px}
+.view{display:none}.view.active{display:block}
+@media (max-width:1200px){.metrics{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.overview-grid,.report-grid,.campaign-grid{grid-template-columns:1fr}.contact-kpis{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:900px){.sidebar{position:static;width:auto}.main{padding:18px}.metrics{grid-template-columns:repeat(2,1fr)}.grid,.insight-grid{grid-template-columns:1fr}.main{padding-top:0}.chart-wrap{gap:10px}.bar{width:34px}}
+@media (max-width:640px){.metrics,.contact-kpis{grid-template-columns:1fr}.topbar-actions>*{width:100%}.chart-controls>*{width:100%}.podium{grid-template-columns:1fr}.kpi-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<aside class="sidebar">
+  <div class="side-brand"><div class="mark">UN</div><div><div class="brand-title">FIDELIZA</div><div class="brand-sub">INTELIGÊNCIA COMERCIAL</div></div></div>
+  <div class="side-caption">Painel Geral</div>
+  <nav class="navlist">
+    <button class="navitem active" data-page="overview"><span class="navicon">◫</span>Visão Geral</button>
+  </nav>
+  <div class="side-caption">Lojas</div>
+  <nav class="navlist" id="storeNavigation"></nav>
+  <div class="side-bottom">UNIGAMES<br>CRM de recorrência e relacionamento.<br><strong>Ambiente local demonstrativo</strong></div>
+</aside>
 
-let contactLogs=[];try{let saved=JSON.parse(localStorage.getItem(contactKey));if(Array.isArray(saved))contactLogs=saved}catch{}
-const fmtWhen=d=>{try{return new Date(d).toLocaleString('pt-BR')}catch{return d}};
-function saveContacts(){try{localStorage.setItem(contactKey,JSON.stringify(contactLogs))}catch{alert('Sem espaço para salvar os registros neste navegador. Exporte o CSV de contatos.')}}
-function renderContacts(){const sf=$('contactStore').value,st=$('contactStatus').value,q=$('contactSearch').value.toLowerCase();const logs=contactLogs.filter(r=>(!sf||r.loja===sf)&&(!st||r.status===st)&&(!q||(r.nome+' '+r.telefone).toLowerCase().includes(q))).sort((a,b)=>b.created.localeCompare(a.created));const unique=new Set(contactLogs.map(r=>r.loja+'|'+r.id));const today=new Date().toLocaleDateString('pt-BR');$('contactKpis').innerHTML='<div><strong>'+contactLogs.length+'</strong><span> Registros totais</span></div><div><strong>'+unique.size+'</strong><span> Clientes contatados</span></div><div><strong>'+contactLogs.filter(r=>new Date(r.created).toLocaleDateString('pt-BR')===today).length+'</strong><span> Ações hoje</span></div>';
-$('contactsTable').innerHTML=logs.length?'<div class="table-wrap"><table class="data-table"><thead><tr><th>Data/hora</th><th>Loja</th><th>Cliente</th><th>Contato</th><th>Resultado</th><th>Observações</th></tr></thead><tbody>'+logs.slice(0,300).map(r=>'<tr><td>'+esc(fmtWhen(r.created))+'</td><td>'+esc(r.loja)+'</td><td>'+esc(r.nome)+'</td><td>'+esc(r.telefone||'Não informado')+'</td><td>'+esc(r.status)+'</td><td>'+esc(r.notes||'—')+'</td></tr>').join('')+'</tbody></table></div>':'<div class="empty">Nenhum contato registrado para estes filtros.</div>';
-}
-function logContact(btn){if(!activeStore)return;const id=btn.dataset.log, nome=btn.dataset.name,telefone=btn.dataset.phone;const status=prompt('RESULTADO DO CONTATO com '+nome+'\n1 = Contato realizado\n2 = Sem resposta\n3 = Respondeu\n4 = Retorno agendado\n5 = Venda realizada','1');if(status===null)return;const kinds={'1':'Contato realizado','2':'Sem resposta','3':'Respondeu','4':'Retorno agendado','5':'Venda realizada'};if(!kinds[status.trim()])return alert('Selecione uma opção de 1 a 5.');const notes=prompt('Observação (opcional):','');if(notes===null)return;contactLogs.push({id,nome,telefone,loja:activeStore,status:kinds[status.trim()],notes:notes.slice(0,500),created:new Date().toISOString()});saveContacts();renderContacts();alert('Contato registrado na Visão Geral deste navegador.');}
-$('cards').addEventListener('click',e=>{const b=e.target.closest('[data-log]');if(b)logContact(b)});
-for(const id of ['contactStore','contactStatus','contactSearch'])$(id).addEventListener(id==='contactSearch'?'input':'change',renderContacts);
-$('contactStore').innerHTML='<option value="">Todas as lojas</option>'+stores.map(s=>'<option value="'+s+'">'+s+'</option>').join('');
-$('exportContacts').onclick=()=>{if(!contactLogs.length)return alert('Nenhum registro para exportar.');const safe=v=>'"'+String(v??'').replace(/^[\s]*[=+@-]/,m=>"'"+m).replace(/"/g,'""')+'"';const lines=[['Data/hora','Loja','ID','Nome','Telefone','Resultado','Observações'],...contactLogs.map(x=>[fmtWhen(x.created),x.loja,x.id,x.nome,x.telefone,x.status,x.notes])];const data='\ufeff'+lines.map(r=>r.map(safe).join(';')).join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'text/csv;charset=utf-8'}));a.download='fideliza_registro_contatos.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
-const baseRender=render;render=function(){baseRender();renderContacts()};render();navigate('overview');
+<main class="main">
+  <div class="workspace-header">
+    <div>
+      <div class="crumb">UNIGAMES / CRM / <span id="breadcrumb">Visão Geral</span></div>
+      <h1 id="pageTitle">Visão Geral</h1>
+    </div>
+    <span class="pill">FIDELIZA • VERSÃO 6.0</span>
+  </div>
 
-</script></body></html>
+  <header class="topbar">
+    <div>
+      <strong style="font:800 16px Manrope,sans-serif;letter-spacing:-.04em;display:block">Base de vendas</strong>
+      <span style="font-size:12px;color:#718093">Importe um CSV do PDV ou um CSV no modelo do FIDELIZA.</span>
+    </div>
+    <div class="topbar-actions">
+      <select id="importStore" title="Associar loja ao arquivo caso o CSV não possua a coluna loja">
+        <option value="">Detectar loja automaticamente</option>
+      </select>
+      <button id="template">Baixar modelo CSV</button>
+      <label class="btn primary" for="upload">Importar vendas CSV</label>
+      <input id="upload" type="file" accept=".csv,text/csv" class="hidden">
+      <button id="clear">Limpar dados</button>
+    </div>
+  </header>
+
+  <div id="view-overview" class="view active">
+    <section class="hero">
+      <div class="eyebrow">Inteligência comercial / visão consolidada</div>
+      <h2>Painel de desempenho e relacionamento das lojas.</h2>
+      <p>Acompanhe o resultado diário de cada unidade, veja o pódio do dia e controle os clientes contatados pela operação.</p>
+    </section>
+
+    <div id="message" style="font-size:12px;color:#6b7889;margin:0 0 14px"></div>
+
+    <section class="metrics">
+      <div class="metric"><div class="label">Clientes identificados</div><div class="value" id="metricCustomers">0</div></div>
+      <div class="metric"><div class="label">Clientes recorrentes</div><div class="value" id="metricRecurring">0</div></div>
+      <div class="metric"><div class="label">Taxa de recorrência</div><div class="value" id="metricRate">0%</div></div>
+      <div class="metric"><div class="label">Sem compra há 90+ dias</div><div class="value" id="metricInactive">0</div></div>
+      <div class="metric"><div class="label">Clientes contatados</div><div class="value" id="metricContacted">0</div></div>
+    </section>
+
+    <section class="overview-grid">
+      <section class="panel chart-panel">
+        <div class="section-title"><div><h3>Desempenho diário por loja</h3><span>Gráfico de colunas por faturamento diário</span></div></div>
+        <div class="chart-controls">
+          <input id="overviewDate" placeholder="dd/mm/aaaa" aria-label="Data de análise diária">
+          <button id="useLatest">Usar última data importada</button>
+          <button id="applyOverviewDate" class="primary">Atualizar gráfico</button>
+        </div>
+        <div id="dailyChart" class="chart-wrap"></div>
+        <div class="chart-legend"><span id="dailyDateLegend">Data em análise: —</span><span id="dailyTotalLegend">Faturamento total: R$ 0,00</span></div>
+      </section>
+      <section class="panel">
+        <div class="section-title"><div><h3>Pódio do dia</h3><span>Top 3 lojas mais agressivas na data selecionada</span></div></div>
+        <div id="podium" class="podium"></div>
+      </section>
+    </section>
+
+    <section class="panel">
+      <div class="section-title"><div><h3>Registro de clientes contatados</h3><span>Histórico consolidado por loja</span></div><button id="exportContacts">Exportar contatos CSV</button></div>
+      <div class="contact-kpis" id="contactKpis"></div>
+      <div class="tools">
+        <select id="contactStore"><option value="">Todas as lojas</option></select>
+        <select id="contactStatus">
+          <option value="">Todos os resultados</option>
+          <option value="Contato realizado">Contato realizado</option>
+          <option value="Sem resposta">Sem resposta</option>
+          <option value="Respondeu">Respondeu</option>
+          <option value="Retorno agendado">Retorno agendado</option>
+          <option value="Venda realizada">Venda realizada</option>
+        </select>
+        <input id="contactSearch" class="search" placeholder="Buscar cliente ou telefone">
+      </div>
+      <div id="contactsTable"></div>
+      <p class="note section-space">Abrir o WhatsApp não registra o contato automaticamente. Use o botão <strong>Registrar contato</strong> em cada cliente para alimentar este painel.</p>
+    </section>
+  </div>
+
+  <div id="view-clients" class="view">
+    <div class="section-title" style="margin-bottom:14px"><div><h3>Clientes</h3><span>Base filtrada da loja selecionada</span></div></div>
+    <div class="tools">
+      <input id="search" class="search" placeholder="Buscar cliente, telefone, bairro ou cidade">
+      <span class="store-context" id="storeContext">Selecione uma loja</span>
+      <select id="region"><option value="">Todos os bairros / regiões</option></select>
+      <select id="payment">
+        <option value="">Todas as formas de pagamento</option>
+        <option value="CREDIARIO">Crediário</option>
+        <option value="PIX">PIX</option>
+        <option value="DEBITO">Débito</option>
+        <option value="CREDITO">Cartão de crédito</option>
+        <option value="DINHEIRO">Dinheiro</option>
+        <option value="OUTROS">Outros</option>
+      </select>
+      <select id="segment">
+        <option value="">Todos os clientes</option>
+        <option value="unique">Compra única</option>
+        <option value="repeat">Recorrentes</option>
+        <option value="inactive">Inativos há 90+ dias</option>
+      </select>
+      <select id="sortBy">
+        <option value="name">Ordenar por nome</option>
+        <option value="sales_desc">Quem mais comprou (quantidade)</option>
+        <option value="revenue_desc">Quem mais faturou</option>
+        <option value="last_date_desc">Compra mais recente</option>
+      </select>
+      <input id="dateFrom" placeholder="Data inicial dd/mm/aaaa">
+      <input id="dateTo" placeholder="Data final dd/mm/aaaa">
+      <button id="export">Exportar lista filtrada CSV</button>
+    </div>
+    <section id="cards" class="grid"></section>
+  </div>
+
+  <div id="view-retention" class="view">
+    <div class="section-title"><div><h3>Recorrência</h3><span>Frequência de compra e reativação</span></div></div>
+    <div id="retentionMetrics" class="insight-grid"></div>
+    <section class="panel">
+      <div class="section-title"><div><h3>Clientes por frequência de compra</h3><span>Compras distintas por cliente na loja</span></div></div>
+      <div id="retentionBars"></div>
+      <p class="note section-space">A recorrência usa o telefone como principal identificador. Na ausência dele, o sistema usa o nome do cliente.</p>
+    </section>
+  </div>
+
+  <div id="view-campaigns" class="view">
+    <div class="section-title"><div><h3>Campanhas</h3><span>Listas prontas para ação comercial</span></div></div>
+    <div id="campaignGrid" class="campaign-grid"></div>
+    <p class="note section-space">Estas campanhas apenas preparam listas e filtros. O sistema não dispara mensagens em massa automaticamente.</p>
+  </div>
+
+  <div id="view-reports" class="view">
+    <div class="section-title"><div><h3>Relatórios</h3><span>Indicadores da loja selecionada</span></div></div>
+    <div class="report-grid">
+      <section class="panel"><div class="section-title"><div><h3>Modalidades de pagamento</h3><span>Clientes por forma de pagamento</span></div></div><div id="reportPayments"></div></section>
+      <section class="panel"><div class="section-title"><div><h3>Regiões e bairros</h3><span>Concentração da base</span></div></div><div id="reportRegions"></div></section>
+    </div>
+    <div class="report-grid section-space">
+      <section class="panel"><div class="section-title"><div><h3>Clientes que mais compraram</h3><span>Quantidade de vendas</span></div></div><div id="reportTopSales"></div></section>
+      <section class="panel"><div class="section-title"><div><h3>Clientes que mais faturaram</h3><span>Valor total gasto</span></div></div><div id="reportTopRevenue"></div></section>
+    </div>
+    <section class="panel section-space">
+      <div class="section-title"><div><h3>Exportação</h3><span>Lista da loja selecionada</span></div></div>
+      <p class="note">Abra a tela <strong>Clientes</strong>, aplique os filtros desejados e exporte a lista. Não coloque a base real de clientes em um repositório público.</p>
+      <button id="goClients" class="primary">Ir para Clientes</button>
+    </section>
+  </div>
+
+  <div class="foot">Protótipo local: os dados ficam apenas neste navegador. Para operação real com várias lojas, a próxima etapa é implementar login, permissões por loja, banco de dados centralizado e controles de LGPD.</div>
+</main>
+
+<script>
+const stores=['GUARARAPES','RECIFE','RIOMAR','TACARUNA','PATTEO','PNWS','QUIOSQUE'];
+const stateKey='fideliza_v6_sales';
+const contactKey='fideliza_v6_contacts';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const digits=s=>String(s||'').replace(/\D+/g,'');
+const normalize=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/\s+/g,' ').trim();
+const toTitle=s=>String(s||'').toLowerCase().replace(/(^|\s|\-|\/)([a-zà-ÿ])/g,(m,a,b)=>a+b.toUpperCase());
+const fmtBRL=v=>(Number(v)||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const fmtNum=v=>(Number(v)||0).toLocaleString('pt-BR');
+function parseBRNumber(v){if(v==null) return 0; let s=String(v).trim().replace(/R\$/gi,'').replace(/\s/g,''); if(!s) return 0; if(s.includes(',')&&s.includes('.')) s=s.replace(/\./g,'').replace(',', '.'); else if(s.includes(',')) s=s.replace(',', '.'); const n=Number(s.replace(/[^0-9.-]/g,'')); return Number.isFinite(n)?n:0;}
+function parseBRDate(v){if(!v) return null; if(v instanceof Date && !isNaN(v)) return new Date(v.getFullYear(),v.getMonth(),v.getDate()); let s=String(v).trim(); if(!s) return null; s=s.split(' ')[0]; let m=s.match(/^(\d{2})\/(\d{2})\/(\d{4})$/); if(m){const d=new Date(+m[3],+m[2]-1,+m[1]); return isNaN(d)?null:d;} m=s.match(/^(\d{4})-(\d{2})-(\d{2})$/); if(m){const d=new Date(+m[1],+m[2]-1,+m[3]); return isNaN(d)?null:d;} m=s.match(/^(\d{2})-(\d{2})-(\d{4})$/); if(m){const d=new Date(+m[3],+m[2]-1,+m[1]); return isNaN(d)?null:d;} const d=new Date(s); return isNaN(d)?null:new Date(d.getFullYear(),d.getMonth(),d.getDate());}
+const fmtDate=d=>{const x=parseBRDate(d); return x?x.toLocaleDateString('pt-BR'):''};
+const isoDate=d=>{const x=parseBRDate(d); return x?x.toISOString().slice(0,10):''};
+function daysSince(date){const d=parseBRDate(date); if(!d) return 9999; return Math.floor((Date.now()-d.getTime())/86400000);}
+function csvSplit(line,sep){const out=[]; let cur='',q=false; for(let i=0;i<line.length;i++){const ch=line[i]; if(ch==='"'){ if(q&&line[i+1]==='"'){cur+='"'; i++;} else q=!q; } else if(ch===sep && !q){ out.push(cur); cur=''; } else cur+=ch; } out.push(cur); return out.map(x=>x.trim()); }
+function parseCSV(text){const clean=text.replace(/^\uFEFF/,'').replace(/\r/g,''); const lines=clean.split('\n').filter(l=>l.trim()); if(!lines.length) return []; const sample=lines.slice(0,5).join('\n'); const sep=(sample.match(/;/g)||[]).length >= (sample.match(/,/g)||[]).length ? ';' : ','; return lines.map(line=>csvSplit(line,sep));}
+function detectStoreFromName(name=''){const n=normalize(name); return stores.find(s=>n.includes(s)) || ''}
+function normalizePayment(v){const s=normalize(v); if(!s) return 'OUTROS'; if(s.includes('CREDI')) return 'CREDIARIO'; if(s.includes('PIX')) return 'PIX'; if(s.includes('DEBIT')) return 'DEBITO'; if(s.includes('DINHE')) return 'DINHEIRO'; if(s.includes('CREDITO')||s.includes('CARTAO')||s.includes('VISA')||s.includes('MASTER')||s.includes('ELO')) return 'CREDITO'; return 'OUTROS';}
+function safeForCSV(v){return '"'+String(v??'').replace(/^[\s]*[=+@-]/,m=>"'"+m).replace(/"/g,'""')+'"';}
+
+function storageGet(key,fallback){try{const v=JSON.parse(localStorage.getItem(key)); return v??fallback;}catch{return fallback;}}
+let sales = storageGet(stateKey,[]);
+let contacts = storageGet(contactKey,[]);
+let activeStore='';
+let overviewDate='';
+
+function saveSales(){localStorage.setItem(stateKey,JSON.stringify(sales));}
+function saveContacts(){localStorage.setItem(contactKey,JSON.stringify(contacts));}
+
+function buildStoreNavigation(){
+  $('storeNavigation').innerHTML = stores.map(store=>`<div class="store-group" data-store-group="${store}">
+    <button type="button" class="navitem store-nav" data-store="${store}" aria-expanded="false"><span class="navicon">⌂</span><span>${store}</span><span class="store-chevron">▾</span></button>
+    <div class="store-subnav hidden">
+      <button type="button" class="navitem sub-nav" data-page="clients" data-store-page="${store}"><span class="navicon">♙</span>Clientes</button>
+      <button type="button" class="navitem sub-nav" data-page="retention" data-store-page="${store}"><span class="navicon">↻</span>Recorrência</button>
+      <button type="button" class="navitem sub-nav" data-page="campaigns" data-store-page="${store}"><span class="navicon">◈</span>Campanhas</button>
+      <button type="button" class="navitem sub-nav" data-page="reports" data-store-page="${store}"><span class="navicon">▤</span>Relatórios</button>
+    </div></div>`).join('');
+  document.querySelectorAll('.store-nav').forEach(b=>b.addEventListener('click',()=>selectStore(b.dataset.store,'clients')));
+  document.querySelectorAll('.sub-nav').forEach(b=>b.addEventListener('click',()=>selectStore(b.dataset.storePage,b.dataset.page)));
+}
+function fillStoreSelects(){
+  const opts = stores.map(s=>`<option value="${s}">${s}</option>`).join('');
+  $('importStore').innerHTML = '<option value="">Detectar loja automaticamente</option>'+opts;
+  $('contactStore').innerHTML = '<option value="">Todas as lojas</option>'+opts;
+}
+
+function nav(page){
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+page));
+  document.querySelectorAll('.navitem').forEach(b=>b.classList.remove('active'));
+  document.querySelector('[data-page="overview"]').classList.toggle('active',page==='overview');
+  document.querySelectorAll('.store-group').forEach(group=>{
+    const store=group.dataset.storeGroup;
+    const opener=group.querySelector('.store-nav');
+    const menu=group.querySelector('.store-subnav');
+    const expanded = activeStore===store && page!=='overview';
+    opener.classList.toggle('active', expanded);
+    opener.setAttribute('aria-expanded', String(expanded));
+    menu.classList.toggle('hidden', !expanded);
+    menu.querySelectorAll('.sub-nav').forEach(sb=>sb.classList.toggle('active', expanded && sb.dataset.page===page));
+  });
+  $('breadcrumb').textContent = page==='overview' ? 'Visão Geral' : activeStore+' / '+({clients:'Clientes',retention:'Recorrência',campaigns:'Campanhas',reports:'Relatórios'}[page]);
+  $('pageTitle').textContent = page==='overview' ? 'Visão Geral' : activeStore+' — '+({clients:'Clientes',retention:'Recorrência',campaigns:'Campanhas',reports:'Relatórios'}[page]);
+}
+function selectStore(store,page){activeStore=store; render(); nav(page||'clients'); window.scrollTo({top:0,behavior:'instant'});}
+
+function uniqueSales(){return sales.filter(s=>stores.includes(s.loja));}
+function storeSales(store){return uniqueSales().filter(s=>!store || s.loja===store);}
+function customerAggregate(store){
+  const map = new Map();
+  for(const sale of storeSales(store)){
+    const key = sale.customerKey || normalize(sale.nome) || sale.telefone || sale.id;
+    if(!key) continue;
+    if(!map.has(key)) map.set(key,{
+      id:sale.id||key,nome:sale.nome||'Cliente sem nome',telefone:sale.telefone||'',loja:sale.loja,bairro:sale.bairro||'',cidade:sale.cidade||'',sales:[],payments:new Set(),
+    });
+    const c=map.get(key);
+    if(!c.telefone && sale.telefone) c.telefone=sale.telefone;
+    if(!c.bairro && sale.bairro) c.bairro=sale.bairro;
+    if(!c.cidade && sale.cidade) c.cidade=sale.cidade;
+    c.sales.push(sale);
+    c.payments.add(sale.pagamentoCat);
+  }
+  const list=[...map.values()].map(c=>{
+    const sorted=c.sales.slice().sort((a,b)=>b.dataISO.localeCompare(a.dataISO));
+    const total=c.sales.reduce((s,x)=>s+(Number(x.valor)||0),0);
+    const count=c.sales.length;
+    return {
+      ...c,
+      payments:[...c.payments],
+      total,
+      count,
+      lastDate:sorted[0]?.dataISO||'',
+      firstDate:sorted[count-1]?.dataISO||'',
+      daysInactive:daysSince(sorted[0]?.dataISO),
+      sales:sorted
+    };
+  });
+  return list;
+}
+function filteredCustomers(){
+  const q=normalize($('search').value);
+  const region=normalize($('region').value);
+  const payment=$('payment').value;
+  const segment=$('segment').value;
+  const sortBy=$('sortBy').value;
+  const from=parseBRDate($('dateFrom').value);
+  const to=parseBRDate($('dateTo').value);
+  let list=customerAggregate(activeStore).map(c=>{
+    let sales=c.sales.slice();
+    if(from) sales=sales.filter(s=>parseBRDate(s.dataISO)>=from);
+    if(to) sales=sales.filter(s=>parseBRDate(s.dataISO)<=to);
+    const scopedTotal=sales.reduce((sum,s)=>sum+s.valor,0);
+    const scopedCount=sales.length;
+    const scopedLast=sales[0]?.dataISO||'';
+    return {...c, scopedSales:sales, scopedTotal, scopedCount, scopedLast};
+  }).filter(c=>c.scopedCount>0);
+  if(q) list=list.filter(c=>normalize(c.nome+' '+c.telefone+' '+c.bairro+' '+c.cidade).includes(q));
+  if(region) list=list.filter(c=>normalize(c.bairro||c.cidade).includes(region));
+  if(payment) list=list.filter(c=>c.payments.includes(payment));
+  if(segment==='unique') list=list.filter(c=>c.count===1);
+  if(segment==='repeat') list=list.filter(c=>c.count>1);
+  if(segment==='inactive') list=list.filter(c=>c.daysInactive>=90);
+  list.sort((a,b)=>{
+    if(sortBy==='sales_desc') return b.scopedCount-a.scopedCount || b.scopedTotal-a.scopedTotal;
+    if(sortBy==='revenue_desc') return b.scopedTotal-a.scopedTotal || b.scopedCount-a.scopedCount;
+    if(sortBy==='last_date_desc') return (b.scopedLast||'').localeCompare(a.scopedLast||'');
+    return a.nome.localeCompare(b.nome,'pt-BR');
+  });
+  return list;
+}
+
+function tally(list,getter){const map=new Map(); for(const item of list){ const vals = getter(item); const arr = Array.isArray(vals)?vals:[vals]; for(let v of arr){v=v||'Não informado'; map.set(v,(map.get(v)||0)+1);} } return [...map.entries()].sort((a,b)=>b[1]-a[1]);}
+function topSalesDate(){const dates=uniqueSales().map(s=>s.dataISO).filter(Boolean).sort(); return dates[dates.length-1] || isoDate(new Date());}
+function currentOverviewDate(){const d=parseBRDate($('overviewDate').value || overviewDate || topSalesDate()); return d ? isoDate(d) : topSalesDate();}
+
+function renderOverview(){
+  const customers=customerAggregate('');
+  const recurring=customers.filter(c=>c.count>1).length;
+  $('metricCustomers').textContent=fmtNum(customers.length);
+  $('metricRecurring').textContent=fmtNum(recurring);
+  $('metricRate').textContent=customers.length ? Math.round(recurring/customers.length*100)+'%' : '0%';
+  $('metricInactive').textContent=fmtNum(customers.filter(c=>c.daysInactive>=90).length);
+  $('metricContacted').textContent=fmtNum(new Set(contacts.map(c=>c.loja+'|'+c.id)).size);
+
+  const dateISO=currentOverviewDate();
+  $('overviewDate').value = fmtDate(dateISO);
+  $('dailyDateLegend').textContent = 'Data em análise: '+fmtDate(dateISO);
+  const perf = stores.map(store=>{
+    const daySales=storeSales(store).filter(s=>s.dataISO===dateISO);
+    const revenue=daySales.reduce((sum,s)=>sum+s.valor,0);
+    const qty=daySales.length;
+    return {store,revenue,qty};
+  });
+  const max = Math.max(1, ...perf.map(p=>p.revenue));
+  $('dailyChart').innerHTML = perf.map(p=>`<div class="col"><div class="bar-box"><div class="bar" style="height:${Math.max(6,(p.revenue/max)*180)}px"><small>${fmtBRL(p.revenue)}</small></div></div><label>${p.store}<br><span style="color:#8190a2">${fmtNum(p.qty)} venda(s)</span></label></div>`).join('');
+  $('dailyTotalLegend').textContent = 'Faturamento total: '+fmtBRL(perf.reduce((s,p)=>s+p.revenue,0));
+
+  const top=perf.slice().sort((a,b)=>b.revenue-a.revenue || b.qty-a.qty).slice(0,3);
+  const medals=['🥇','🥈','🥉'];
+  const classes=['first','second','third'];
+  $('podium').innerHTML = top.map((p,i)=>`<div class="podium-card ${classes[i]||''}"><div class="trophy">${medals[i]||'•'}</div><div class="podium-rank">${i+1}º lugar</div><div class="podium-store">${p.store}</div><div class="podium-value">${fmtBRL(p.revenue)}</div><div class="podium-meta">${fmtNum(p.qty)} venda(s) no dia</div></div>`).join('') || '<div class="empty" style="grid-column:1/-1">Importe um CSV para visualizar o pódio diário.</div>';
+}
+
+function renderContacts(){
+  const sf=$('contactStore').value, status=$('contactStatus').value, q=normalize($('contactSearch').value);
+  const filtered=contacts.filter(r=>(!sf||r.loja===sf)&&(!status||r.status===status)&&(!q||normalize(r.nome+' '+r.telefone).includes(q))).sort((a,b)=>b.created.localeCompare(a.created));
+  const contactedDistinct=new Set(contacts.map(c=>c.loja+'|'+c.id));
+  const today=new Date().toLocaleDateString('pt-BR');
+  $('contactKpis').innerHTML = `
+    <div><strong>${fmtNum(contacts.length)}</strong><span>Registros totais</span></div>
+    <div><strong>${fmtNum(contactedDistinct.size)}</strong><span>Clientes contatados</span></div>
+    <div><strong>${fmtNum(contacts.filter(c=>new Date(c.created).toLocaleDateString('pt-BR')===today).length)}</strong><span>Ações hoje</span></div>
+    <div><strong>${fmtNum(contacts.filter(c=>c.status==='Venda realizada').length)}</strong><span>Vendas registradas</span></div>`;
+  $('contactsTable').innerHTML = filtered.length ? `<div class="table-wrap"><table class="data-table"><thead><tr><th>Data / hora</th><th>Loja</th><th>Cliente</th><th>Telefone</th><th>Resultado</th><th>Observações</th></tr></thead><tbody>${filtered.slice(0,400).map(r=>`<tr><td>${esc(new Date(r.created).toLocaleString('pt-BR'))}</td><td>${esc(r.loja)}</td><td>${esc(r.nome)}</td><td>${esc(r.telefone||'')}</td><td>${esc(r.status)}</td><td>${esc(r.notes||'—')}</td></tr>`).join('')}</tbody></table></div>` : '<div class="empty">Nenhum contato registrado para estes filtros.</div>';
+}
+
+function renderClients(){
+  $('storeContext').textContent = activeStore || 'Selecione uma loja';
+  const list=filteredCustomers();
+  const regions=[...new Set(customerAggregate(activeStore).map(c=>c.bairro||c.cidade).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
+  const currentRegion=$('region').value;
+  $('region').innerHTML = '<option value="">Todos os bairros / regiões</option>'+regions.map(r=>`<option value="${esc(r)}">${esc(r)}</option>`).join('');
+  $('region').value=currentRegion;
+  $('cards').innerHTML = list.length ? list.map(c=>{
+    const tag = c.count>1 ? '<span class="tag repeat">RECORRENTE</span>' : '<span class="tag">COMPRA ÚNICA</span>';
+    const inactiveTag = c.daysInactive>=90 ? '<span class="tag inactive">'+c.daysInactive+' dias sem comprar</span>' : '';
+    const wa = c.telefone ? `https://wa.me/55${digits(c.telefone)}` : '#';
+    const location=[c.bairro,c.cidade].filter(Boolean).join(' • ') || 'Região não informada';
+    const pay=c.payments.map(p=>({CREDIARIO:'Crediário',PIX:'PIX',DEBITO:'Débito',CREDITO:'Cartão de crédito',DINHEIRO:'Dinheiro',OUTROS:'Outros'}[p]||p)).join(', ');
+    return `<article class="card"><div class="ctop"><div><div class="name">${esc(c.nome)}</div><div class="mini">${esc(c.loja)} • ${esc(location)}</div></div><div style="display:grid;gap:8px;justify-items:end">${tag}${inactiveTag}</div></div>
+      <div class="kpi-row"><div class="kpi-box"><strong>${fmtNum(c.scopedCount)}</strong><span>Vendas no filtro</span></div><div class="kpi-box"><strong>${fmtBRL(c.scopedTotal)}</strong><span>Faturamento no filtro</span></div><div class="kpi-box"><strong>${fmtDate(c.scopedLast || c.lastDate)}</strong><span>Última compra</span></div></div>
+      <div class="list">
+        <div class="list-row"><span>Telefone</span><strong>${esc(c.telefone||'Não informado')}</strong></div>
+        <div class="list-row"><span>Total histórico</span><strong>${fmtNum(c.count)} venda(s) • ${fmtBRL(c.total)}</strong></div>
+        <div class="list-row"><span>Pagamento(s)</span><strong>${esc(pay||'Não informado')}</strong></div>
+        <div class="list-row"><span>Período do cliente</span><strong>${fmtDate(c.firstDate)} até ${fmtDate(c.lastDate)}</strong></div>
+      </div>
+      <div class="card-actions"><a class="wa ${c.telefone?'':'disabled'}" href="${wa}" target="_blank" rel="noopener">Abrir WhatsApp</a><button class="ghost" data-log="${esc(c.id)}" data-name="${esc(c.nome)}" data-phone="${esc(c.telefone||'')}">Registrar contato</button></div></article>`;
+  }).join('') : '<div class="empty" style="grid-column:1/-1">Nenhum cliente encontrado para os filtros aplicados.</div>';
+}
+
+function renderRetention(){
+  const all=customerAggregate(activeStore), repeat=all.filter(c=>c.count>1), inactive=all.filter(c=>c.daysInactive>=90), single=all.filter(c=>c.count===1);
+  const pct=n=>all.length?Math.round((n/all.length)*100)+'%':'0%';
+  $('retentionMetrics').innerHTML = `
+    <div class="insight"><div class="mini">Base identificada</div><div class="big">${fmtNum(all.length)}</div><div class="mini">Clientes identificados na loja</div></div>
+    <div class="insight"><div class="mini">Clientes recorrentes</div><div class="big">${fmtNum(repeat.length)}</div><div class="mini">${pct(repeat.length)} da base</div></div>
+    <div class="insight"><div class="mini">Sem compra há 90+ dias</div><div class="big">${fmtNum(inactive.length)}</div><div class="mini">${pct(inactive.length)} da base</div></div>`;
+  const bands=[['Compra única',single.length],['Duas compras',all.filter(c=>c.count===2).length],['Três ou mais compras',all.filter(c=>c.count>=3).length]];
+  const max=Math.max(1,...bands.map(b=>b[1]));
+  $('retentionBars').innerHTML = bands.map(([label,val])=>`<div style="padding:13px 0"><div class="section-title" style="margin-bottom:0"><span><strong style="color:#203044">${label}</strong></span><span>${fmtNum(val)} cliente(s)</span></div><div class="chart-bar"><div style="width:${(val/max)*100}%"></div></div></div>`).join('');
+}
+
+function renderCampaigns(){
+  const list=customerAggregate(activeStore);
+  const campaigns=[
+    {title:'Reativação 90+ dias', desc:'Clientes que estão sem comprar há 90 dias ou mais.', count:list.filter(c=>c.daysInactive>=90).length, action:()=>{ $('segment').value='inactive'; nav('clients'); render(); }},
+    {title:'Primeira recompra', desc:'Clientes com apenas uma compra e alto potencial de retorno.', count:list.filter(c=>c.count===1).length, action:()=>{ $('segment').value='unique'; nav('clients'); render(); }},
+    {title:'VIP recorrentes', desc:'Clientes com duas ou mais compras na loja.', count:list.filter(c=>c.count>1).length, action:()=>{ $('segment').value='repeat'; nav('clients'); render(); }},
+    {title:'Crediário', desc:'Clientes que já usaram crediário em alguma compra.', count:list.filter(c=>c.payments.includes('CREDIARIO')).length, action:()=>{ $('payment').value='CREDIARIO'; nav('clients'); render(); }},
+  ];
+  $('campaignGrid').innerHTML = campaigns.map((c,i)=>`<article class="campaign-card"><div class="eyebrow" style="color:#7e8c9e">Campanha 0${i+1}</div><h4>${esc(c.title)}</h4><p>${esc(c.desc)}</p><div class="stat">${fmtNum(c.count)} <span style="font-size:14px;color:#6a7788">clientes</span></div><button class="primary" data-campaign="${i}">Abrir lista</button></article>`).join('');
+  document.querySelectorAll('[data-campaign]').forEach(btn=>btn.onclick=()=>campaigns[Number(btn.dataset.campaign)].action());
+}
+
+function renderReports(){
+  const list=customerAggregate(activeStore);
+  const paymentNames={CREDIARIO:'Crediário',PIX:'PIX',DEBITO:'Débito',CREDITO:'Cartão de crédito',DINHEIRO:'Dinheiro',OUTROS:'Outros'};
+  const payRows=tally(list,c=>c.payments.length?c.payments.map(p=>paymentNames[p]||p):['Não informado']);
+  const regionRows=tally(list,c=>c.bairro||c.cidade||'Não informado');
+  const topSales=list.slice().sort((a,b)=>b.count-a.count||b.total-a.total).slice(0,10);
+  const topRevenue=list.slice().sort((a,b)=>b.total-a.total||b.count-a.count).slice(0,10);
+  const table=(head1,head2,rows,format=v=>v)=> rows.length ? `<div class="table-wrap"><table class="data-table"><thead><tr><th>${head1}</th><th>${head2}</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r[0])}</td><td>${format(r[1])}</td></tr>`).join('')}</tbody></table></div>` : '<div class="empty">Sem dados disponíveis.</div>';
+  $('reportPayments').innerHTML=table('Forma de pagamento','Clientes',payRows,v=>fmtNum(v));
+  $('reportRegions').innerHTML=table('Região / bairro','Clientes',regionRows.slice(0,12),v=>fmtNum(v));
+  $('reportTopSales').innerHTML = topSales.length ? `<div class="table-wrap"><table class="data-table"><thead><tr><th>Cliente</th><th>Vendas</th><th>Última compra</th></tr></thead><tbody>${topSales.map(c=>`<tr><td>${esc(c.nome)}</td><td>${fmtNum(c.count)}</td><td>${fmtDate(c.lastDate)}</td></tr>`).join('')}</tbody></table></div>` : '<div class="empty">Sem dados disponíveis.</div>';
+  $('reportTopRevenue').innerHTML = topRevenue.length ? `<div class="table-wrap"><table class="data-table"><thead><tr><th>Cliente</th><th>Faturamento</th><th>Vendas</th></tr></thead><tbody>${topRevenue.map(c=>`<tr><td>${esc(c.nome)}</td><td>${fmtBRL(c.total)}</td><td>${fmtNum(c.count)}</td></tr>`).join('')}</tbody></table></div>` : '<div class="empty">Sem dados disponíveis.</div>';
+}
+
+function render(){
+  const hasData = uniqueSales().length>0;
+  $('message').textContent = hasData ? `Base pronta: ${fmtNum(uniqueSales().length)} venda(s) consolidada(s) em ${stores.filter(s=>storeSales(s).length).length} loja(s).` : 'Importe um CSV para iniciar a análise.';
+  renderOverview();
+  if(activeStore){ renderClients(); renderRetention(); renderCampaigns(); renderReports(); }
+  renderContacts();
+}
+
+function logContact(name,phone,id){
+  if(!activeStore) return alert('Selecione uma loja para registrar contato.');
+  const opt=prompt(`RESULTADO DO CONTATO com ${name}\n1 = Contato realizado\n2 = Sem resposta\n3 = Respondeu\n4 = Retorno agendado\n5 = Venda realizada`,'1');
+  if(opt===null) return;
+  const map={'1':'Contato realizado','2':'Sem resposta','3':'Respondeu','4':'Retorno agendado','5':'Venda realizada'};
+  if(!map[opt.trim()]) return alert('Selecione uma opção válida de 1 a 5.');
+  const notes=prompt('Observação (opcional):','');
+  if(notes===null) return;
+  contacts.push({id,nome:name,telefone:phone,loja:activeStore,status:map[opt.trim()],notes:notes.slice(0,500),created:new Date().toISOString()});
+  saveContacts(); render(); alert('Contato registrado com sucesso.');
+}
+
+function inferHeader(rows){
+  const headerWords=['cliente','nome','fone','telefone','data','venda','tipo pgto','pagamento','valor','total','loja','bairro','cidade'];
+  let best=0, idx=0;
+  rows.slice(0,20).forEach((row,i)=>{
+    const joined=normalize(row.join(' '));
+    const score=headerWords.reduce((s,w)=>s+(joined.includes(normalize(w))?1:0),0);
+    if(score>best){best=score; idx=i;}
+  });
+  return idx;
+}
+function mapColumns(header){
+  const h=header.map(normalize);
+  const find=(...terms)=>h.findIndex(c=>terms.some(t=>c.includes(normalize(t))));
+  return {
+    saleNo:find('Nº','NUMERO','N°','NO','VENDA','CODIGO VENDA'),
+    date:find('DATA VENDA','DATA','EMISSAO'),
+    client:find('CLIENTE','NOME'),
+    phone:find('FONE','TELEFONE','CELULAR','CONTATO'),
+    payment:find('TIPO PGTO','PAGAMENTO','FORMA PGTO','FORMA PAGAMENTO','TIPO PAGAMENTO'),
+    total:find('TOTAL','VALOR','VALOR TOTAL','TOTAL VENDA','VL TOTAL'),
+    store:find('LOJA','FILIAL'),
+    neighborhood:find('BAIRRO','REGIAO','REGIÃO'),
+    city:find('CIDADE','MUNICIPIO','MUNICÍPIO'),
+    id:find('ID','CODIGO CLIENTE','COD CLIENTE','CODIGO','CÓDIGO')
+  };
+}
+function importRows(table,fileName=''){
+  const headerIndex=inferHeader(table);
+  const header=table[headerIndex];
+  const cols=mapColumns(header);
+  if(cols.client<0 || cols.date<0 || cols.total<0){ throw new Error('Colunas mínimas não encontradas. Necessário ter pelo menos Cliente, Data e Total/Valor.'); }
+  const selectedStore=$('importStore').value || detectStoreFromName(fileName) || '';
+  const grouped=new Map();
+  for(const row of table.slice(headerIndex+1)){
+    if(!row.some(Boolean)) continue;
+    const nome=(row[cols.client]||'').trim();
+    if(!nome || normalize(nome).includes('CLIENTES UNIGAMES')) continue;
+    const dateISO=isoDate(row[cols.date]);
+    if(!dateISO) continue;
+    const lojaRaw = cols.store>=0 ? (row[cols.store]||'').trim() : '';
+    const loja = detectStoreFromName(lojaRaw) || selectedStore || detectStoreFromName(fileName);
+    if(!loja) continue;
+    const valor=parseBRNumber(row[cols.total]);
+    const telefone=digits(row[cols.phone]||'');
+    const id=(cols.id>=0 ? String(row[cols.id]||'').trim() : '') || telefone || normalize(nome);
+    const saleNo=(cols.saleNo>=0 ? String(row[cols.saleNo]||'').trim() : '') || `${dateISO}_${id}_${valor}`;
+    const key=`${loja}|${saleNo}`;
+    const payCat=normalizePayment(cols.payment>=0 ? row[cols.payment] : '');
+    const base={saleId:saleNo,id,nome:toTitle(nome),telefone,loja,bairro:toTitle(row[cols.neighborhood]||''),cidade:toTitle(row[cols.city]||''),dataISO,valor,pagamentoCat:payCat,customerKey:telefone||normalize(nome)};
+    if(!grouped.has(key)) grouped.set(key,base);
+    else{
+      const cur=grouped.get(key);
+      cur.valor = Math.max(cur.valor, valor);
+      if(!cur.telefone && telefone) cur.telefone=telefone;
+      if(!cur.bairro && base.bairro) cur.bairro=base.bairro;
+      if(!cur.cidade && base.cidade) cur.cidade=base.cidade;
+      if(cur.pagamentoCat==='OUTROS' && payCat!=='OUTROS') cur.pagamentoCat=payCat;
+    }
+  }
+  const imported=[...grouped.values()];
+  if(!imported.length) throw new Error('Nenhuma venda válida foi encontrada no arquivo. Verifique a loja selecionada e as colunas do CSV.');
+  const existing=new Map(uniqueSales().map(s=>[s.loja+'|'+s.saleId,s]));
+  imported.forEach(s=>existing.set(s.loja+'|'+s.saleId,s));
+  sales=[...existing.values()].sort((a,b)=>(a.dataISO+b.loja).localeCompare(b.dataISO+a.loja));
+  saveSales();
+  overviewDate=topSalesDate();
+  return imported.length;
+}
+
+$('upload').addEventListener('change', async e=>{
+  const file=e.target.files?.[0]; if(!file) return;
+  try{
+    const text=await file.text();
+    const table=parseCSV(text);
+    const n=importRows(table,file.name);
+    alert(`${n.toLocaleString('pt-BR')} venda(s) importada(s) com sucesso.`);
+    render();
+  }catch(err){ alert('Não foi possível importar: '+err.message); console.error(err); }
+  e.target.value='';
+});
+$('template').onclick=()=>{
+  const sample='id;nome;telefone;loja;bairro;cidade;data;valor;pagamento\nC001;Cliente Exemplo;81999999999;GUARARAPES;Piedade;Jaboatão dos Guararapes;01/10/2026;199,90;Crediário\nC001;Cliente Exemplo;81999999999;GUARARAPES;Piedade;Jaboatão dos Guararapes;20/10/2026;89,90;PIX\n';
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob(['\ufeff'+sample],{type:'text/csv;charset=utf-8'})); a.download='modelo_fideliza.csv'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+};
+$('clear').onclick=()=>{ if(confirm('Remover todas as vendas importadas deste navegador? Os registros de contato serão mantidos.')){ sales=[]; saveSales(); render(); }};
+$('useLatest').onclick=()=>{ $('overviewDate').value=fmtDate(topSalesDate()); renderOverview(); };
+$('applyOverviewDate').onclick=()=>renderOverview();
+['search','region','payment','segment','sortBy','dateFrom','dateTo'].forEach(id=>$(id).addEventListener(id==='search'||id==='dateFrom'||id==='dateTo'?'input':'change',()=>renderClients()));
+['contactStore','contactStatus'].forEach(id=>$(id).addEventListener('change',renderContacts)); $('contactSearch').addEventListener('input',renderContacts);
+$('cards').addEventListener('click',e=>{const btn=e.target.closest('[data-log]'); if(btn) logContact(btn.dataset.name, btn.dataset.phone, btn.dataset.log);});
+$('export').onclick=()=>{
+  if(!activeStore) return alert('Selecione uma loja.');
+  const list=filteredCustomers(); if(!list.length) return alert('Nenhum cliente para exportar com os filtros atuais.');
+  const lines=[['Loja','Cliente','Telefone','Bairro','Cidade','Vendas no filtro','Faturamento no filtro','Última compra','Total histórico','Formas de pagamento']].concat(list.map(c=>[
+    c.loja,c.nome,c.telefone,c.bairro,c.cidade,c.scopedCount,fmtBRL(c.scopedTotal),fmtDate(c.scopedLast||c.lastDate),fmtBRL(c.total),c.payments.join(', ')
+  ]));
+  const csv='\ufeff'+lines.map(r=>r.map(safeForCSV).join(';')).join('\r\n');
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})); a.download=`fideliza_clientes_${activeStore.toLowerCase()}.csv`; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+};
+$('exportContacts').onclick=()=>{
+  if(!contacts.length) return alert('Nenhum contato registrado.');
+  const lines=[['Data/hora','Loja','ID','Cliente','Telefone','Resultado','Observações']].concat(contacts.map(c=>[new Date(c.created).toLocaleString('pt-BR'),c.loja,c.id,c.nome,c.telefone,c.status,c.notes]));
+  const csv='\ufeff'+lines.map(r=>r.map(safeForCSV).join(';')).join('\r\n');
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})); a.download='fideliza_contatos.csv'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+};
+$('goClients').onclick=()=>nav('clients');
+document.querySelector('[data-page="overview"]').addEventListener('click',()=>{activeStore=''; render(); nav('overview');});
+
+buildStoreNavigation(); fillStoreSelects(); overviewDate=topSalesDate(); $('overviewDate').value=fmtDate(overviewDate); render(); nav('overview');
+</script>
+</body>
+</html>
