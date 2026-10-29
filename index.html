@@ -509,11 +509,11 @@ function mapColumns(header){
     client:find('CLIENTE','NOME'),
     phone:find('FONE','TELEFONE','CELULAR','CONTATO'),
     payment:find('TIPO PGTO','PAGAMENTO','FORMA PGTO','FORMA PAGAMENTO','TIPO PAGAMENTO'),
-    total:find('TOTAL','VALOR','VALOR TOTAL','TOTAL VENDA','VL TOTAL'),
+    total:find('TOTAL DA VENDA','TOTAL VENDA','VALOR TOTAL','VL TOTAL','VALOR','TOTAL'),
     store:find('LOJA','FILIAL'),
     neighborhood:find('BAIRRO','REGIAO','REGIÃO'),
     city:find('CIDADE','MUNICIPIO','MUNICÍPIO'),
-    id:find('ID','CODIGO CLIENTE','COD CLIENTE','CODIGO','CÓDIGO')
+    id:find('ID CLIENTE','CODIGO CLIENTE','COD CLIENTE')
   };
 }
 function importRows(table,fileName=''){
@@ -527,15 +527,15 @@ function importRows(table,fileName=''){
     if(!row.some(Boolean)) continue;
     const nome=(row[cols.client]||'').trim();
     if(!nome || normalize(nome).includes('CLIENTES UNIGAMES')) continue;
-    const dateISO=isoDate(row[cols.date]);
-    if(!dateISO) continue;
+    const dataISO=isoDate(row[cols.date]);
+    if(!dataISO) continue;
     const lojaRaw = cols.store>=0 ? (row[cols.store]||'').trim() : '';
     const loja = detectStoreFromName(lojaRaw) || selectedStore || detectStoreFromName(fileName);
     if(!loja) continue;
     const valor=parseBRNumber(row[cols.total]);
-    const telefone=digits(row[cols.phone]||'');
+    const rawPhone=digits(cols.phone>=0 ? row[cols.phone] : ''); const telefone=rawPhone.length>=10 ? rawPhone : '';
     const id=(cols.id>=0 ? String(row[cols.id]||'').trim() : '') || telefone || normalize(nome);
-    const saleNo=(cols.saleNo>=0 ? String(row[cols.saleNo]||'').trim() : '') || `${dateISO}_${id}_${valor}`;
+    const saleNo=(cols.saleNo>=0 ? String(row[cols.saleNo]||'').trim() : String(row[0]||'').trim()) || `${dataISO}_${id}_${valor}`;
     const key=`${loja}|${saleNo}`;
     const payCat=normalizePayment(cols.payment>=0 ? row[cols.payment] : '');
     const base={saleId:saleNo,id,nome:toTitle(nome),telefone,loja,bairro:toTitle(row[cols.neighborhood]||''),cidade:toTitle(row[cols.city]||''),dataISO,valor,pagamentoCat:payCat,customerKey:telefone||normalize(nome)};
