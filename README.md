@@ -1,25 +1,20 @@
-# CRM Recorrência — UNIGAMES / Paulista Acessórios
+# FIDELIZA — Importação PDV UNIGAMES (v2)
 
-Primeira versão demonstrativa, estática e responsiva do CRM para acompanhamento de recompra.
+Atualização do CRM para aceitar **CSV original do PDV** com cabeçalhos após três linhas de introdução, separador `;`, codificação Windows-1252, datas DD/MM/AAAA e valores brasileiros.
 
-## Recursos
-- Cards por cliente com bairro, loja, telefone, histórico resumido e acesso direto ao WhatsApp (`wa.me`).
-- Recorrência identificada pelo número de registros de compra com o mesmo ID.
-- Indicadores de clientes, recorrentes, taxa de recorrência e sem compras há 90 dias.
-- Distribuição dos clientes por bairro, filtros por loja, região e segmento.
-- Importação de CSV, com armazenamento somente no navegador (`localStorage`).
+## Publicar
+No repositório `ezrajeronimo/FIDELIZA`, abra `index.html` > ícone de lápis para editar > substitua pelo arquivo atualizado (ou use Add file > Upload files para sobrescrever) > Commit changes. A publicação do Pages se atualiza.
 
-## Executar
-Abra `index.html` no navegador ou publique o diretório usando GitHub Pages. Nenhuma instalação necessária.
+## Regras
+- Agrupa linhas de produtos da mesma venda usando Nº.
+- Não inclui registros genéricos `CLIENTES UNIGAMES` ou `AVULSO`.
+- Identifica cliente pelo telefone válido; caso não exista, utiliza nome normalizado (estimativa sujeita a homônimos).
+- Gasto calculado pelo valor total da venda registrado, uma vez por Nº.
+- **Não inventa bairro e cidade**: requer cadastro complementar para visão por região.
+- Dados permanecem no navegador; NÃO suba planilhas de clientes ao GitHub ou repositórios públicos. Para uso comercial real, criar autenticação, base de dados segura e controles LGPD.
 
-## Modelo CSV
-Clique em **Baixar modelo CSV** na aplicação. Colunas: `id;nome;telefone;loja;bairro;cidade;data;valor`.
-Uma linha corresponde a uma compra. O mesmo ID agrupa o histórico de compras de um cliente. A data deve ser `AAAA-MM-DD`; valor no padrão brasileiro (`199,90`).
-
-## Atenção — segurança e LGPD
-**Não envie a base de clientes para o repositório GitHub**, nem mesmo privado sem controles apropriados. Este projeto é **um protótipo**, não um CRM multiusuário em produção. Dados importados ficam no `localStorage` do navegador e podem ser acessados por pessoas que usem o mesmo perfil do navegador. Não oferece autenticação, isolamento por loja, backups, auditoria, opt-out nem consentimento para campanhas. Antes de utilizar dados reais em escala, implementar backend seguro, login, regras de acesso por loja, criptografia, políticas de retenção, registro de finalidades e base legal, mecanismo de descadastramento e conformidade com LGPD/WhatsApp.
-
-Os dados iniciais mostrados são completamente **fictícios**.
-
-## Próxima versão recomendada
-Next.js + Supabase (Postgres, Auth e RLS) + armazenamento seguro, importação XLS/CSV com deduplicação, integração de dados de vendas e registro de contatos e follow-ups.
+## Limitações
+- Importação substitui a base anterior (não acumula arquivos).
+- Com nomes comuns e telefones compartilhados, a recorrência é estimativa.
+- O limite de armazenamento do navegador pode impedir a persistência de bases grandes.
+- Página pública não é sistema multiusuário protegido.
