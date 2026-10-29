@@ -1,20 +1,14 @@
-# FIDELIZA — Importação PDV UNIGAMES (v2)
+# FIDELIZA — Filtro de pagamento
 
-Atualização do CRM para aceitar **CSV original do PDV** com cabeçalhos após três linhas de introdução, separador `;`, codificação Windows-1252, datas DD/MM/AAAA e valores brasileiros.
+Substitua `index.html` na raiz de seu repositório FIDELIZA e publique pelo GitHub Pages.
 
-## Publicar
-No repositório `ezrajeronimo/FIDELIZA`, abra `index.html` > ícone de lápis para editar > substitua pelo arquivo atualizado (ou use Add file > Upload files para sobrescrever) > Commit changes. A publicação do Pages se atualiza.
+## Novidades
+- Filtro por **Crediário, PIX, Débito, Cartão de crédito, Dinheiro e Outros** (inclusive vendas com pagamento misto).
+- Exporte a lista de clientes atualmente filtrada como CSV, com telefone e formas de pagamento.
+- Importa automaticamente a coluna `Tipo Pgto` do relatório UNIGAMES.
+- Modelo próprio CSV aceita coluna opcional `pagamento`.
+- Filtra clientes que **já usaram** a modalidade em qualquer compra do histórico importado.
 
-## Regras
-- Agrupa linhas de produtos da mesma venda usando Nº.
-- Não inclui registros genéricos `CLIENTES UNIGAMES` ou `AVULSO`.
-- Identifica cliente pelo telefone válido; caso não exista, utiliza nome normalizado (estimativa sujeita a homônimos).
-- Gasto calculado pelo valor total da venda registrado, uma vez por Nº.
-- **Não inventa bairro e cidade**: requer cadastro complementar para visão por região.
-- Dados permanecem no navegador; NÃO suba planilhas de clientes ao GitHub ou repositórios públicos. Para uso comercial real, criar autenticação, base de dados segura e controles LGPD.
+**Atenção**: cartão de crédito parcelado não é sinônimo de crediário. O relatório Guararapes fornecido parece registrar `CREDITO 1X`, `CREDITO 10X`, etc., mas não apresenta uma modalidade explicitamente chamada `CREDIARIO`. Por isso o filtro Crediário pode ficar vazio: verifique a nomenclatura usada no PDV antes de configurar equivalências.
 
-## Limitações
-- Importação substitui a base anterior (não acumula arquivos).
-- Com nomes comuns e telefones compartilhados, a recorrência é estimativa.
-- O limite de armazenamento do navegador pode impedir a persistência de bases grandes.
-- Página pública não é sistema multiusuário protegido.
+Os dados permanecem no navegador. Não carregue CSV com dados pessoais no repositório público GitHub.
