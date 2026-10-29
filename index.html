@@ -46,9 +46,9 @@ input:focus,select:focus{outline:none;border-color:#29527e;box-shadow:0 0 0 3px 
 .chart-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
 .chart-wrap{display:flex;align-items:flex-end;gap:16px;height:250px;padding:20px 8px 4px;border-bottom:1px solid #ecf0f5}
 .col{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0}.bar-box{height:190px;width:100%;display:flex;align-items:flex-end;justify-content:center}.bar{width:50px;max-width:100%;background:linear-gradient(180deg,#8ca9c6 0%,#183a63 100%);border-radius:12px 12px 4px 4px;min-height:6px;position:relative}.bar small{position:absolute;top:-24px;left:50%;transform:translateX(-50%);font-size:11px;color:#506074;font-weight:700;white-space:nowrap}.col label{font-size:11px;color:#617082;text-align:center;font-weight:700;line-height:1.3}.chart-legend{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:14px;font-size:12px;color:var(--muted)}
-.podium{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:end;margin-top:6px}
-.podium-card{padding:16px 14px;border-radius:14px;text-align:center;background:#f7f9fc;border:1px solid #e8edf3}.podium-card.first{background:linear-gradient(180deg,#fff7de,#f7e8ae);border-color:#ead68e}.podium-card.second{background:#f3f6fa}.podium-card.third{background:#faf3ec}
-.podium-rank{font:800 12px Manrope,sans-serif;letter-spacing:.12em;color:#7b8695;text-transform:uppercase}.podium-store{font:800 18px Manrope,sans-serif;letter-spacing:-.04em;margin:10px 0 6px}.podium-value{font:800 26px Manrope,sans-serif;letter-spacing:-.05em}.podium-meta{font-size:12px;color:#657284;line-height:1.55}.trophy{font-size:28px}
+.podium{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:stretch;margin-top:6px}
+.podium-card{padding:18px 16px;border-radius:18px;text-align:left;background:#fff;border:1px solid #e8edf3;box-shadow:0 10px 26px rgba(16,25,37,.04);display:grid;gap:12px}.podium-card.first{border-color:#cad8e7;box-shadow:0 14px 34px rgba(16,25,37,.07)}.podium-card.second,.podium-card.third{background:#fcfdff}
+.podium-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.podium-rank{font:800 11px Manrope,sans-serif;letter-spacing:.12em;color:#7b8695;text-transform:uppercase}.podium-badge{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#eff4f8;color:#20364f;font:800 14px Manrope,sans-serif}.podium-card.first .podium-badge{background:#102b51;color:#fff}.podium-store{font:800 20px Manrope,sans-serif;letter-spacing:-.04em;margin:0}.podium-value{font:800 34px Manrope,sans-serif;letter-spacing:-.05em;line-height:1}.podium-label{font-size:12px;color:#6c7a8b;font-weight:700;letter-spacing:.04em;text-transform:uppercase}.podium-meta{font-size:12px;color:#657284;line-height:1.55;padding-top:10px;border-top:1px solid #eef2f6}
 .contact-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:14px}.contact-kpis>div{padding:18px;background:#f7f9fb;border:1px solid #edf1f5;border-radius:10px}.contact-kpis strong{display:block;font:760 30px Manrope,sans-serif;color:var(--brand);margin-bottom:4px}.contact-kpis span{font-size:12px;color:var(--muted)}
 .tools{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}.tools input.search{flex:1;min-width:220px}.store-context{padding:12px 14px;background:#edf3f8;border-radius:10px;border:1px solid #dbe6f0;color:#25415e;font-weight:800;font-size:12px}
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{padding:20px;display:flex;flex-direction:column;gap:14px}.card:hover{box-shadow:0 14px 34px rgba(16,25,37,.08)}.ctop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.name{font:800 18px Manrope,sans-serif;letter-spacing:-.04em}.mini{font-size:12px;color:var(--muted);line-height:1.55}.tag{font-size:10px;font-weight:800;padding:7px 10px;border-radius:999px;background:#edf3f8;color:#2a567f;letter-spacing:.04em}.tag.repeat{background:#edf7f0;color:var(--green)}.tag.inactive{background:#fbefef;color:var(--red)}
@@ -123,17 +123,17 @@ input:focus,select:focus{outline:none;border-color:#29527e;box-shadow:0 0 0 3px 
 
     <section class="overview-grid">
       <section class="panel chart-panel">
-        <div class="section-title"><div><h3>Desempenho diário por loja</h3><span>Gráfico de colunas por faturamento diário</span></div></div>
+        <div class="section-title"><div><h3>Produtividade diária por loja</h3><span>Gráfico de colunas por quantidade de atendimentos do dia</span></div></div>
         <div class="chart-controls">
           <input id="overviewDate" placeholder="dd/mm/aaaa" aria-label="Data de análise diária">
           <button id="useLatest">Usar última data importada</button>
           <button id="applyOverviewDate" class="primary">Atualizar gráfico</button>
         </div>
         <div id="dailyChart" class="chart-wrap"></div>
-        <div class="chart-legend"><span id="dailyDateLegend">Data em análise: —</span><span id="dailyTotalLegend">Faturamento total: R$ 0,00</span></div>
+        <div class="chart-legend"><span id="dailyDateLegend">Data em análise: —</span><span id="dailyTotalLegend">Total de atendimentos: 0</span></div>
       </section>
       <section class="panel">
-        <div class="section-title"><div><h3>Pódio do dia</h3><span>Top 3 lojas mais agressivas na data selecionada</span></div></div>
+        <div class="section-title"><div><h3>Pódio do dia</h3><span>Top 3 lojas por quantidade de atendimentos na data selecionada</span></div></div>
         <div id="podium" class="podium"></div>
       </section>
     </section>
@@ -381,17 +381,16 @@ function renderOverview(){
   const perf = stores.map(store=>{
     const daySales=storeSales(store).filter(s=>s.dataISO===dateISO);
     const revenue=daySales.reduce((sum,s)=>sum+s.valor,0);
-    const qty=daySales.length;
-    return {store,revenue,qty};
+    const attendances=daySales.length;
+    return {store,revenue,attendances};
   });
-  const max = Math.max(1, ...perf.map(p=>p.revenue));
-  $('dailyChart').innerHTML = perf.map(p=>`<div class="col"><div class="bar-box"><div class="bar" style="height:${Math.max(6,(p.revenue/max)*180)}px"><small>${fmtBRL(p.revenue)}</small></div></div><label>${p.store}<br><span style="color:#8190a2">${fmtNum(p.qty)} venda(s)</span></label></div>`).join('');
-  $('dailyTotalLegend').textContent = 'Faturamento total: '+fmtBRL(perf.reduce((s,p)=>s+p.revenue,0));
+  const max = Math.max(1, ...perf.map(p=>p.attendances));
+  $('dailyChart').innerHTML = perf.map(p=>`<div class="col"><div class="bar-box"><div class="bar" style="height:${Math.max(6,(p.attendances/max)*180)}px"><small>${fmtNum(p.attendances)}</small></div></div><label>${p.store}<br><span style="color:#8190a2">${fmtBRL(p.revenue)} faturados</span></label></div>`).join('');
+  $('dailyTotalLegend').textContent = 'Total de atendimentos: '+fmtNum(perf.reduce((s,p)=>s+p.attendances,0));
 
-  const top=perf.slice().sort((a,b)=>b.revenue-a.revenue || b.qty-a.qty).slice(0,3);
-  const medals=['🥇','🥈','🥉'];
+  const top=perf.slice().sort((a,b)=>b.attendances-a.attendances || b.revenue-a.revenue).slice(0,3);
   const classes=['first','second','third'];
-  $('podium').innerHTML = top.map((p,i)=>`<div class="podium-card ${classes[i]||''}"><div class="trophy">${medals[i]||'•'}</div><div class="podium-rank">${i+1}º lugar</div><div class="podium-store">${p.store}</div><div class="podium-value">${fmtBRL(p.revenue)}</div><div class="podium-meta">${fmtNum(p.qty)} venda(s) no dia</div></div>`).join('') || '<div class="empty" style="grid-column:1/-1">Importe um CSV para visualizar o pódio diário.</div>';
+  $('podium').innerHTML = top.map((p,i)=>`<div class="podium-card ${classes[i]||''}"><div class="podium-top"><div class="podium-rank">${i+1}º lugar</div><div class="podium-badge">${i+1}</div></div><div class="podium-store">${p.store}</div><div><div class="podium-label">Atendimentos do dia</div><div class="podium-value">${fmtNum(p.attendances)}</div></div><div class="podium-meta">Faturamento do dia: ${fmtBRL(p.revenue)}</div></div>`).join('') || '<div class="empty" style="grid-column:1/-1">Importe um CSV para visualizar o pódio diário.</div>';
 }
 
 function renderContacts(){
