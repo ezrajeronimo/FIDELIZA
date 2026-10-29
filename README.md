@@ -1,14 +1,9 @@
-# FIDELIZA v4 — Gestão por lojas e histórico de contatos
+# FIDELIZA v5 — Menus dentro de cada loja
 
-## Instalação
-Substitua `index.html` no repositório GitHub Pages. Não envie CSVs de clientes para o repositório.
+Na lateral, **Visão Geral** é a única opção global. Cada uma das sete lojas (Guararapes, Recife, RioMar, Tacaruna, Patteo, PNWS e Quiosque) abre um submenu próprio com **Clientes, Recorrência, Campanhas e Relatórios**. A troca de loja atualiza o contexto dos dados, filtros e campanhas.
 
-## Organização
-- Visão Geral consolidada: indicadores, regiões, registros manuais de contatos, busca e exportação CSV dos contatos.
-- Menus por unidade: GUARARAPES, RECIFE, RIOMAR, TACARUNA, PATTEO, PNWS e QUIOSQUE.
-- Cada unidade possui Clientes, Recorrência, Campanhas e Relatórios.
-- Importação de CSV da unidade selecionada ou com identificação no cabeçalho. Importações substituem a base local daquela unidade, mantendo as demais unidades importadas.
-- Os registros de contato são manuais, com resultado e observação, e ficam armazenados no navegador local. Abrir WhatsApp não registra nem comprova contato.
+## Atualização
+Substitua o `index.html` no GitHub e confirme o commit. Faça atualização forçada da página quando o Pages publicar.
 
-## Importante: segurança
-A navegação por loja **não é controle de acesso**. Esta versão não tem autenticação, servidor nem base compartilhada; não é possível impedir que uma unidade veja as outras no mesmo navegador. Para implantar permissões reais, é necessário backend seguro, contas por loja, regras de autorização no servidor e banco central com tratamento LGPD.
+## Privacidade
+O arquivo CSV não deve ser enviado ao repositório público. O projeto ainda não tem autenticação nem permissões reais por loja: os dados e contatos ficam armazenados no navegador, e a separação é apenas na interface.
