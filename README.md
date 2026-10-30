@@ -1,5 +1,5 @@
-# FIDELIZA 6.4 — layout compacto
+# FIDELIZA 6.5 — Responsivo
 
-Reduz tipografia, margens, altura das colunas e dimensões do pódio para caber melhor na tela. Preserva a lógica da versão anterior, os dados locais, filtros e menus por loja.
+Atualização da versão 6.4: menu lateral ocultável no celular e tablet, sobreposição para fechar menu, grades adaptativas, gráfico rolável horizontalmente em telas estreitas, pódio e filtros responsivos.
 
-Substitua somente o arquivo `index.html` do GitHub Pages.
+Substitua o `index.html` do repositório GitHub pelo arquivo atualizado. Nenhuma base de clientes deve ser publicada no repositório.

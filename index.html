@@ -93,10 +93,53 @@ button,.btn,select,input{padding:9px 11px;font-size:12px}
 @media(max-width:1220px){.overview-grid{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(5,minmax(0,1fr))}}
 @media(max-width:900px){.sidebar{position:static;width:auto}.main{padding:14px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.overview-grid{grid-template-columns:1fr}}
 @media(max-width:640px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.podium{grid-template-columns:repeat(3,minmax(0,1fr))}.chart-controls input{max-width:none;width:100%}.podium-store{font-size:11px}.podium-value{font-size:21px}}
+
+/* FIDELIZA 6.5 — responsividade real: mobile, tablet, desktop */
+html,body{max-width:100%;overflow-x:hidden}
+.main,.panel,.topbar,.overview-grid>*,.report-grid>*,.campaign-grid>*,.metrics>*,.grid>*{min-width:0}
+.table-wrap{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.mobile-header,.mobile-overlay{display:none}
+@media(min-width:901px){.sidebar{position:fixed!important;width:250px!important}.main{padding-left:274px!important}}
+@media(max-width:900px){
+ .mobile-header{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:12px;padding:10px 16px;background:#101925;color:white;border-bottom:1px solid #26374e}
+ .mobile-header .mark{width:34px;height:34px;font-size:13px;flex-shrink:0}.mobile-header strong{font-size:14px;letter-spacing:.09em}
+ .mobile-toggle{background:#263b56;color:white;border:1px solid #39516f;border-radius:8px;padding:8px 11px;font-size:19px;line-height:1}
+ .mobile-close{margin-left:auto;background:transparent;color:white;border:1px solid #41536a;border-radius:8px;padding:8px 12px}
+ .sidebar{position:fixed!important;top:0;bottom:0;left:0;width:min(320px,85vw)!important;z-index:80;transform:translateX(-105%);transition:transform .22s ease;box-shadow:12px 0 45px #0002;overflow-y:auto}
+ body.menu-open .sidebar{transform:translateX(0)}
+ body.menu-open .mobile-overlay{display:block;position:fixed;inset:0;background:#0b1428a8;z-index:70}
+ body.menu-open{overflow:hidden}
+ .main{padding:16px!important;width:100%}
+ .overview-grid,.report-grid,.campaign-grid{grid-template-columns:1fr!important}
+ .metrics{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .contact-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .topbar,.topbar-actions,.tools,.chart-controls{align-items:stretch}
+ .chart-wrap{overflow-x:auto;overflow-y:hidden;min-width:0;justify-content:flex-start;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+ .chart-wrap .col{flex:0 0 96px;min-width:96px}
+ .podium{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+@media(max-width:620px){
+ .main{padding:12px!important}.workspace-header h1{font-size:19px}.workspace-header .pill{font-size:9px}
+ .hero{padding:18px!important}.hero h2{font-size:23px!important}.hero p{font-size:12px}
+ .metric{padding:12px!important}.metric .value{font-size:24px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px}
+ .topbar-actions{width:100%;display:grid;grid-template-columns:1fr 1fr}.topbar-actions #importStore{grid-column:1/-1;width:100%}.topbar-actions>*{min-width:0;white-space:normal;text-align:center}
+ .topbar-actions #clear{grid-column:1/-1}
+ .panel{padding:13px!important}.section-title h3{font-size:15px}
+ .tools{display:grid;grid-template-columns:1fr 1fr}.tools>*{width:100%;min-width:0!important}.tools input.search,.tools .store-context{grid-column:1/-1}
+ .chart-controls{display:grid;grid-template-columns:1fr 1fr}.chart-controls input{width:100%!important;max-width:none!important;grid-column:1/-1}.chart-controls button{white-space:normal}
+ .chart-wrap{height:205px!important}.chart-wrap .col{flex-basis:83px;min-width:83px}
+ .grid,.campaign-grid,.report-grid,.insight-grid{grid-template-columns:1fr!important}
+ .contact-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .podium{gap:6px!important}.podium-card{padding:11px 7px!important}.podium-store{font-size:11px!important}.podium-value{font-size:21px!important}.podium-badge{width:22px;height:22px}.podium-label{font-size:8px}.podium-meta{font-size:9px}
+}
+@media(max-width:390px){.podium{grid-template-columns:1fr!important}.podium-card{display:grid;grid-template-columns:1fr 1fr;align-items:center}.podium-top{grid-column:1/-1}.podium-meta{grid-column:1/-1}.metrics{grid-template-columns:1fr 1fr!important}.tools{grid-template-columns:1fr}.tools>*{grid-column:auto!important}}
 </style>
 </head>
 <body>
-<aside class="sidebar">
+<div class="mobile-header"><button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="mark">UN</div><strong>FIDELIZA</strong></div>
+<div id="mobileOverlay" class="mobile-overlay" aria-hidden="true"></div>
+<aside class="sidebar" id="sidebar" aria-label="Menu de navegação"><button class="mobile-close" id="mobileClose" type="button" style="display:none">Fechar ✕</button>
   <div class="side-brand"><div class="mark">UN</div><div><div class="brand-title">FIDELIZA</div><div class="brand-sub">INTELIGÊNCIA COMERCIAL</div></div></div>
   <div class="side-caption">Painel Geral</div>
   <nav class="navlist">
@@ -626,6 +669,19 @@ $('goClients').onclick=()=>nav('clients');
 document.querySelector('[data-page="overview"]').addEventListener('click',()=>{activeStore=''; render(); nav('overview');});
 
 buildStoreNavigation(); fillStoreSelects(); overviewDate=topSalesDate(); $('overviewDate').value=fmtDate(overviewDate); render(); nav('overview');
+
+// Menu responsivo: abre/fecha sem alterar a navegação existente.
+(function(){
+ const toggle=document.getElementById('mobileToggle'), close=document.getElementById('mobileClose'), overlay=document.getElementById('mobileOverlay'), side=document.getElementById('sidebar');
+ if(!toggle||!close||!overlay||!side)return;
+ const sync=()=>{toggle.setAttribute('aria-expanded',String(document.body.classList.contains('menu-open')));close.style.display=window.innerWidth<=900?'block':'none';};
+ const setOpen=(open)=>{document.body.classList.toggle('menu-open',open&&window.innerWidth<=900);sync();};
+ toggle.addEventListener('click',()=>setOpen(!document.body.classList.contains('menu-open')));
+ close.addEventListener('click',()=>setOpen(false));overlay.addEventListener('click',()=>setOpen(false));
+ side.addEventListener('click',e=>{if(e.target.closest('.navitem'))setOpen(false);});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
+ window.addEventListener('resize',()=>{if(window.innerWidth>900)setOpen(false);sync()});sync();
+})();
 </script>
 </body>
 </html>
