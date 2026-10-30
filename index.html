@@ -135,8 +135,17 @@ html,body{max-width:100%;overflow-x:hidden}
 }
 @media(max-width:390px){.podium{grid-template-columns:1fr!important}.podium-card{display:grid;grid-template-columns:1fr 1fr;align-items:center}.podium-top{grid-column:1/-1}.podium-meta{grid-column:1/-1}.metrics{grid-template-columns:1fr 1fr!important}.tools{grid-template-columns:1fr}.tools>*{grid-column:auto!important}}
 </style>
+<style>
+#authGate{position:fixed;inset:0;z-index:900;background:#f3f6fa;display:grid;place-items:center;padding:22px}
+#authGate .auth-card{width:min(420px,100%);border:1px solid #dce4ee;background:#fff;border-radius:20px;padding:32px;box-shadow:0 18px 60px #11203920}
+#authGate h2{font:750 27px Manrope,sans-serif;letter-spacing:-.05em;margin:5px 0 10px}#authGate p{color:#66768b;font-size:13px;line-height:1.65}
+#authGate input{display:block;width:100%;margin:12px 0}#authGate button{width:100%}#authError{color:#b13c4d;font-size:12px;margin-top:12px}
+#cloudStatus{font-size:12px;color:#526a82;margin-right:12px}#logoutButton{display:none}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
 </head>
-<body>
+<body><div id="authGate"><div class="auth-card"><div class="mark">UN</div><h2>FIDELIZA</h2><p>Acesso seguro às lojas. Faça login para carregar os dados do banco centralizado.</p><form id="authForm"><input type="email" id="authEmail" placeholder="E-mail corporativo" required autocomplete="username"><input type="password" id="authPassword" placeholder="Senha" required autocomplete="current-password"><button class="primary" type="submit">Entrar no FIDELIZA</button></form><p id="authError"></p></div></div>
 <div class="mobile-header"><button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="mark">UN</div><strong>FIDELIZA</strong></div>
 <div id="mobileOverlay" class="mobile-overlay" aria-hidden="true"></div>
 <aside class="sidebar" id="sidebar" aria-label="Menu de navegação"><button class="mobile-close" id="mobileClose" type="button" style="display:none">Fechar ✕</button>
@@ -159,7 +168,7 @@ html,body{max-width:100%;overflow-x:hidden}
     <span class="pill">FIDELIZA • VERSÃO 6.3</span>
   </div>
 
-  <header class="topbar">
+  <header class="topbar"><div><span id="cloudStatus">Banco: aguardando login</span><button type="button" id="logoutButton">Sair</button></div>
     <div>
       <strong style="font:800 16px Manrope,sans-serif;letter-spacing:-.04em;display:block">Base de vendas</strong>
       <span style="font-size:12px;color:#718093">Importe um CSV do PDV ou um CSV no modelo do FIDELIZA.</span>
@@ -322,13 +331,45 @@ function normalizePayment(v){const s=normalize(v); if(!s) return 'OUTROS'; if(s.
 function safeForCSV(v){return '"'+String(v??'').replace(/^[\s]*[=+@-]/,m=>"'"+m).replace(/"/g,'""')+'"';}
 
 function storageGet(key,fallback){try{const v=JSON.parse(localStorage.getItem(key)); return v??fallback;}catch{return fallback;}}
-let sales = storageGet(stateKey,[]);
-let contacts = storageGet(contactKey,[]);
+let sales = [];
+let contacts = [];
+let cloudClient=null; let cloudProfile=null; let cloudReady=false;
 let activeStore='';
 let overviewDate='';
 
-function saveSales(){localStorage.setItem(stateKey,JSON.stringify(sales));}
-function saveContacts(){localStorage.setItem(contactKey,JSON.stringify(contacts));}
+async function saveSales(){
+ if(!cloudReady) throw new Error('Faça login antes de importar vendas.');
+ const payload=sales.map(s=>({store:s.loja,sale_id:String(s.saleId),payload:s}));
+ for(let i=0;i<payload.length;i+=200){const {error}=await cloudClient.from('fideliza_sales').upsert(payload.slice(i,i+200),{onConflict:'store,sale_id'}); if(error)throw error;}
+}
+async function saveContacts(){
+ if(!cloudReady)throw new Error('Sessão indisponível.');
+ const last=contacts[contacts.length-1];
+ const {error}=await cloudClient.from('fideliza_contacts').insert({store:last.loja,payload:last});
+ if(error)throw error;
+}
+async function refreshCloudData(){
+ sales=[];contacts=[];
+ for(let start=0;;start+=1000){const {data,error}=await cloudClient.from('fideliza_sales').select('payload').range(start,start+999);if(error)throw error;sales.push(...data.map(r=>r.payload));if(data.length<1000)break;}
+ for(let start=0;;start+=1000){const {data,error}=await cloudClient.from('fideliza_contacts').select('payload').order('created_at',{ascending:false}).range(start,start+999);if(error)throw error;contacts.push(...data.map(r=>r.payload));if(data.length<1000)break;}
+ render();
+}
+async function activateCloud(){
+ const {data:{user}}=await cloudClient.auth.getUser();if(!user){$('authGate').style.display='grid';return;}
+ const {data:profile,error}=await cloudClient.from('fideliza_profiles').select('role,store,name').eq('user_id',user.id).single();
+ if(error||!profile)throw new Error('Usuário sem permissão. Cadastre seu perfil no Supabase.');
+ cloudProfile=profile;cloudReady=true;
+ $('authGate').style.display='none';$('logoutButton').style.display='inline-block';
+ $('cloudStatus').textContent='Conectado • '+(profile.role==='admin'?'Gestão':profile.store);
+ if(profile.role==='store'){
+   document.querySelector('[data-page="overview"]').style.display='none';
+   document.querySelectorAll('.store-group').forEach(g=>{if(g.dataset.storeGroup!==profile.store)g.style.display='none'});
+   $('importStore').value=profile.store;$('importStore').disabled=true;
+ }
+ await refreshCloudData();
+ if(profile.role==='store')selectStore(profile.store,'clients'); else nav('overview');
+}
+
 
 function buildStoreNavigation(){
   $('storeNavigation').innerHTML = stores.map(store=>`<div class="store-group" data-store-group="${store}">
@@ -365,7 +406,7 @@ function nav(page){
   $('breadcrumb').textContent = page==='overview' ? 'Visão Geral' : activeStore+' / '+({clients:'Clientes',retention:'Recorrência',campaigns:'Campanhas',reports:'Relatórios'}[page]);
   $('pageTitle').textContent = page==='overview' ? 'Visão Geral' : activeStore+' — '+({clients:'Clientes',retention:'Recorrência',campaigns:'Campanhas',reports:'Relatórios'}[page]);
 }
-function selectStore(store,page){activeStore=store; render(); nav(page||'clients'); window.scrollTo({top:0,behavior:'instant'});}
+function selectStore(store,page){if(cloudProfile?.role==='store'&&store!==cloudProfile.store)return;activeStore=store; render(); nav(page||'clients'); window.scrollTo({top:0,behavior:'instant'});}
 
 function uniqueSales(){return sales.filter(s=>stores.includes(s.loja));}
 function storeSales(store){return uniqueSales().filter(s=>!store || s.loja===store);}
@@ -548,7 +589,7 @@ function render(){
   renderContacts();
 }
 
-function logContact(name,phone,id){
+async function logContact(name,phone,id){
   if(!activeStore) return alert('Selecione uma loja para registrar contato.');
   const opt=prompt(`RESULTADO DO CONTATO com ${name}\n1 = Contato realizado\n2 = Sem resposta\n3 = Respondeu\n4 = Retorno agendado\n5 = Venda realizada`,'1');
   if(opt===null) return;
@@ -557,7 +598,7 @@ function logContact(name,phone,id){
   const notes=prompt('Observação (opcional):','');
   if(notes===null) return;
   contacts.push({id,nome:name,telefone:phone,loja:activeStore,status:map[opt.trim()],notes:notes.slice(0,500),created:new Date().toISOString()});
-  saveContacts(); render(); alert('Contato registrado com sucesso.');
+  try{await saveContacts();render();alert('Contato registrado com sucesso.');}catch(err){contacts.pop();alert('Não foi possível registrar: '+err.message);}
 }
 
 function inferHeader(rows){
@@ -624,7 +665,6 @@ function importRows(table,fileName=''){
   const existing=new Map(uniqueSales().map(s=>[s.loja+'|'+s.saleId,s]));
   imported.forEach(s=>existing.set(s.loja+'|'+s.saleId,s));
   sales=[...existing.values()].sort((a,b)=>(a.dataISO+b.loja).localeCompare(b.dataISO+a.loja));
-  saveSales();
   overviewDate=topSalesDate();
   return imported.length;
 }
@@ -635,6 +675,7 @@ $('upload').addEventListener('change', async e=>{
     const text=await file.text();
     const table=parseCSV(text);
     const n=importRows(table,file.name);
+    await saveSales();
     alert(`${n.toLocaleString('pt-BR')} venda(s) importada(s) com sucesso.`);
     render();
   }catch(err){ alert('Não foi possível importar: '+err.message); console.error(err); }
@@ -644,6 +685,7 @@ $('template').onclick=()=>{
   const sample='id;nome;telefone;loja;bairro;cidade;data;valor;pagamento\nC001;Cliente Exemplo;81999999999;GUARARAPES;Piedade;Jaboatão dos Guararapes;01/10/2026;199,90;Crediário\nC001;Cliente Exemplo;81999999999;GUARARAPES;Piedade;Jaboatão dos Guararapes;20/10/2026;89,90;PIX\n';
   const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob(['\ufeff'+sample],{type:'text/csv;charset=utf-8'})); a.download='modelo_fideliza.csv'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),1000);
 };
+$('clear').disabled=true; $('clear').title='Exclusão no banco não está habilitada nesta versão';
 $('clear').onclick=()=>{ if(confirm('Remover todas as vendas importadas deste navegador? Os registros de contato serão mantidos.')){ sales=[]; saveSales(); render(); }};
 $('useLatest').onclick=()=>{ $('overviewDate').value=fmtDate(topSalesDate()); renderOverview(); };
 $('applyOverviewDate').onclick=()=>renderOverview();
@@ -669,6 +711,18 @@ $('goClients').onclick=()=>nav('clients');
 document.querySelector('[data-page="overview"]').addEventListener('click',()=>{activeStore=''; render(); nav('overview');});
 
 buildStoreNavigation(); fillStoreSelects(); overviewDate=topSalesDate(); $('overviewDate').value=fmtDate(overviewDate); render(); nav('overview');
+(async()=>{
+ if(!window.FIDELIZA_SUPABASE?.url||!window.FIDELIZA_SUPABASE?.publishableKey){$('authError').textContent='Configure URL e chave pública em config.js para ativar a conexão.';return;}
+ cloudClient=window.supabase.createClient(window.FIDELIZA_SUPABASE.url,window.FIDELIZA_SUPABASE.publishableKey);
+ try{await activateCloud();}catch(e){$('authError').textContent=e.message;}
+ cloudClient.auth.onAuthStateChange((_event,session)=>{if(!session){cloudReady=false;cloudProfile=null;sales=[];contacts=[];render();$('authGate').style.display='grid';}});
+})();
+$('authForm').addEventListener('submit',async e=>{e.preventDefault();if(!cloudClient)return;const email=$('authEmail').value.trim(),password=$('authPassword').value;
+ $('authError').textContent='Autenticando...';const {error}=await cloudClient.auth.signInWithPassword({email,password});
+ if(error){$('authError').textContent='Falha no login: '+error.message;return;}
+ try{await activateCloud();$('authError').textContent='';$('authPassword').value='';}catch(err){$('authError').textContent=err.message;}
+});
+$('logoutButton').addEventListener('click',async()=>{await cloudClient.auth.signOut();location.reload();});
 
 // Menu responsivo: abre/fecha sem alterar a navegação existente.
 (function(){
