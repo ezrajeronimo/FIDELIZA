@@ -144,6 +144,49 @@ html,body{max-width:100%;overflow-x:hidden}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js"></script>
+<style>
+
+/* FIDELIZA 7.2 — identidade premium e microinterações */
+:root{--bg:#f3f6fa;--panel:#fff;--line:#dde5ee;--text:#14243c;--muted:#64758a;--nav:#071729;--nav2:#112b49;--nav3:#194c77;--brand:#0d3157;--soft:#eaf2f8;--green:#087f83;--shadow:0 8px 30px rgba(12,34,58,.055)}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(circle at 93% 0%,rgba(34,122,173,.09),transparent 33%),#f3f6fa}
+.sidebar{background:linear-gradient(160deg,#06182b 0%,#102f52 73%,#092139 100%);border-right:1px solid rgba(255,255,255,.07)}
+.side-brand .mark{background:linear-gradient(135deg,#fff,#dcebf5);color:#0b2b4a;box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.navitem{transition:background-color .26s ease,color .26s ease,transform .26s ease,border-color .26s ease}
+.navitem:hover{background:rgba(95,171,213,.13);transform:translateX(3px)}
+.navitem.active{background:linear-gradient(90deg,rgba(55,131,176,.42),rgba(52,110,151,.17));box-shadow:inset 3px 0 #54c6d1;border-color:rgba(126,201,229,.13)}
+.workspace-header h1{color:#10243b;letter-spacing:-.065em}
+.pill{background:#eaf3fa!important;border:1px solid #cce0ec!important;color:#174d70!important;letter-spacing:.06em;font-weight:800}
+.hero{background:radial-gradient(circle at 84% 5%,rgba(42,173,199,.25),transparent 35%),linear-gradient(116deg,#061629 0%,#0c3456 64%,#12617e 100%);border:1px solid rgba(68,169,194,.2);box-shadow:0 22px 48px rgba(11,38,68,.15)}
+.hero .eyebrow{color:#8fe0e4}.hero h2{font-weight:750}.hero p{color:#d4e4ee}
+.metric,.panel,.card,.insight,.campaign-card,.topbar{border-color:#e0e8ef;box-shadow:0 8px 26px rgba(16,35,57,.045)}
+.metric,.panel,.card,.insight,.campaign-card{transition:box-shadow .32s ease,transform .32s ease,border-color .32s ease}
+.metric:hover,.panel:hover,.card:hover,.insight:hover,.campaign-card:hover{transform:translateY(-2px);border-color:#b8d7e5;box-shadow:0 16px 38px rgba(16,48,77,.1)}
+.metric:before{background:linear-gradient(90deg,#0b3c65,#27b1b9);width:32px}
+.metric .value,.insight .big{color:#0d3157}
+button,.btn,.wa{transition:transform .22s ease,box-shadow .22s ease,background-color .22s ease,border-color .22s ease}
+.primary,.wa{background:linear-gradient(112deg,#0c3157,#195b7d);border-color:#0b416a;color:#fff}
+.primary:hover,.wa:hover{background:linear-gradient(112deg,#114e78,#097a84);box-shadow:0 7px 20px rgba(10,86,125,.2);transform:translateY(-2px)}
+button:active,.btn:active{transform:translateY(0) scale(.99)}
+button:focus-visible,.btn:focus-visible,.navitem:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #0a9baa;outline-offset:2px}
+.chart-wrap .bar{background:linear-gradient(180deg,#39b4c3,#15466f 85%);box-shadow:0 3px 11px rgba(32,106,151,.15);transition:height .7s cubic-bezier(.2,.8,.2,1),background .3s}
+.chart-wrap .bar:hover{background:linear-gradient(180deg,#62d1cb,#08758d)}
+.podium-card{background:#fff!important;border:1px solid #dce7ef!important;box-shadow:0 6px 24px rgba(15,47,75,.04)!important;transition:transform .3s ease,box-shadow .3s ease}
+.podium-card.first{border-top:3px solid #0d7890!important}.podium-card.second{border-top:3px solid #94aabc!important}.podium-card.third{border-top:3px solid #c5a27c!important}
+.podium-card:hover{transform:translateY(-3px);box-shadow:0 14px 33px rgba(15,47,75,.10)!important}
+.podium-card.first .podium-badge{background:#0d7890}
+.tag.repeat{background:#e3f4ef;color:#076f66}.tag{border:1px solid #e0e9f1}
+.topbar{background:rgba(255,255,255,.96)}
+.view.active{animation:pageIn .42s ease both}
+@keyframes pageIn{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+#authGate{background:radial-gradient(circle at 78% 15%,#d7edf3,transparent 40%),linear-gradient(135deg,#f3f8fb,#eaf0f6)}
+#authGate .auth-card{box-shadow:0 25px 70px rgba(7,37,67,.13);border:1px solid #d4e4ed}
+#authGate .auth-card .mark{background:linear-gradient(130deg,#0a3155,#0c7a86);color:white}
+#authGate h2{color:#092c4b}
+@media(max-width:900px){.sidebar{background:linear-gradient(160deg,#06182b,#0d3758)}.mobile-header{background:#071b30!important;border-color:#184863!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+</style>
 </head>
 <body><div id="authGate"><div class="auth-card"><div class="mark">UN</div><h2>FIDELIZA</h2><p>Acesso seguro às lojas. Faça login para carregar os dados do banco centralizado.</p><form id="authForm"><input type="email" id="authEmail" placeholder="E-mail corporativo" required autocomplete="username"><input type="password" id="authPassword" placeholder="Senha" required autocomplete="current-password"><button class="primary" type="submit">Entrar no FIDELIZA</button></form><p id="authError"></p></div></div>
 <div class="mobile-header"><button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="mark">UN</div><strong>FIDELIZA</strong></div>
@@ -246,7 +289,12 @@ html,body{max-width:100%;overflow-x:hidden}
       <select id="region"><option value="">Todos os bairros / regiões</option></select>
       <select id="payment">
         <option value="">Todas as formas de pagamento</option>
-        <option value="CREDIARIO">Crediário</option>
+        <option value="CREDIARIO_TODOS">Crediário — todas as financeiras</option>
+        <option value="CRED_PAYJOY">Cred. PayJoy</option>
+        <option value="CRED_PARCELEX">Cred. Parcelex</option>
+        <option value="CRED_CREFAZ">Cred. Crefaz</option>
+        <option value="CRED_ODRES">Cred. Odres</option>
+        <option value="CREDIARIO">Crediário — outros</option>
         <option value="PIX">PIX</option>
         <option value="DEBITO">Débito</option>
         <option value="CREDITO">Cartão de crédito</option>
@@ -327,7 +375,25 @@ function daysSince(date){const d=parseBRDate(date); if(!d) return 9999; return M
 function csvSplit(line,sep){const out=[]; let cur='',q=false; for(let i=0;i<line.length;i++){const ch=line[i]; if(ch==='"'){ if(q&&line[i+1]==='"'){cur+='"'; i++;} else q=!q; } else if(ch===sep && !q){ out.push(cur); cur=''; } else cur+=ch; } out.push(cur); return out.map(x=>x.trim()); }
 function parseCSV(text){const clean=text.replace(/^\uFEFF/,'').replace(/\r/g,''); const lines=clean.split('\n').filter(l=>l.trim()); if(!lines.length) return []; const sample=lines.slice(0,5).join('\n'); const sep=(sample.match(/;/g)||[]).length >= (sample.match(/,/g)||[]).length ? ';' : ','; return lines.map(line=>csvSplit(line,sep));}
 function detectStoreFromName(name=''){const n=normalize(name); return stores.find(s=>n.includes(s)) || ''}
-function normalizePayment(v){const s=normalize(v); if(!s) return 'OUTROS'; if(s.includes('CREDI')) return 'CREDIARIO'; if(s.includes('PIX')) return 'PIX'; if(s.includes('DEBIT')) return 'DEBITO'; if(s.includes('DINHE')) return 'DINHEIRO'; if(s.includes('CREDITO')||s.includes('CARTAO')||s.includes('VISA')||s.includes('MASTER')||s.includes('ELO')) return 'CREDITO'; return 'OUTROS';}
+function normalizePayment(v){
+ const s=normalize(v).replace(/\s+/g,' ').trim();
+ if(!s) return 'OUTROS';
+ // Apenas as financeiras abaixo são crediário; cartão de crédito NÃO é crediário.
+ if(/(?:CRED\.?\s*)?PAYJOY/.test(s)) return 'CRED_PAYJOY';
+ if(/(?:CRED\.?\s*)?PARCELEX/.test(s)) return 'CRED_PARCELEX';
+ if(/(?:CRED\.?\s*)?CREFAZ/.test(s)) return 'CRED_CREFAZ';
+ if(/(?:CRED\.?\s*)?ODRES/.test(s)) return 'CRED_ODRES';
+ if(s==='CREDIARIO'||s==='CREDIÁRIO') return 'CREDIARIO';
+ if(s.includes('PIX')) return 'PIX';
+ if(s.includes('DEBIT')) return 'DEBITO';
+ if(s.includes('DINHE')) return 'DINHEIRO';
+ if(s.includes('CREDITO')||s.includes('CARTAO')||s.includes('VISA')||s.includes('MASTER')||s.includes('ELO')) return 'CREDITO';
+ return 'OUTROS';
+}
+const creditFinancing=['CRED_PAYJOY','CRED_PARCELEX','CRED_CREFAZ','CRED_ODRES','CREDIARIO'];
+const paymentLabels={CREDIARIO:'Crediário (sem financeira identificada)',CRED_PAYJOY:'Cred. PayJoy',CRED_PARCELEX:'Cred. Parcelex',CRED_CREFAZ:'Cred. Crefaz',CRED_ODRES:'Cred. Odres',PIX:'PIX',DEBITO:'Débito',CREDITO:'Cartão de crédito',DINHEIRO:'Dinheiro',OUTROS:'Outros'};
+function paymentMatches(payments,selected){return !selected || (selected==='CREDIARIO_TODOS' ? payments.some(p=>creditFinancing.includes(p)) : payments.includes(selected));}
+
 function safeForCSV(v){return '"'+String(v??'').replace(/^[\s]*[=+@-]/,m=>"'"+m).replace(/"/g,'""')+'"';}
 
 function storageGet(key,fallback){try{const v=JSON.parse(localStorage.getItem(key)); return v??fallback;}catch{return fallback;}}
@@ -461,7 +527,7 @@ function filteredCustomers(){
   }).filter(c=>c.scopedCount>0);
   if(q) list=list.filter(c=>normalize(c.nome+' '+c.telefone+' '+c.bairro+' '+c.cidade).includes(q));
   if(region) list=list.filter(c=>normalize(c.bairro||c.cidade).includes(region));
-  if(payment) list=list.filter(c=>c.payments.includes(payment));
+  if(payment) list=list.filter(c=>paymentMatches(c.payments,payment));
   if(segment==='unique') list=list.filter(c=>c.count===1);
   if(segment==='repeat') list=list.filter(c=>c.count>1);
   if(segment==='inactive') list=list.filter(c=>c.daysInactive>=90);
@@ -530,7 +596,7 @@ function renderClients(){
     const inactiveTag = c.daysInactive>=90 ? '<span class="tag inactive">'+c.daysInactive+' dias sem comprar</span>' : '';
     const wa = c.telefone ? `https://wa.me/55${digits(c.telefone)}` : '#';
     const location=[c.bairro,c.cidade].filter(Boolean).join(' • ') || 'Região não informada';
-    const pay=c.payments.map(p=>({CREDIARIO:'Crediário',PIX:'PIX',DEBITO:'Débito',CREDITO:'Cartão de crédito',DINHEIRO:'Dinheiro',OUTROS:'Outros'}[p]||p)).join(', ');
+    const pay=c.payments.map(p=>paymentLabels[p]||p).join(', ');
     return `<article class="card"><div class="ctop"><div><div class="name">${esc(c.nome)}</div><div class="mini">${esc(c.loja)} • ${esc(location)}</div></div><div style="display:grid;gap:8px;justify-items:end">${tag}${inactiveTag}</div></div>
       <div class="kpi-row"><div class="kpi-box"><strong>${fmtNum(c.scopedCount)}</strong><span>Vendas no filtro</span></div><div class="kpi-box"><strong>${fmtBRL(c.scopedTotal)}</strong><span>Faturamento no filtro</span></div><div class="kpi-box"><strong>${fmtDate(c.scopedLast || c.lastDate)}</strong><span>Última compra</span></div></div>
       <div class="list">
@@ -561,7 +627,7 @@ function renderCampaigns(){
     {title:'Reativação 90+ dias', desc:'Clientes que estão sem comprar há 90 dias ou mais.', count:list.filter(c=>c.daysInactive>=90).length, action:()=>{ $('segment').value='inactive'; nav('clients'); render(); }},
     {title:'Primeira recompra', desc:'Clientes com apenas uma compra e alto potencial de retorno.', count:list.filter(c=>c.count===1).length, action:()=>{ $('segment').value='unique'; nav('clients'); render(); }},
     {title:'VIP recorrentes', desc:'Clientes com duas ou mais compras na loja.', count:list.filter(c=>c.count>1).length, action:()=>{ $('segment').value='repeat'; nav('clients'); render(); }},
-    {title:'Crediário', desc:'Clientes que já usaram crediário em alguma compra.', count:list.filter(c=>c.payments.includes('CREDIARIO')).length, action:()=>{ $('payment').value='CREDIARIO'; nav('clients'); render(); }},
+    {title:'Crediário', desc:'Clientes que já usaram crediário em alguma compra.', count:list.filter(c=>paymentMatches(c.payments,'CREDIARIO_TODOS')).length, action:()=>{ $('payment').value='CREDIARIO_TODOS'; nav('clients'); render(); }},
   ];
   $('campaignGrid').innerHTML = campaigns.map((c,i)=>`<article class="campaign-card"><div class="eyebrow" style="color:#7e8c9e">Campanha 0${i+1}</div><h4>${esc(c.title)}</h4><p>${esc(c.desc)}</p><div class="stat">${fmtNum(c.count)} <span style="font-size:14px;color:#6a7788">clientes</span></div><button class="primary" data-campaign="${i}">Abrir lista</button></article>`).join('');
   document.querySelectorAll('[data-campaign]').forEach(btn=>btn.onclick=()=>campaigns[Number(btn.dataset.campaign)].action());
@@ -569,7 +635,7 @@ function renderCampaigns(){
 
 function renderReports(){
   const list=customerAggregate(activeStore);
-  const paymentNames={CREDIARIO:'Crediário',PIX:'PIX',DEBITO:'Débito',CREDITO:'Cartão de crédito',DINHEIRO:'Dinheiro',OUTROS:'Outros'};
+  const paymentNames=paymentLabels;
   const payRows=tally(list,c=>c.payments.length?c.payments.map(p=>paymentNames[p]||p):['Não informado']);
   const regionRows=tally(list,c=>c.bairro||c.cidade||'Não informado');
   const topSales=list.slice().sort((a,b)=>b.count-a.count||b.total-a.total).slice(0,10);
@@ -648,8 +714,9 @@ function importRows(table,fileName=''){
     const id=(cols.id>=0 ? String(row[cols.id]||'').trim() : '') || telefone || normalize(nome);
     const saleNo=(cols.saleNo>=0 ? String(row[cols.saleNo]||'').trim() : String(row[0]||'').trim()) || `${dataISO}_${id}_${valor}`;
     const key=`${loja}|${saleNo}`;
-    const payCat=normalizePayment(cols.payment>=0 ? row[cols.payment] : '');
-    const base={saleId:saleNo,id,nome:toTitle(nome),telefone,loja,bairro:toTitle(row[cols.neighborhood]||''),cidade:toTitle(row[cols.city]||''),dataISO,valor,pagamentoCat:payCat,customerKey:telefone||normalize(nome)};
+    const rawPayment=cols.payment>=0 ? String(row[cols.payment]||'').trim() : '';
+    const payCat=normalizePayment(rawPayment);
+    const base={saleId:saleNo,id,nome:toTitle(nome),telefone,loja,bairro:toTitle(row[cols.neighborhood]||''),cidade:toTitle(row[cols.city]||''),dataISO,valor,pagamentoCat:payCat,pagamentoOriginal:rawPayment,customerKey:telefone||normalize(nome)};
     if(!grouped.has(key)) grouped.set(key,base);
     else{
       const cur=grouped.get(key);
@@ -657,7 +724,8 @@ function importRows(table,fileName=''){
       if(!cur.telefone && telefone) cur.telefone=telefone;
       if(!cur.bairro && base.bairro) cur.bairro=base.bairro;
       if(!cur.cidade && base.cidade) cur.cidade=base.cidade;
-      if(cur.pagamentoCat==='OUTROS' && payCat!=='OUTROS') cur.pagamentoCat=payCat;
+      if(cur.pagamentoCat==='OUTROS' && payCat!=='OUTROS') {cur.pagamentoCat=payCat;cur.pagamentoOriginal=rawPayment;}
+      if(cur.pagamentoCat==='CREDITO' && creditFinancing.includes(payCat)){cur.pagamentoCat=payCat;cur.pagamentoOriginal=rawPayment;}
     }
   }
   const imported=[...grouped.values()];
@@ -682,7 +750,7 @@ $('upload').addEventListener('change', async e=>{
   e.target.value='';
 });
 $('template').onclick=()=>{
-  const sample='id;nome;telefone;loja;bairro;cidade;data;valor;pagamento\nC001;Cliente Exemplo;81999999999;GUARARAPES;Piedade;Jaboatão dos Guararapes;01/10/2026;199,90;Crediário\nC001;Cliente Exemplo;81999999999;GUARARAPES;Piedade;Jaboatão dos Guararapes;20/10/2026;89,90;PIX\n';
+  const sample='id;nome;telefone;loja;bairro;cidade;data;valor;pagamento\nC001;Cliente Exemplo;81999999999;GUARARAPES;Piedade;Jaboatão dos Guararapes;01/10/2026;199,90;CRED. PAYJOY\nC001;Cliente Exemplo;81999999999;GUARARAPES;Piedade;Jaboatão dos Guararapes;20/10/2026;89,90;CREDITO 1X\n';
   const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob(['\ufeff'+sample],{type:'text/csv;charset=utf-8'})); a.download='modelo_fideliza.csv'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),1000);
 };
 $('clear').disabled=true; $('clear').title='Exclusão no banco não está habilitada nesta versão';
