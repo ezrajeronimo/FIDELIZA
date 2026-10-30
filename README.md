@@ -1,5 +1,5 @@
-# FIDELIZA 6.3
+# FIDELIZA 6.4 — layout compacto
 
-Gráfico diário sem valores em reais; exibe apenas quantidade de atendimentos. O pódio e as demais funções foram mantidos.
+Reduz tipografia, margens, altura das colunas e dimensões do pódio para caber melhor na tela. Preserva a lógica da versão anterior, os dados locais, filtros e menus por loja.
 
-Substitua `index.html` no GitHub.
+Substitua somente o arquivo `index.html` do GitHub Pages.
