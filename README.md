@@ -1,7 +1,5 @@
-# FIDELIZA 6.2
+# FIDELIZA 6.3
 
-Atualizações:
-- gráfico de produtividade diária por quantidade de atendimentos
-- pódio do dia ordenado por atendimentos
-- pódio com design mais minimalista
-- faturamento mantido como informação secundária
+Gráfico diário sem valores em reais; exibe apenas quantidade de atendimentos. O pódio e as demais funções foram mantidos.
+
+Substitua `index.html` no GitHub.

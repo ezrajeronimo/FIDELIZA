@@ -85,7 +85,7 @@ input:focus,select:focus{outline:none;border-color:#29527e;box-shadow:0 0 0 3px 
       <div class="crumb">UNIGAMES / CRM / <span id="breadcrumb">Visão Geral</span></div>
       <h1 id="pageTitle">Visão Geral</h1>
     </div>
-    <span class="pill">FIDELIZA • VERSÃO 6.0</span>
+    <span class="pill">FIDELIZA • VERSÃO 6.3</span>
   </div>
 
   <header class="topbar">
@@ -385,7 +385,7 @@ function renderOverview(){
     return {store,revenue,attendances};
   });
   const max = Math.max(1, ...perf.map(p=>p.attendances));
-  $('dailyChart').innerHTML = perf.map(p=>`<div class="col"><div class="bar-box"><div class="bar" style="height:${Math.max(6,(p.attendances/max)*180)}px"><small>${fmtNum(p.attendances)}</small></div></div><label>${p.store}<br><span style="color:#8190a2">${fmtBRL(p.revenue)} faturados</span></label></div>`).join('');
+  $('dailyChart').innerHTML = perf.map(p=>`<div class="col"><div class="bar-box"><div class="bar" style="height:${Math.max(6,(p.attendances/max)*180)}px"><small>${fmtNum(p.attendances)}</small></div></div><label>${p.store}<br><span style="color:#8190a2">${fmtNum(p.attendances)} atendimento(s)</span></label></div>`).join('');
   $('dailyTotalLegend').textContent = 'Total de atendimentos: '+fmtNum(perf.reduce((s,p)=>s+p.attendances,0));
 
   const top=perf.slice().sort((a,b)=>b.attendances-a.attendances || b.revenue-a.revenue).slice(0,3);
