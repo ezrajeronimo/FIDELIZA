@@ -223,6 +223,8 @@ body[data-fideliza-theme] .mobile-header{background:var(--admin-nav)!important}
 @keyframes fidelizaLeadPulse{0%,100%{box-shadow:0 0 0 0 rgba(19,131,139,.07)}50%{box-shadow:0 0 0 5px rgba(19,131,139,.09)}}
 @media(max-width:620px){.reactivation-controls,.reactivation-controls select{width:100%;min-width:0}}
 @media(prefers-reduced-motion:reduce){.chart-panel .chart-wrap .bar,.podium-card,.podium-card.first:not(.zero-result){animation:none!important;transition:none!important}}
+.admin-account-table input{width:100%;min-width:150px;font-size:12px}.admin-user-actions{display:flex;gap:5px;flex-wrap:wrap}.admin-user-actions button{padding:8px 9px;font-size:11px}.danger-action{background:#fff5f5;color:#b63636;border-color:#f0c9c9}#passwordDialog::backdrop{background:rgba(8,20,37,.55)}
+@media(max-width:750px){.admin-user-actions{min-width:130px}.admin-account-table{min-width:790px}}
 </style>
 <style>
 #authGate{position:fixed;inset:0;z-index:900;background:#f3f6fa;display:grid;place-items:center;padding:22px}
@@ -333,10 +335,10 @@ button,.btn,select,input{border-radius:8px!important}
       <div class="crumb">UNIGAMES / CRM / <span id="breadcrumb">Visão Geral</span></div>
       <h1 id="pageTitle">Visão Geral</h1>
     </div>
-    <span class="pill">FIDELIZA • VERSÃO 8.4</span>
+    <span class="pill">FIDELIZA • VERSÃO 8.6</span>
   </div>
 
-  <header class="topbar"><div><span id="cloudStatus">Banco: aguardando login</span><button type="button" id="logoutButton">Sair</button></div>
+  <header class="topbar"><div><span id="cloudStatus">Banco: aguardando login</span><button type="button" id="selfPasswordButton" style="display:none">Alterar minha senha</button><button type="button" id="logoutButton">Sair</button></div>
     <div>
       <strong style="font:800 16px Manrope,sans-serif;letter-spacing:-.04em;display:block">Base de vendas</strong>
       <span style="font-size:12px;color:#718093">Importe um CSV do PDV ou um CSV no modelo do FIDELIZA.</span>
@@ -514,26 +516,31 @@ button,.btn,select,input{border-radius:8px!important}
         <p class="admin-message" id="adminBrandMessage" role="status"></p>
       </article>
       <article class="admin-panel">
-        <div class="section-title"><div><h3>Convidar novo acesso</h3><span>Convite seguro enviado por e-mail</span></div></div>
+        <div class="section-title"><div><h3>Criar acesso por loja</h3><span>Administrador define e-mail e senha inicial</span></div></div>
         <form id="adminInviteForm" class="admin-form">
           <label class="admin-field">Nome completo<input id="inviteName" placeholder="Nome do colaborador" required maxlength="100"></label>
-          <label class="admin-field">E-mail corporativo<input id="inviteEmail" type="email" placeholder="nome@empresa.com.br" required></label>
+          <label class="admin-field">E-mail de login<input id="inviteEmail" type="email" placeholder="nome@empresa.com.br" required></label><label class="admin-field">Senha inicial definida pela gestão<input id="invitePassword" type="password" autocomplete="new-password" minlength="12" maxlength="128" placeholder="Mínimo de 12 caracteres" required></label>
           <label class="admin-field">Tipo de acesso<select id="inviteRole"><option value="store">Usuário comum — somente sua loja</option><option value="admin">Administrador — acesso completo</option></select></label>
           <label class="admin-field" id="inviteStoreWrap">Loja<select id="inviteStore"></select></label>
-          <div class="admin-help">Usuários comuns podem consultar clientes, abrir WhatsApp, registrar contatos e agendar visitas, mas não alteram identidade, usuários ou importações.</div>
-          <button type="submit" class="primary">Enviar convite de acesso</button>
+          <div class="admin-help">Usuários comuns visualizam a Visão Geral e somente a base da sua loja. O administrador cria a senha inicial; cada colaborador poderá alterá-la após entrar.</div>
+          <button type="submit" class="primary">Criar usuário e senha</button>
           <p class="admin-message" id="adminInviteMessage" role="status"></p>
         </form>
       </article>
     </div>
     <article class="admin-panel admin-users">
-      <div class="section-title"><div><h3>Usuários e permissões</h3><span>Altere o perfil ou a loja de quem já possui acesso</span></div><button id="adminReloadUsers" type="button">Atualizar lista</button></div>
+      <div class="section-title"><div><h3>Usuários e permissões</h3><span>Edite nome, login, perfil e loja; redefina senha ou exclua acessos</span></div><button id="adminReloadUsers" type="button">Atualizar lista</button></div>
       <div id="adminUsersTable" class="table-wrap"><div class="admin-help">Carregando usuários...</div></div>
-      <p class="admin-help">Para manter a segurança, alterações de permissões e convites são processados por uma função protegida no Supabase, nunca diretamente pelo navegador.</p>
+      <p class="admin-help">Criação, exclusão, mudança de senha e permissões são executadas somente pela Edge Function com verificação do perfil administrador. A senha nunca fica salva no navegador.</p>
     </article>
   </section>
-  <div class="foot">FIDELIZA 8.4 • Dados sincronizados com Supabase após login. A segregação efetiva por loja depende das políticas RLS configuradas no banco. Proteja os dados de clientes conforme a LGPD.</div>
+  <div class="foot">FIDELIZA 8.6 • Dados sincronizados com Supabase após login. A segregação efetiva por loja depende das políticas RLS configuradas no banco. Proteja os dados de clientes conforme a LGPD.</div>
 </main>
+<dialog id="passwordDialog" style="border:1px solid #d6e1ed;border-radius:16px;max-width:430px;width:calc(100% - 32px);padding:24px;box-shadow:0 20px 70px #0b1b3040">
+<form id="passwordDialogForm"><h3 id="passwordDialogTitle">Redefinir senha</h3><p class="admin-help" id="passwordDialogHint"></p>
+<label class="admin-field">Nova senha <input type="password" id="passwordDialogValue" required minlength="12" maxlength="128" autocomplete="new-password" placeholder="Mínimo 12 caracteres"></label>
+<label class="admin-field">Confirmar senha <input type="password" id="passwordDialogConfirm" required minlength="12" maxlength="128" autocomplete="new-password"></label>
+<div class="admin-actions"><button class="primary" type="submit">Salvar senha</button><button id="passwordDialogCancel" type="button">Cancelar</button></div><p id="passwordDialogMessage" class="admin-message" role="status"></p></form></dialog>
 <div id="drawerShade" class="drawer-shade" aria-hidden="true"></div>
 <aside id="clientDrawer" class="client-drawer" role="dialog" aria-modal="true" aria-label="Detalhes do cliente" aria-hidden="true">
   <div class="drawer-top"><div><div class="eyebrow">FIDELIZA / PERFIL 360°</div><strong>Ficha do cliente</strong></div><button type="button" id="drawerClose" class="drawer-close" aria-label="Fechar ficha">✕</button></div>
@@ -605,6 +612,7 @@ let contacts = [];
 let appointments = [];
 let agendaMonth=new Date(new Date().getFullYear(),new Date().getMonth(),1);
 let cloudClient=null; let cloudProfile=null; let cloudReady=false;
+let dashboardSnapshot=null;let dashboardError="";let dashboardRefreshTimer=null;let passwordTarget=null;
 let brandConfig={theme:'executive',logo_data:null,logo_url:null};
 let pendingLogoFile=undefined;
 let pendingLogoPreviewUrl=null;
@@ -625,11 +633,19 @@ async function saveContacts(){
  const {error}=await cloudClient.from('fideliza_contacts').insert({store:last.loja,payload:last});
  if(error)throw error;
 }
+async function fetchDashboardSnapshot(dateISO=currentOverviewDate()){
+ if(!cloudReady)return;
+ const {data,error}=await cloudClient.rpc('fideliza_dashboard_snapshot',{p_day:dateISO});
+ if(error){dashboardSnapshot=null;dashboardError='Visão Geral indisponível: execute visao-geral-segura.sql no Supabase. '+error.message;console.warn(dashboardError);return;}
+ dashboardError='';dashboardSnapshot=data;
+ if(document.getElementById('view-overview').classList.contains('active'))renderOverview();
+}
 async function refreshCloudData(){
  sales=[];contacts=[];appointments=[];
  for(let start=0;;start+=1000){const {data,error}=await cloudClient.from('fideliza_sales').select('payload').range(start,start+999);if(error)throw error;sales.push(...data.map(r=>r.payload));if(data.length<1000)break;}
  for(let start=0;;start+=1000){const {data,error}=await cloudClient.from('fideliza_contacts').select('payload').order('created_at',{ascending:false}).range(start,start+999);if(error)throw error;contacts.push(...data.map(r=>r.payload));if(data.length<1000)break;}
  for(let start=0;;start+=1000){const {data,error}=await cloudClient.from('fideliza_appointments').select('*').order('scheduled_at',{ascending:true}).range(start,start+999);if(error)throw new Error('Agendamentos indisponíveis: execute o arquivo agenda.sql no Supabase. '+error.message);appointments.push(...data);if(data.length<1000)break;}
+ await fetchDashboardSnapshot();
  render();
 }
 function isAdmin(){return cloudReady && cloudProfile?.role==='admin'}
@@ -673,10 +689,9 @@ async function adminAction(body){
  return data;
 }
 function renderUserRow(user){
- const current=(cloudClient.auth.getUser && false);
  const options=['<option value="store"'+(user.role==='store'?' selected':'')+'>Usuário comum</option>','<option value="admin"'+(user.role==='admin'?' selected':'')+'>Administrador</option>'].join('');
  const storesOptions=stores.map(s=>`<option value="${s}" ${user.store===s?'selected':''}>${s}</option>`).join('');
- return `<tr data-user-id="${esc(user.user_id)}"><td><strong>${esc(user.name||'Sem nome')}</strong><br><span class="admin-help">${esc(user.email||'')}</span></td><td><select data-field="role">${options}</select></td><td><select data-field="store" ${user.role==='admin'?'disabled':''}>${storesOptions}</select></td><td><button data-user-save type="button">Salvar</button></td></tr>`;
+ return `<tr data-user-id="${esc(user.user_id)}"><td><input data-field="name" value="${esc(user.name||'')}" aria-label="Nome do colaborador" maxlength="100"><input data-field="email" type="email" value="${esc(user.email||'')}" aria-label="E-mail de login" style="margin-top:6px"></td><td><select data-field="role">${options}</select></td><td><select data-field="store" ${user.role==='admin'?'disabled':''}>${storesOptions}</select></td><td><div class="admin-user-actions"><button data-user-save type="button" title="Salvar alterações">Salvar</button><button data-user-password type="button" title="Definir nova senha">Senha</button><button data-user-delete type="button" title="Excluir acesso" class="danger-action">Excluir</button></div></td></tr>`;
 }
 async function loadUsers(){
  requireAdmin();
@@ -684,17 +699,30 @@ async function loadUsers(){
  try{
    const response=await adminAction({action:'list'});
    const users=response.users||[];
-   $('adminUsersTable').innerHTML=users.length?`<table class="admin-account-table"><thead><tr><th>Colaborador</th><th>Perfil</th><th>Loja</th><th>Ação</th></tr></thead><tbody>${users.map(renderUserRow).join('')}</tbody></table>`:'<div class="admin-help">Nenhum perfil encontrado.</div>';
+   $('adminUsersTable').innerHTML=users.length?`<table class="admin-account-table"><thead><tr><th>Nome / login</th><th>Perfil</th><th>Loja</th><th>Gerenciar</th></tr></thead><tbody>${users.map(renderUserRow).join('')}</tbody></table>`:'<div class="admin-help">Nenhum perfil encontrado.</div>';
    $('adminUsersTable').querySelectorAll('tr[data-user-id]').forEach(row=>{
-     const role=row.querySelector('[data-field="role"]');const store=row.querySelector('[data-field="store"]');
+     const role=row.querySelector('[data-field="role"]'),store=row.querySelector('[data-field="store"]');
      role.onchange=()=>{store.disabled=role.value==='admin'};
      row.querySelector('[data-user-save]').onclick=async()=>{
        const button=row.querySelector('[data-user-save]');button.disabled=true;
-       try{await adminAction({action:'update',user_id:row.dataset.userId,role:role.value,store:role.value==='admin'?null:store.value});button.textContent='Salvo';await loadUsers();}
-       catch(e){alert('Não foi possível atualizar perfil: '+e.message)}finally{button.disabled=false}
+       try{await adminAction({action:'update',user_id:row.dataset.userId,name:row.querySelector('[data-field="name"]').value,email:row.querySelector('[data-field="email"]').value,role:role.value,store:role.value==='admin'?null:store.value});await loadUsers();}
+       catch(e){alert('Não foi possível editar usuário: '+e.message)}finally{button.disabled=false;}
+     };
+     row.querySelector('[data-user-password]').onclick=()=>openPasswordDialog(row.dataset.userId,row.querySelector('[data-field="name"]').value);
+     row.querySelector('[data-user-delete]').onclick=async()=>{
+       const name=row.querySelector('[data-field="name"]').value;
+       if(!confirm('Excluir definitivamente o acesso de '+name+'? As vendas e contatos não serão apagados.'))return;
+       if(prompt('Digite EXCLUIR para confirmar a exclusão de '+name+':')!=='EXCLUIR')return;
+       try{await adminAction({action:'delete',user_id:row.dataset.userId});await loadUsers();}
+       catch(e){alert('Não foi possível excluir: '+e.message);}
      };
    });
- }catch(err){$('adminUsersTable').innerHTML='<div class="admin-help">Não foi possível listar usuários: '+esc(err.message)+' — publique a função Edge do pacote para ativar esta área.</div>'}
+ }catch(err){$('adminUsersTable').innerHTML='<div class="admin-help">Não foi possível listar usuários: '+esc(err.message)+' — verifique a Edge Function fideliza-admin-users.</div>'}
+}
+function openPasswordDialog(id,name){
+ passwordTarget=id||'self';$('passwordDialogTitle').textContent=id?'Redefinir senha de '+name:'Alterar minha senha';
+ $('passwordDialogHint').textContent='Defina uma senha de pelo menos 12 caracteres. Ela será enviada diretamente ao Supabase e não será armazenada no FIDELIZA.';
+ $('passwordDialogValue').value='';$('passwordDialogConfirm').value='';$('passwordDialogMessage').textContent='';$('passwordDialog').showModal();
 }
 async function activateCloud(){
  const {data:{user}}=await cloudClient.auth.getUser();if(!user){$('authGate').style.display='grid';return;}
@@ -705,15 +733,17 @@ async function activateCloud(){
  $('cloudStatus').textContent='Conectado • '+(profile.role==='admin'?'Gestão':profile.store);
  $('adminMenuLink').hidden=profile.role!=='admin';
  if(profile.role==='store'){
-   document.querySelector('[data-page="overview"]').style.display='none';
+   document.querySelector('[data-page="overview"]').style.display='flex';
    document.querySelectorAll('.store-group').forEach(g=>{if(g.dataset.storeGroup!==profile.store)g.style.display='none'});
    $('importStore').value=profile.store;$('importStore').disabled=true;
+   $('contactStore').value=profile.store;$('contactStore').disabled=true;
    $('upload').disabled=true; $('importStore').closest('.topbar-actions').style.display='none';
    $('export').style.display='none';$('exportContacts').style.display='none';
  }
  await refreshCloudData();
  if(profile.role==='admin')loadUsers().catch(console.warn);
- if(profile.role==='store')selectStore(profile.store,'clients'); else nav('overview');
+ nav('overview');
+ $('selfPasswordButton').style.display='inline-block';
 }
 
 
@@ -849,40 +879,44 @@ function contactMetricCount(store,dateISO,mode){
  return unique.size;
 }
 function renderOverview(){
- const customers=customerAggregate('');
- const recurring=customers.filter(c=>c.count>1).length;
- $('metricCustomers').textContent=fmtNum(customers.length);
- $('metricRecurring').textContent=fmtNum(recurring);
- $('metricRate').textContent=customers.length?Math.round(recurring/customers.length*100)+'%':'0%';
- $('metricInactive').textContent=fmtNum(customers.filter(c=>c.daysInactive>=90).length);
- $('metricContacted').textContent=fmtNum(new Set(contacts.map(c=>c.loja+'|'+c.id)).size);
+ const snap=dashboardSnapshot;
+ const customers=snap?.customers??0,recurring=snap?.recurring??0;
+ $('metricCustomers').textContent=snap?fmtNum(customers):'—';
+ $('metricRecurring').textContent=snap?fmtNum(recurring):'—';
+ $('metricRate').textContent=snap?(customers?Math.round(recurring/customers*100)+'%':'0%'):'—';
+ $('metricInactive').textContent=snap?fmtNum(snap.inactive):'—';
+ $('metricContacted').textContent=snap?fmtNum(snap.contacted):'—';
  const selected=$('overviewMetric').value==='contacts'?'contacts':'reactivated';
  const isReactivation=selected==='reactivated';
  $('reactivationChartTitle').textContent=isReactivation?'Reativação diária por loja':'Contatos diários por loja';
  $('reactivationChartSubtitle').textContent=isReactivation?'Clientes com recompra confirmada em contato registrado':'Clientes com contato registrado (sem duplicar o mesmo cliente no dia)';
  $('reactivationPodiumSubtitle').textContent=isReactivation?'Top 3 lojas por reativações confirmadas':'Top 3 lojas por clientes contatados';
- const dateISO=currentOverviewDate();
- $('overviewDate').value=fmtDate(dateISO);
+ const dateISO=currentOverviewDate();$('overviewDate').value=fmtDate(dateISO);
  $('dailyDateLegend').textContent='Data em análise: '+fmtDate(dateISO);
- const perf=stores.map(store=>({store,quantity:contactMetricCount(store,dateISO,selected)}));
+ if(!snap || snap.date!==dateISO){
+   $('dailyChart').innerHTML='<div class="empty">Carregando indicadores consolidados do banco...</div>';
+   $('podium').innerHTML='<div class="empty">Aguardando indicadores do Supabase</div>';
+   $('dailyTotalLegend').textContent='';return;
+ }
+ const perf=stores.map(store=>({store,quantity:Number((snap.stores||[]).find(x=>x.store===store)?.[selected]||0)}));
  const max=Math.max(1,...perf.map(p=>p.quantity));
  $('dailyChart').innerHTML=perf.map(p=>`<div class="col ${p.quantity===0?'zero-store':''}"><div class="bar-box"><div class="bar ${p.quantity===0?'zero-bar':''}" style="height:${Math.max(8,p.quantity/max*120)}px" title="${esc(p.store)}: ${fmtNum(p.quantity)}"><small>${fmtNum(p.quantity)}</small></div></div><label>${p.store}<br><span>${fmtNum(p.quantity)} ${isReactivation?'reativação(ões)':'contato(s)'}</span></label></div>`).join('');
  $('dailyTotalLegend').textContent=(isReactivation?'Reativações confirmadas: ':'Clientes contatados: ')+fmtNum(perf.reduce((n,p)=>n+p.quantity,0));
  const top=perf.slice().sort((a,b)=>b.quantity-a.quantity||stores.indexOf(a.store)-stores.indexOf(b.store)).slice(0,3);
- const classes=['first','second','third'];
- $('podium').innerHTML=top.map((p,i)=>`<div class="podium-card ${classes[i]} ${p.quantity===0?'zero-result':''}"><div class="podium-top"><div class="podium-rank">${i+1}º lugar</div><div class="podium-badge">${i+1}</div></div><div class="podium-store">${p.store}</div><div><div class="podium-label">${isReactivation?'Reativações do dia':'Clientes contatados'}</div><div class="podium-value">${fmtNum(p.quantity)}</div></div><div class="podium-meta">${p.quantity===0?'Sem atividade registrada na data':'Atividade registrada em '+fmtDate(dateISO)}</div></div>`).join('');
+ $('podium').innerHTML=top.map((p,i)=>`<div class="podium-card ${['first','second','third'][i]} ${p.quantity===0?'zero-result':''}"><div class="podium-top"><div class="podium-rank">${i+1}º lugar</div><div class="podium-badge">${i+1}</div></div><div class="podium-store">${p.store}</div><div><div class="podium-label">${isReactivation?'Reativações do dia':'Clientes contatados'}</div><div class="podium-value">${fmtNum(p.quantity)}</div></div><div class="podium-meta">${p.quantity===0?'Sem atividade registrada na data':'Atividade registrada em '+fmtDate(dateISO)}</div></div>`).join('');
 }
 
 function renderContacts(){
-  const sf=$('contactStore').value, status=$('contactStatus').value, q=normalize($('contactSearch').value);
+  const sf=cloudProfile?.role==='store'?cloudProfile.store:$('contactStore').value, status=$('contactStatus').value, q=normalize($('contactSearch').value);
   const filtered=contacts.filter(r=>(!sf||r.loja===sf)&&(!status||r.status===status)&&(!q||normalize(r.nome+' '+r.telefone).includes(q))).sort((a,b)=>b.created.localeCompare(a.created));
-  const contactedDistinct=new Set(contacts.map(c=>c.loja+'|'+c.id));
+  const visible=contacts.filter(c=>!sf||c.loja===sf);
+  const contactedDistinct=new Set(visible.map(c=>c.loja+'|'+c.id));
   const today=new Date().toLocaleDateString('pt-BR');
   $('contactKpis').innerHTML = `
-    <div><strong>${fmtNum(contacts.length)}</strong><span>Registros totais</span></div>
+    <div><strong>${fmtNum(visible.length)}</strong><span>Registros totais</span></div>
     <div><strong>${fmtNum(contactedDistinct.size)}</strong><span>Clientes contatados</span></div>
-    <div><strong>${fmtNum(contacts.filter(c=>new Date(c.created).toLocaleDateString('pt-BR')===today).length)}</strong><span>Ações hoje</span></div>
-    <div><strong>${fmtNum(contacts.filter(c=>c.status==='Venda realizada').length)}</strong><span>Vendas registradas</span></div>`;
+    <div><strong>${fmtNum(visible.filter(c=>new Date(c.created).toLocaleDateString('pt-BR')===today).length)}</strong><span>Ações hoje</span></div>
+    <div><strong>${fmtNum(visible.filter(c=>c.status==='Venda realizada').length)}</strong><span>Vendas registradas</span></div>`;
   $('contactsTable').innerHTML = filtered.length ? `<div class="table-wrap"><table class="data-table"><thead><tr><th>Data / hora</th><th>Loja</th><th>Cliente</th><th>Telefone</th><th>Resultado</th><th>Observações</th></tr></thead><tbody>${filtered.slice(0,400).map(r=>`<tr><td>${esc(new Date(r.created).toLocaleString('pt-BR'))}</td><td>${esc(r.loja)}</td><td>${esc(r.nome)}</td><td>${esc(r.telefone||'')}</td><td>${esc(r.status)}</td><td>${esc(r.notes||'—')}</td></tr>`).join('')}</tbody></table></div>` : '<div class="empty">Nenhum contato registrado para estes filtros.</div>';
 }
 
@@ -972,7 +1006,7 @@ function renderReports(){
 
 function render(){
   const hasData = uniqueSales().length>0;
-  $('message').textContent = hasData ? `Base pronta: ${fmtNum(uniqueSales().length)} venda(s) consolidada(s) em ${stores.filter(s=>storeSales(s).length).length} loja(s).` : 'Importe um CSV para iniciar a análise.';
+  $('message').textContent = dashboardError || (dashboardSnapshot ? 'Visão consolidada da operação • Totais protegidos, sem expor clientes de outras lojas.' : 'Carregando dados do painel consolidado...');
   renderOverview();
   if(activeStore){ renderClients(); renderRetention(); renderCampaigns(); renderReports(); }
   renderContacts();
@@ -1202,8 +1236,8 @@ $('template').onclick=()=>{
 };
 $('clear').disabled=true; $('clear').title='Exclusão no banco não está habilitada nesta versão';
 $('clear').onclick=()=>{ if(confirm('Remover todas as vendas importadas deste navegador? Os registros de contato serão mantidos.')){ sales=[]; saveSales(); render(); }};
-$('useLatest').onclick=()=>{ $('overviewDate').value=fmtDate(new Date());renderOverview(); };
-$('applyOverviewDate').onclick=()=>renderOverview();
+$('useLatest').onclick=async()=>{ $('overviewDate').value=fmtDate(new Date());renderOverview();if(cloudReady)await fetchDashboardSnapshot(); };
+$('applyOverviewDate').onclick=async()=>{renderOverview();if(cloudReady)await fetchDashboardSnapshot();};
 $('overviewMetric').addEventListener('change',renderOverview);
 ['search','region','payment','segment','sortBy','dateFrom','dateTo'].forEach(id=>$(id).addEventListener(id==='search'||id==='dateFrom'||id==='dateTo'?'input':'change',()=>renderClients()));
 ['contactStore','contactStatus'].forEach(id=>$(id).addEventListener('change',renderContacts)); $('contactSearch').addEventListener('input',renderContacts);
@@ -1230,7 +1264,7 @@ $('exportContacts').onclick=()=>{
   const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})); a.download='fideliza_contatos.csv'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),1000);
 };
 $('goClients').onclick=()=>nav('clients');
-document.querySelector('[data-page="overview"]').addEventListener('click',()=>{activeStore=''; render(); nav('overview');});
+document.querySelector('[data-page="overview"]').addEventListener('click',()=>{activeStore='';render();nav('overview');if(cloudReady)fetchDashboardSnapshot().catch(console.warn);});
 
 
 // 8.3 — Administração, convites e identidade compartilhada.
@@ -1296,12 +1330,29 @@ $('adminInviteForm').addEventListener('submit',async e=>{
  e.preventDefault();const msg=$('adminInviteMessage'),b=e.target.querySelector('button[type="submit"]');b.disabled=true;
  try{
    const role=$('inviteRole').value;
-   await adminAction({action:'invite',name:$('inviteName').value.trim(),email:$('inviteEmail').value.trim(),role,store:role==='admin'?null:$('inviteStore').value,redirect_to:invitationLanding});
-   msg.textContent='Convite enviado. O colaborador deverá confirmar o e-mail e definir a senha.';msg.classList.remove('error');
+   await adminAction({action:'create',name:$('inviteName').value.trim(),email:$('inviteEmail').value.trim(),password:$('invitePassword').value,role,store:role==='admin'?null:$('inviteStore').value});
+   msg.textContent='Conta criada no Supabase! Compartilhe o login e a senha inicial por canal seguro. Recomende ao colaborador trocar a senha ao entrar.';msg.classList.remove('error');
    $('adminInviteForm').reset();$('inviteStoreWrap').hidden=false;
    await loadUsers();
- }catch(err){msg.textContent='Não foi possível enviar convite: '+err.message;msg.classList.add('error')}
+ }catch(err){msg.textContent='Não foi possível criar o usuário: '+err.message;msg.classList.add('error')}
  finally{b.disabled=false}
+});
+$('passwordDialogCancel').onclick=()=>{$('passwordDialog').close();passwordTarget=null;};
+$('selfPasswordButton').onclick=()=>openPasswordDialog(null,'');
+$('passwordDialogForm').addEventListener('submit',async e=>{
+ e.preventDefault();const pass=$('passwordDialogValue').value,confirmPass=$('passwordDialogConfirm').value,msg=$('passwordDialogMessage');
+ if(pass.length<12||pass!==confirmPass){msg.textContent='Use pelo menos 12 caracteres e repita a mesma senha.';msg.classList.add('error');return;}
+ const b=e.target.querySelector('button[type="submit"]');b.disabled=true;msg.textContent='Salvando...';msg.classList.remove('error');
+ try{
+   if(passwordTarget==='self'){
+     const {error}=await cloudClient.auth.updateUser({password:pass});if(error)throw error;
+   }else{
+     await adminAction({action:'set_password',user_id:passwordTarget,password:pass});
+   }
+   msg.textContent='Senha atualizada com sucesso.';$('passwordDialogValue').value='';$('passwordDialogConfirm').value='';
+   setTimeout(()=>{$('passwordDialog').close();passwordTarget=null;},700);
+ }catch(err){msg.textContent='Falha ao redefinir senha: '+err.message;msg.classList.add('error');}
+ finally{b.disabled=false;}
 });
 $('newPasswordForm').addEventListener('submit',async e=>{
  e.preventDefault();const p=$('newPasswordInput').value,msg=$('newPasswordMessage');
@@ -1319,7 +1370,9 @@ buildStoreNavigation(); fillStoreSelects(); overviewDate=isoDate(new Date()); $(
  await loadBranding();
  if(pendingInviteMode){$('newPasswordBox').hidden=false;$('authForm').style.display='none';$('authError').textContent='Defina sua senha para ativar o acesso.';}
  try{await activateCloud();}catch(e){$('authError').textContent=e.message;}
- cloudClient.auth.onAuthStateChange((_event,session)=>{if(!session){cloudReady=false;cloudProfile=null;sales=[];contacts=[];appointments=[];render();$('authGate').style.display='grid';}});
+ dashboardRefreshTimer=setInterval(async()=>{if(cloudReady && document.visibilityState==='visible' && $('view-overview').classList.contains('active'))await fetchDashboardSnapshot();},30000);
+ document.addEventListener('visibilitychange',()=>{if(cloudReady&&document.visibilityState==='visible'&&$('view-overview').classList.contains('active'))fetchDashboardSnapshot().catch(console.warn);});
+ cloudClient.auth.onAuthStateChange((_event,session)=>{if(!session){cloudReady=false;cloudProfile=null;dashboardSnapshot=null;sales=[];contacts=[];appointments=[];render();$('authGate').style.display='grid';}});
 })();
 $('authForm').addEventListener('submit',async e=>{e.preventDefault();if(!cloudClient)return;const email=$('authEmail').value.trim(),password=$('authPassword').value;
  $('authError').textContent='Autenticando...';const {error}=await cloudClient.auth.signInWithPassword({email,password});
