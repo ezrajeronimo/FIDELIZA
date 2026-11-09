@@ -164,9 +164,40 @@ html,body{max-width:100%;overflow-x:hidden}
 .ag-card-note{padding:14px;background:#193353;color:#c9d9ee;border-radius:10px;margin:14px 0;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}
 .ag-card-code{border:1px dashed #78b7f5;background:#1b385d;text-align:center;border-radius:12px;padding:17px;margin-top:16px}.ag-card-code small{display:block;letter-spacing:.15em;color:#83bdf3;font-weight:800}.ag-card-code strong{display:block;font:800 28px Manrope,sans-serif;letter-spacing:.08em;margin:6px 0}
 .ag-card-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}.ag-card-actions button,.ag-card-actions a{border:1px solid #3f648a;background:#234366;color:#fff;border-radius:8px;padding:10px 13px;font-weight:700;font-size:12px;text-decoration:none;cursor:pointer}
-.ag-card-actions .complete{background:#1f7955;border-color:#1f7955}.agenda-up-card:hover,.agenda-event:hover{filter:brightness(.96)}
+.ag-card-actions .agenda-send-wa{background:#18794e;border-color:#18794e;display:inline-flex;align-items:center;gap:6px}.ag-card-actions .agenda-send-wa:hover{background:#14623f}.ag-card-actions .complete{background:#1f7955;border-color:#1f7955}.agenda-up-card:hover,.agenda-event:hover{filter:brightness(.96)}
 @media(max-width:900px){.agenda-upcoming{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){.agenda-panel{padding:11px}.agenda-day{height:78px;padding:4px;gap:3px}.agenda-weekdays span{font-size:9px;padding:5px}.agenda-event{font-size:8px;padding:3px}.agenda-day-number{font-size:10px}.agenda-upcoming,.agenda-form{grid-template-columns:1fr}.agenda-switch strong{min-width:120px}.ag-card-detail{grid-template-columns:90px 1fr}.agenda-card-dialog{padding:20px}}
+
+
+
+/* FIDELIZA 8.3 — Identidade e controle de usuários */
+:root{--admin-nav:#0b1524;--admin-accent:#18365b;--admin-contrast:#244f79}
+body{--nav:var(--admin-nav);--brand:var(--admin-accent);--nav3:var(--admin-contrast)}
+body[data-fideliza-theme="executive"]{--admin-nav:#0b1524;--admin-accent:#18365b;--admin-contrast:#244f79}
+body[data-fideliza-theme="ocean"]{--admin-nav:#092237;--admin-accent:#12617e;--admin-contrast:#17759a}
+body[data-fideliza-theme="graphite"]{--admin-nav:#161b23;--admin-accent:#343f50;--admin-contrast:#505b6b}
+body[data-fideliza-theme] .sidebar{background:var(--admin-nav)!important}
+body[data-fideliza-theme] .primary{background:var(--admin-accent)!important;border-color:var(--admin-accent)!important}
+body[data-fideliza-theme] .navitem.active{background:var(--admin-contrast)!important}
+body[data-fideliza-theme] .hero{background:var(--admin-nav)!important}
+body[data-fideliza-theme] #authGate .auth-card .mark{background:var(--admin-accent)!important}
+body[data-fideliza-theme] .mobile-header{background:var(--admin-nav)!important}
+.brand-logo{overflow:hidden; flex-shrink:0;display:grid;place-items:center}
+.brand-logo.has-image{padding:0!important;background:#fff!important}
+.brand-logo img{width:100%;height:100%;object-fit:contain;display:block}
+#authGate .auth-card{position:relative;overflow:hidden}
+#authGate .auth-card::before{content:'';position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,transparent,var(--admin-accent),#62b2ce,transparent)}
+#authGate .login-logo{width:66px;height:66px;font-size:23px;border-radius:16px;margin-bottom:19px;animation:fid-logo 1s cubic-bezier(.18,.8,.22,1) both}
+#authGate .login-heading{font-size:clamp(36px,5vw,49px);font-weight:800;letter-spacing:-.075em;animation:fid-title .8s .12s cubic-bezier(.2,.8,.2,1) both}
+#authGate .auth-card>p:first-of-type{animation:fid-title .8s .24s ease both}
+#authGate .auth-card form{animation:fid-title .8s .32s ease both}
+@keyframes fid-logo{from{opacity:0;transform:translateY(18px) scale(.85) rotate(-7deg)}to{opacity:1;transform:translateY(0) scale(1) rotate(0)}}
+@keyframes fid-title{from{opacity:0;transform:translateY(12px);filter:blur(3px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@media(prefers-reduced-motion:reduce){#authGate .login-logo,#authGate .login-heading,#authGate .auth-card>p:first-of-type,#authGate .auth-card form{animation:none!important}}
+.admin-view{max-width:1450px}.admin-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:18px 0 20px}.admin-eyebrow{font-size:10px;letter-spacing:.2em;color:#687f97;font-weight:800}.admin-head h2{font:800 clamp(22px,3vw,32px) Manrope,sans-serif;letter-spacing:-.055em;margin:6px 0}.admin-head p{font-size:13px;color:#728296;margin:0;line-height:1.6}.admin-secure{border:1px solid #d8e6dd;color:#21784d;border-radius:30px;padding:9px 13px;background:#f5faf6;font-size:11px;font-weight:700}
+.admin-two-col{display:grid;grid-template-columns:1fr 1fr;gap:15px}.admin-panel{border:1px solid #dfe7f0;background:#fff;border-radius:16px;padding:24px;box-shadow:0 5px 25px rgba(10,30,58,.035)}.admin-users{margin-top:16px}.admin-logo-preview{display:flex;align-items:center;gap:16px;background:#f4f7fb;border:1px solid #e9eef5;border-radius:13px;padding:17px;margin:14px 0}.admin-logo-preview .mark{width:76px;height:76px;border-radius:14px;background:var(--admin-accent);color:#fff;font-size:25px}.admin-logo-preview strong{font:800 22px Manrope,sans-serif}.admin-logo-preview span{display:block;font-size:12px;color:#8190a2;margin-top:5px}.admin-field{display:flex;flex-direction:column;gap:7px;font-weight:700;font-size:12px;color:#3f5269;margin-bottom:14px}.admin-field input,.admin-field select{width:100%;min-width:0}.admin-help{font-size:11px;color:#7a899d;line-height:1.7;margin:8px 0 16px}.admin-form button{width:100%}.admin-theme-label{font-size:12px;font-weight:800;color:#354d66;margin:18px 0 10px}.admin-swatches{display:flex;flex-wrap:wrap;gap:10px}.admin-swatches label{display:flex;flex:1;min-width:128px;gap:8px;align-items:center;border:1px solid #e4eaf1;border-radius:12px;padding:10px;cursor:pointer;font-size:11px;font-weight:700}.admin-swatches input{margin:0;min-width:auto}.swatch-circle{width:22px;height:22px;border-radius:50%;flex-shrink:0;border:2px solid #fff;box-shadow:0 0 0 1px #d2dce8}.swatch-executive{background:#18365b}.swatch-ocean{background:#12617e}.swatch-graphite{background:#343f50}.admin-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}.admin-message{font-size:12px;color:#176a60;line-height:1.7;margin-top:10px;min-height:16px}.admin-message.error{color:#a44343}.admin-account-table{width:100%;border-collapse:collapse;font-size:12px}.admin-account-table th,.admin-account-table td{text-align:left;vertical-align:middle;border-bottom:1px solid #eaf0f5;padding:12px 9px}.admin-account-table th{font-size:10px;color:#8291a4;letter-spacing:.1em}.admin-account-table select{width:100%;min-width:118px}.admin-account-table button{white-space:nowrap}
+#adminMenuLink[hidden],#newPasswordBox[hidden]{display:none!important}
+@media(max-width:1000px){.admin-two-col{grid-template-columns:1fr}}@media(max-width:600px){.admin-panel{padding:17px}.admin-swatches{flex-direction:column}}
 
 </style>
 <style>
@@ -257,14 +288,15 @@ button,.btn,select,input{border-radius:8px!important}
 
 </style>
 </head>
-<body><div id="authGate"><div class="auth-card"><div class="mark">UN</div><h2>FIDELIZA</h2><p>Acesso seguro às lojas. Faça login para carregar os dados do banco centralizado.</p><form id="authForm"><input type="email" id="authEmail" placeholder="E-mail corporativo" required autocomplete="username"><input type="password" id="authPassword" placeholder="Senha" required autocomplete="current-password"><button class="primary" type="submit">Entrar no FIDELIZA</button></form><p id="authError"></p></div></div>
-<div class="mobile-header"><button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="mark">UN</div><strong>FIDELIZA</strong></div>
+<body><div id="authGate"><div class="auth-card"><div class="login-logo mark brand-logo">UN</div><h2 class="login-heading">FIDELIZA</h2><p>Acesso seguro às lojas. Faça login para carregar os dados do banco centralizado.</p><form id="authForm"><input type="email" id="authEmail" placeholder="E-mail corporativo" required autocomplete="username"><input type="password" id="authPassword" placeholder="Senha" required autocomplete="current-password"><button class="primary" type="submit">Entrar no FIDELIZA</button></form><p id="authError"></p><div id="newPasswordBox" hidden><div class="admin-theme-label">Defina sua senha de acesso</div><form id="newPasswordForm"><input id="newPasswordInput" type="password" required minlength="10" placeholder="Nova senha (mín. 10 caracteres)" autocomplete="new-password"><button type="submit" class="primary">Definir senha e entrar</button></form><p class="admin-message" id="newPasswordMessage"></p></div></div></div>
+<div class="mobile-header"><button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="mark brand-logo">UN</div><strong>FIDELIZA</strong></div>
 <div id="mobileOverlay" class="mobile-overlay" aria-hidden="true"></div>
 <aside class="sidebar" id="sidebar" aria-label="Menu de navegação"><button class="mobile-close" id="mobileClose" type="button" style="display:none">Fechar ✕</button>
-  <div class="side-brand"><div class="mark">UN</div><div><div class="brand-title">FIDELIZA</div><div class="brand-sub">INTELIGÊNCIA COMERCIAL</div></div></div>
+  <div class="side-brand"><div class="mark brand-logo">UN</div><div><div class="brand-title">FIDELIZA</div><div class="brand-sub">INTELIGÊNCIA COMERCIAL</div></div></div>
   <div class="side-caption">Painel Geral</div>
   <nav class="navlist">
     <button class="navitem active" data-page="overview"><span class="navicon">◫</span>Visão Geral</button>
+    <button class="navitem" id="adminMenuLink" type="button" data-page="admin" hidden><span class="navicon">⚙</span> Administração</button>
   </nav>
   <div class="side-caption">Lojas</div>
   <nav class="navlist" id="storeNavigation"></nav>
@@ -277,7 +309,7 @@ button,.btn,select,input{border-radius:8px!important}
       <div class="crumb">UNIGAMES / CRM / <span id="breadcrumb">Visão Geral</span></div>
       <h1 id="pageTitle">Visão Geral</h1>
     </div>
-    <span class="pill">FIDELIZA • VERSÃO 8.0</span>
+    <span class="pill">FIDELIZA • VERSÃO 8.3</span>
   </div>
 
   <header class="topbar"><div><span id="cloudStatus">Banco: aguardando login</span><button type="button" id="logoutButton">Sair</button></div>
@@ -436,7 +468,44 @@ button,.btn,select,input{border-radius:8px!important}
     </section>
   </div>
 
-  <div class="foot">FIDELIZA 8.0 • Dados sincronizados com Supabase após login. A segregação efetiva por loja depende das políticas RLS configuradas no banco. Proteja os dados de clientes conforme a LGPD.</div>
+
+  <section id="view-admin" class="view admin-view" aria-label="Administração do FIDELIZA">
+    <div class="admin-head"><div><div class="admin-eyebrow">ACESSO EXCLUSIVO DA GESTÃO</div><h2>Administração do sistema</h2><p>Personalize a identidade do FIDELIZA e controle quem pode acessar cada loja.</p></div><span class="admin-secure">● Administração</span></div>
+    <div class="admin-two-col">
+      <article class="admin-panel">
+        <div class="section-title"><div><h3>Identidade do sistema</h3><span>Visível no login e em todos os dispositivos</span></div></div>
+        <div class="admin-logo-preview"><div id="adminLogoPreview" class="brand-logo mark">UN</div><div><strong>FIDELIZA</strong><span>Visual da sua organização</span></div></div>
+        <label class="admin-field">Foto ou logo do sistema <input type="file" id="adminLogoFile" accept="image/png,image/jpeg,image/webp"></label>
+        <div class="admin-help">Imagem PNG, JPG ou WebP de até 2 MB. Será redimensionada e salva no banco sem precisar alterar arquivos no GitHub.</div>
+        <div class="admin-theme-label">Paleta de cores</div>
+        <div class="admin-swatches" id="adminThemeChoices">
+          <label><input type="radio" name="systemTheme" value="executive"><span class="swatch-circle swatch-executive"></span><span>Executive Navy</span></label>
+          <label><input type="radio" name="systemTheme" value="ocean"><span class="swatch-circle swatch-ocean"></span><span>Ocean Blue</span></label>
+          <label><input type="radio" name="systemTheme" value="graphite"><span class="swatch-circle swatch-graphite"></span><span>Graphite</span></label>
+        </div>
+        <div class="admin-actions"><button type="button" id="adminSaveBrand" class="primary">Salvar identidade</button><button type="button" id="adminResetLogo">Restaurar logo UN</button></div>
+        <p class="admin-message" id="adminBrandMessage" role="status"></p>
+      </article>
+      <article class="admin-panel">
+        <div class="section-title"><div><h3>Convidar novo acesso</h3><span>Convite seguro enviado por e-mail</span></div></div>
+        <form id="adminInviteForm" class="admin-form">
+          <label class="admin-field">Nome completo<input id="inviteName" placeholder="Nome do colaborador" required maxlength="100"></label>
+          <label class="admin-field">E-mail corporativo<input id="inviteEmail" type="email" placeholder="nome@empresa.com.br" required></label>
+          <label class="admin-field">Tipo de acesso<select id="inviteRole"><option value="store">Usuário comum — somente sua loja</option><option value="admin">Administrador — acesso completo</option></select></label>
+          <label class="admin-field" id="inviteStoreWrap">Loja<select id="inviteStore"></select></label>
+          <div class="admin-help">Usuários comuns podem consultar clientes, abrir WhatsApp, registrar contatos e agendar visitas, mas não alteram identidade, usuários ou importações.</div>
+          <button type="submit" class="primary">Enviar convite de acesso</button>
+          <p class="admin-message" id="adminInviteMessage" role="status"></p>
+        </form>
+      </article>
+    </div>
+    <article class="admin-panel admin-users">
+      <div class="section-title"><div><h3>Usuários e permissões</h3><span>Altere o perfil ou a loja de quem já possui acesso</span></div><button id="adminReloadUsers" type="button">Atualizar lista</button></div>
+      <div id="adminUsersTable" class="table-wrap"><div class="admin-help">Carregando usuários...</div></div>
+      <p class="admin-help">Para manter a segurança, alterações de permissões e convites são processados por uma função protegida no Supabase, nunca diretamente pelo navegador.</p>
+    </article>
+  </section>
+  <div class="foot">FIDELIZA 8.3 • Dados sincronizados com Supabase após login. A segregação efetiva por loja depende das políticas RLS configuradas no banco. Proteja os dados de clientes conforme a LGPD.</div>
 </main>
 <div id="drawerShade" class="drawer-shade" aria-hidden="true"></div>
 <aside id="clientDrawer" class="client-drawer" role="dialog" aria-modal="true" aria-label="Detalhes do cliente" aria-hidden="true">
@@ -509,6 +578,11 @@ let contacts = [];
 let appointments = [];
 let agendaMonth=new Date(new Date().getFullYear(),new Date().getMonth(),1);
 let cloudClient=null; let cloudProfile=null; let cloudReady=false;
+let brandConfig={theme:'executive',logo_data:null};
+let pendingLogoData=undefined;
+const invitationLanding=location.origin+location.pathname;
+let pendingInviteMode=/#(?:.*(?:type=invite|type=recovery|type=signup))/.test(location.hash);
+
 let activeStore='';
 let overviewDate='';
 
@@ -530,19 +604,75 @@ async function refreshCloudData(){
  for(let start=0;;start+=1000){const {data,error}=await cloudClient.from('fideliza_appointments').select('*').order('scheduled_at',{ascending:true}).range(start,start+999);if(error)throw new Error('Agendamentos indisponíveis: execute o arquivo agenda.sql no Supabase. '+error.message);appointments.push(...data);if(data.length<1000)break;}
  render();
 }
+function isAdmin(){return cloudReady && cloudProfile?.role==='admin'}
+function applyBranding(){
+ const cfg=brandConfig||{};
+ const theme=['executive','ocean','graphite'].includes(cfg.theme)?cfg.theme:'executive';
+ document.body.dataset.fidelizaTheme=theme;
+ document.querySelectorAll('.brand-logo').forEach(el=>{
+   el.textContent='';
+   if(cfg.logo_data && /^data:image\/(png|jpeg|webp);base64,[a-zA-Z0-9+/=]+$/.test(cfg.logo_data)){
+     const img=document.createElement('img');img.src=cfg.logo_data;img.alt='Logo FIDELIZA';el.appendChild(img);el.classList.add('has-image');
+   } else {el.textContent='UN';el.classList.remove('has-image');}
+ });
+ const preview=$('adminLogoPreview');if(preview){preview.textContent='';if(cfg.logo_data){const img=document.createElement('img');img.src=cfg.logo_data;img.alt='Logo FIDELIZA';preview.appendChild(img);preview.classList.add('has-image')}else{preview.textContent='UN';preview.classList.remove('has-image')}}
+ const selected=document.querySelector(`input[name="systemTheme"][value="${theme}"]`);if(selected)selected.checked=true;
+}
+async function loadBranding(){
+ if(!cloudClient)return;
+ const {data,error}=await cloudClient.from('fideliza_settings').select('theme,logo_data').eq('id',1).maybeSingle();
+ if(error){console.warn('Identidade não carregada:',error.message);return;}
+ if(data){brandConfig=data;applyBranding();}
+}
+function requireAdmin(){if(!isAdmin())throw new Error('Somente administradores podem executar esta ação.');}
+async function adminAction(body){
+ requireAdmin();
+ const {data,error}=await cloudClient.functions.invoke('fideliza-admin-users',{body});
+ if(error)throw new Error(error.message||'Falha na função de administração.');
+ if(data?.error)throw new Error(data.error);
+ return data;
+}
+function renderUserRow(user){
+ const current=(cloudClient.auth.getUser && false);
+ const options=['<option value="store"'+(user.role==='store'?' selected':'')+'>Usuário comum</option>','<option value="admin"'+(user.role==='admin'?' selected':'')+'>Administrador</option>'].join('');
+ const storesOptions=stores.map(s=>`<option value="${s}" ${user.store===s?'selected':''}>${s}</option>`).join('');
+ return `<tr data-user-id="${esc(user.user_id)}"><td><strong>${esc(user.name||'Sem nome')}</strong><br><span class="admin-help">${esc(user.email||'')}</span></td><td><select data-field="role">${options}</select></td><td><select data-field="store" ${user.role==='admin'?'disabled':''}>${storesOptions}</select></td><td><button data-user-save type="button">Salvar</button></td></tr>`;
+}
+async function loadUsers(){
+ requireAdmin();
+ $('adminUsersTable').innerHTML='<div class="admin-help">Carregando acessos...</div>';
+ try{
+   const response=await adminAction({action:'list'});
+   const users=response.users||[];
+   $('adminUsersTable').innerHTML=users.length?`<table class="admin-account-table"><thead><tr><th>Colaborador</th><th>Perfil</th><th>Loja</th><th>Ação</th></tr></thead><tbody>${users.map(renderUserRow).join('')}</tbody></table>`:'<div class="admin-help">Nenhum perfil encontrado.</div>';
+   $('adminUsersTable').querySelectorAll('tr[data-user-id]').forEach(row=>{
+     const role=row.querySelector('[data-field="role"]');const store=row.querySelector('[data-field="store"]');
+     role.onchange=()=>{store.disabled=role.value==='admin'};
+     row.querySelector('[data-user-save]').onclick=async()=>{
+       const button=row.querySelector('[data-user-save]');button.disabled=true;
+       try{await adminAction({action:'update',user_id:row.dataset.userId,role:role.value,store:role.value==='admin'?null:store.value});button.textContent='Salvo';await loadUsers();}
+       catch(e){alert('Não foi possível atualizar perfil: '+e.message)}finally{button.disabled=false}
+     };
+   });
+ }catch(err){$('adminUsersTable').innerHTML='<div class="admin-help">Não foi possível listar usuários: '+esc(err.message)+' — publique a função Edge do pacote para ativar esta área.</div>'}
+}
 async function activateCloud(){
  const {data:{user}}=await cloudClient.auth.getUser();if(!user){$('authGate').style.display='grid';return;}
  const {data:profile,error}=await cloudClient.from('fideliza_profiles').select('role,store,name').eq('user_id',user.id).single();
  if(error||!profile)throw new Error('Usuário sem permissão. Cadastre seu perfil no Supabase.');
  cloudProfile=profile;cloudReady=true;
- $('authGate').style.display='none';$('logoutButton').style.display='inline-block';
+ $('authGate').style.display=pendingInviteMode && !$('newPasswordBox').hidden?'grid':'none';$('logoutButton').style.display='inline-block';
  $('cloudStatus').textContent='Conectado • '+(profile.role==='admin'?'Gestão':profile.store);
+ $('adminMenuLink').hidden=profile.role!=='admin';
  if(profile.role==='store'){
    document.querySelector('[data-page="overview"]').style.display='none';
    document.querySelectorAll('.store-group').forEach(g=>{if(g.dataset.storeGroup!==profile.store)g.style.display='none'});
    $('importStore').value=profile.store;$('importStore').disabled=true;
+   $('upload').disabled=true; $('importStore').closest('.topbar-actions').style.display='none';
+   $('export').style.display='none';$('exportContacts').style.display='none';
  }
  await refreshCloudData();
+ if(profile.role==='admin')loadUsers().catch(console.warn);
  if(profile.role==='store')selectStore(profile.store,'clients'); else nav('overview');
 }
 
@@ -567,9 +697,12 @@ function fillStoreSelects(){
 }
 
 function nav(page){
+  if(page==='admin'&&!isAdmin())return;
+  if(page==='admin'){activeStore='';}
   document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+page));
   document.querySelectorAll('.navitem').forEach(b=>b.classList.remove('active'));
   document.querySelector('[data-page="overview"]').classList.toggle('active',page==='overview');
+  $('adminMenuLink').classList.toggle('active',page==='admin');
   document.querySelectorAll('.store-group').forEach(group=>{
     const store=group.dataset.storeGroup;
     const opener=group.querySelector('.store-nav');
@@ -580,8 +713,8 @@ function nav(page){
     menu.classList.toggle('hidden', !expanded);
     menu.querySelectorAll('.sub-nav').forEach(sb=>sb.classList.toggle('active', expanded && sb.dataset.page===page));
   });
-  $('breadcrumb').textContent = page==='overview' ? 'Visão Geral' : activeStore+' / '+({clients:'Clientes',retention:'Recorrência',campaigns:'Campanhas',appointments:'Agendamentos',reports:'Relatórios'}[page]);
-  $('pageTitle').textContent = page==='overview' ? 'Visão Geral' : activeStore+' — '+({clients:'Clientes',retention:'Recorrência',campaigns:'Campanhas',appointments:'Agendamentos',reports:'Relatórios'}[page]);
+  $('breadcrumb').textContent = page==='admin'?'Administração':page==='overview' ? 'Visão Geral' : activeStore+' / '+({clients:'Clientes',retention:'Recorrência',campaigns:'Campanhas',appointments:'Agendamentos',reports:'Relatórios'}[page]);
+  $('pageTitle').textContent = page==='admin'?'Administração':page==='overview' ? 'Visão Geral' : activeStore+' — '+({clients:'Clientes',retention:'Recorrência',campaigns:'Campanhas',appointments:'Agendamentos',reports:'Relatórios'}[page]);
 }
 function selectStore(store,page){if(cloudProfile?.role==='store'&&store!==cloudProfile.store)return;activeStore=store; render(); nav(page||'clients'); window.scrollTo({top:0,behavior:'instant'});}
 
@@ -877,6 +1010,27 @@ const localDay=(d)=>`${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate
 const formatAppointmentDate=v=>new Date(v).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'America/Recife'});
 const statusNames={agendado:'Agendado',confirmado:'Confirmado',concluido:'Concluído',cancelado:'Cancelado'};
 function whatsappLink(phone){const raw=digits(phone).replace(/^55(?=\d{10,11}$)/,'');return raw.length>=10&&raw.length<=11?'https://wa.me/55'+raw+'?text='+encodeURIComponent(WHATSAPP_GREETING):'';}
+function appointmentWhatsAppMessage(a){
+ const date=formatAppointmentDate(a.scheduled_at);
+ return [
+  'Que bom falar com você! 👋',
+  '',
+  '📅 *Agendamento confirmado para visita à loja*',
+  '',
+  '👤 *Cliente:* '+a.client_name,
+  '🏬 *Loja:* '+a.store,
+  '🗓️ *Data e horário:* '+date,
+  '🛍️ *Produto ou interesse:* '+(a.product||'Atendimento na loja'),
+  '🎟️ *Código de atendimento:* '+a.code,
+  '',
+  'Apresente este código ao chegar à loja. Esperamos por você! 💙'
+ ].join('\n');
+}
+function appointmentWhatsAppLink(a){
+ const raw=digits(a.phone||'').replace(/^55(?=\d{10,11}$)/,'');
+ if(raw.length<10||raw.length>11)return '';
+ return 'https://wa.me/55'+raw+'?text='+encodeURIComponent(appointmentWhatsAppMessage(a));
+}
 function selectedStoreAppointments(){return appointments.filter(a=>a.store===activeStore);}
 function agendaDateKey(a){return new Date(a.scheduled_at).toLocaleDateString('sv-SE',{timeZone:'America/Recife'});}
 function agendaTime(a){return new Date(a.scheduled_at).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',timeZone:'America/Recife'});}
@@ -941,12 +1095,12 @@ async function saveAppointment(ev){
 }
 function closeAppointmentCard(){$('appointmentCardModal').hidden=true;$('appointmentCardShade').hidden=true;}
 function showAppointmentCard(id){const a=appointments.find(x=>String(x.id)===String(id));if(!a)return;
- const wa=whatsappLink(a.phone);const date=formatAppointmentDate(a.scheduled_at);
+ const wa=appointmentWhatsAppLink(a);const date=formatAppointmentDate(a.scheduled_at);
  $('appointmentCardContent').innerHTML=`<div class="ag-card-top"><div class="ag-card-status">${esc(statusNames[a.status]||a.status)}</div><div class="ag-card-name">${esc(a.client_name)}</div><div class="ag-card-sub">${esc(a.phone||'Telefone não informado')}</div><div class="ag-card-sub">${date}</div></div>
   <div class="ag-card-detail"><span>Tipo</span><b>${esc(a.type)}</b></div><div class="ag-card-detail"><span>Produto</span><b>${esc(a.product||'Não informado')}</b></div><div class="ag-card-detail"><span>Loja</span><b>${esc(a.store)}</b></div><div class="ag-card-detail"><span>Canal</span><b>${esc(a.channel)}</b></div><div class="ag-card-detail"><span>Visita</span><b>${date}</b></div>
   ${a.notes?`<div class="ag-card-note">${esc(a.notes)}</div>`:''}
   <div class="ag-card-code"><small>CÓDIGO DE ATENDIMENTO DIGITAL</small><strong>${esc(a.code)}</strong><span class="ag-card-sub">Apresente na loja ao chegar</span></div>
-  <div class="ag-card-actions">${wa?`<a href="${wa}" rel="noopener noreferrer" target="_blank">WhatsApp ↗</a>`:''}${a.status!=='concluido'?`<button class="complete" data-appointment-status="concluido" data-id="${a.id}">✓ Concluir</button>`:''}${a.status==='agendado'?`<button data-appointment-status="confirmado" data-id="${a.id}">Confirmar</button>`:''}${a.status!=='cancelado'&&a.status!=='concluido'?`<button data-appointment-status="cancelado" data-id="${a.id}">Cancelar</button>`:''}<button data-card-copy="${a.id}">Copiar detalhes</button></div>`;
+  <div class="ag-card-actions">${wa?`<a href="${wa}" rel="noopener noreferrer" target="_blank" class="agenda-send-wa">Enviar agendamento no WhatsApp ↗</a>`:''}${a.status!=='concluido'?`<button class="complete" data-appointment-status="concluido" data-id="${a.id}">✓ Concluir</button>`:''}${a.status==='agendado'?`<button data-appointment-status="confirmado" data-id="${a.id}">Confirmar</button>`:''}${a.status!=='cancelado'&&a.status!=='concluido'?`<button data-appointment-status="cancelado" data-id="${a.id}">Cancelar</button>`:''}<button data-card-copy="${a.id}">Copiar detalhes</button></div>`;
  $('appointmentCardShade').hidden=false;$('appointmentCardModal').hidden=false;
 }
 async function changeAppointmentStatus(id,status){
@@ -1019,10 +1173,67 @@ $('exportContacts').onclick=()=>{
 $('goClients').onclick=()=>nav('clients');
 document.querySelector('[data-page="overview"]').addEventListener('click',()=>{activeStore=''; render(); nav('overview');});
 
+
+// 8.3 — Administração, convites e identidade compartilhada.
+$('adminMenuLink').addEventListener('click',()=>{if(!isAdmin())return;nav('admin');loadUsers().catch(console.warn)});
+$('inviteStore').innerHTML=stores.map(s=>`<option value="${s}">${s}</option>`).join('');
+$('inviteRole').addEventListener('change',()=>{$('inviteStoreWrap').hidden=$('inviteRole').value==='admin'});
+$('adminReloadUsers').addEventListener('click',()=>loadUsers().catch(e=>alert(e.message)));
+$('adminLogoFile').addEventListener('change',async e=>{
+ const file=e.target.files?.[0];if(!file)return;
+ const msg=$('adminBrandMessage');
+ try{
+   requireAdmin();
+   if(!['image/png','image/jpeg','image/webp'].includes(file.type)||file.size>2*1024*1024)throw new Error('Use PNG, JPG ou WebP com até 2 MB.');
+   const bitmap=await createImageBitmap(file);
+   const scale=Math.min(1,240/Math.max(bitmap.width,bitmap.height));
+   const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(bitmap.width*scale));canvas.height=Math.max(1,Math.round(bitmap.height*scale));
+   canvas.getContext('2d').drawImage(bitmap,0,0,canvas.width,canvas.height);bitmap.close?.();
+   const url=canvas.toDataURL('image/png');if(url.length>220000)throw new Error('Logo muito grande. Use uma imagem menor.');
+   pendingLogoData=url;
+   const img=document.createElement('img');img.src=url;img.alt='Prévia do logo';$('adminLogoPreview').textContent='';$('adminLogoPreview').appendChild(img);$('adminLogoPreview').classList.add('has-image');
+   msg.textContent='Prévia pronta. Clique em Salvar identidade para publicar.';msg.classList.remove('error');
+ }catch(err){msg.textContent=err.message;msg.classList.add('error');}
+});
+$('adminResetLogo').addEventListener('click',()=>{if(!isAdmin())return;pendingLogoData=null;$('adminLogoPreview').textContent='UN';$('adminLogoPreview').classList.remove('has-image');$('adminBrandMessage').textContent='Clique em Salvar identidade para aplicar a restauração.'});
+$('adminSaveBrand').addEventListener('click',async()=>{
+ const msg=$('adminBrandMessage');const b=$('adminSaveBrand');b.disabled=true;
+ try{
+   requireAdmin();
+   const theme=document.querySelector('input[name="systemTheme"]:checked')?.value||'executive';
+   const next={theme,logo_data:pendingLogoData===undefined?(brandConfig.logo_data||null):pendingLogoData};
+   const {error}=await cloudClient.from('fideliza_settings').update(next).eq('id',1);
+   if(error)throw error;
+   brandConfig=next;pendingLogoData=undefined;applyBranding();msg.textContent='Identidade atualizada e salva no Supabase.';msg.classList.remove('error');
+ }catch(err){msg.textContent='Falha ao salvar: '+err.message;msg.classList.add('error')}
+ finally{b.disabled=false}
+});
+$('adminInviteForm').addEventListener('submit',async e=>{
+ e.preventDefault();const msg=$('adminInviteMessage'),b=e.target.querySelector('button[type="submit"]');b.disabled=true;
+ try{
+   const role=$('inviteRole').value;
+   await adminAction({action:'invite',name:$('inviteName').value.trim(),email:$('inviteEmail').value.trim(),role,store:role==='admin'?null:$('inviteStore').value,redirect_to:invitationLanding});
+   msg.textContent='Convite enviado. O colaborador deverá confirmar o e-mail e definir a senha.';msg.classList.remove('error');
+   $('adminInviteForm').reset();$('inviteStoreWrap').hidden=false;
+   await loadUsers();
+ }catch(err){msg.textContent='Não foi possível enviar convite: '+err.message;msg.classList.add('error')}
+ finally{b.disabled=false}
+});
+$('newPasswordForm').addEventListener('submit',async e=>{
+ e.preventDefault();const p=$('newPasswordInput').value,msg=$('newPasswordMessage');
+ if(p.length<10){msg.textContent='Use uma senha com ao menos 10 caracteres.';return;}
+ const {error}=await cloudClient.auth.updateUser({password:p});
+ if(error){msg.textContent=error.message;return;}
+ $('newPasswordBox').hidden=true;pendingInviteMode=false;msg.textContent='Senha definida.';
+ try{await activateCloud();$('authError').textContent=''}catch(err){$('authError').textContent=err.message}
+});
+
 buildStoreNavigation(); fillStoreSelects(); overviewDate=topSalesDate(); $('overviewDate').value=fmtDate(overviewDate); render(); nav('overview');
 (async()=>{
  if(!window.FIDELIZA_SUPABASE?.url||!window.FIDELIZA_SUPABASE?.publishableKey){$('authError').textContent='Configure URL e chave pública em config.js para ativar a conexão.';return;}
  cloudClient=window.supabase.createClient(window.FIDELIZA_SUPABASE.url,window.FIDELIZA_SUPABASE.publishableKey);
+ await loadBranding();
+ if(pendingInviteMode){$('newPasswordBox').hidden=false;$('authForm').style.display='none';$('authError').textContent='Defina sua senha para ativar o acesso.';}
  try{await activateCloud();}catch(e){$('authError').textContent=e.message;}
  cloudClient.auth.onAuthStateChange((_event,session)=>{if(!session){cloudReady=false;cloudProfile=null;sales=[];contacts=[];appointments=[];render();$('authGate').style.display='grid';}});
 })();
