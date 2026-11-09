@@ -199,6 +199,30 @@ body[data-fideliza-theme] .mobile-header{background:var(--admin-nav)!important}
 #adminMenuLink[hidden],#newPasswordBox[hidden]{display:none!important}
 @media(max-width:1000px){.admin-two-col{grid-template-columns:1fr}}@media(max-width:600px){.admin-panel{padding:17px}.admin-swatches{flex-direction:column}}
 
+
+/* FIDELIZA 8.5 — reativação e animações: reduzidas quando solicitado */
+.reactivation-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.reactivation-controls select{min-width:195px;background:var(--panel);font-weight:700}
+.chart-panel .chart-wrap .bar{transform-origin:bottom center;animation:fidelizaGrowBar .85s cubic-bezier(.2,.75,.28,1) both;transition:background-color .25s ease,box-shadow .25s ease}
+.chart-panel .chart-wrap .bar:not(.zero-bar){box-shadow:0 5px 14px rgba(28,86,133,.13)}
+.chart-panel .chart-wrap .bar.zero-bar{background:linear-gradient(180deg,#ef8e8e,#c94249)!important;min-height:7px;box-shadow:none}
+.chart-panel .chart-wrap .bar.zero-bar small{color:#bf414a;font-weight:800}
+.chart-panel .chart-wrap .col.zero-store label{color:#b9444c!important}
+.chart-panel .chart-wrap .col.zero-store label span{color:#b9444c!important}
+.podium-card{animation:fidelizaPodiumEnter .55s cubic-bezier(.2,.7,.2,1) both;transition:transform .25s ease,box-shadow .25s ease!important}
+.podium-card:nth-child(2){animation-delay:.1s}.podium-card:nth-child(3){animation-delay:.2s}
+.podium-card.zero-result{border:1px solid #f0c4c6!important;border-top:3px solid #c8464e!important;background:#fff9f9!important}
+.podium-card.zero-result .podium-value,.podium-card.zero-result .podium-badge{color:#bc3e48!important}
+.podium-card.zero-result .podium-badge{background:#fce9e9!important}
+.podium-card.zero-result .podium-meta{color:#bd4b50!important}
+.podium-card.first:not(.zero-result) .podium-badge{background:#0e7a83;color:#fff!important}
+.podium-card.first:not(.zero-result){animation:fidelizaPodiumEnter .55s cubic-bezier(.2,.7,.2,1) both,fidelizaLeadPulse 3.8s ease-in-out 1s infinite}
+.reactivation-help{font-size:10px;color:#687c90;margin:5px 0 0;line-height:1.5}
+@keyframes fidelizaGrowBar{from{transform:scaleY(.06);opacity:.55}to{transform:scaleY(1);opacity:1}}
+@keyframes fidelizaPodiumEnter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fidelizaLeadPulse{0%,100%{box-shadow:0 0 0 0 rgba(19,131,139,.07)}50%{box-shadow:0 0 0 5px rgba(19,131,139,.09)}}
+@media(max-width:620px){.reactivation-controls,.reactivation-controls select{width:100%;min-width:0}}
+@media(prefers-reduced-motion:reduce){.chart-panel .chart-wrap .bar,.podium-card,.podium-card.first:not(.zero-result){animation:none!important;transition:none!important}}
 </style>
 <style>
 #authGate{position:fixed;inset:0;z-index:900;background:#f3f6fa;display:grid;place-items:center;padding:22px}
@@ -349,17 +373,19 @@ button,.btn,select,input{border-radius:8px!important}
 
     <section class="overview-grid">
       <section class="panel chart-panel">
-        <div class="section-title"><div><h3>Produtividade diária por loja</h3><span>Gráfico de colunas por quantidade de atendimentos do dia</span></div></div>
+        <div class="section-title"><div><h3 id="reactivationChartTitle">Reativação diária por loja</h3><span id="reactivationChartSubtitle">Clientes que retornaram à compra após ação registrada</span></div></div>
         <div class="chart-controls">
+          <select id="overviewMetric" aria-label="Indicador do ranking e gráfico"><option value="reactivated">Reativações confirmadas</option><option value="contacts">Contatos registrados</option></select>
           <input id="overviewDate" placeholder="dd/mm/aaaa" aria-label="Data de análise diária">
-          <button id="useLatest">Usar última data importada</button>
+          <button id="useLatest">Hoje</button>
           <button id="applyOverviewDate" class="primary">Atualizar gráfico</button>
         </div>
         <div id="dailyChart" class="chart-wrap"></div>
-        <div class="chart-legend"><span id="dailyDateLegend">Data em análise: —</span><span id="dailyTotalLegend">Total de atendimentos: 0</span></div>
+        <div class="chart-legend"><span id="dailyDateLegend">Data em análise: —</span><span id="dailyTotalLegend">Reativações confirmadas: 0</span></div>
+        <p class="reactivation-help">Reativação exige registro explícito de <strong>Cliente reativado (recompra confirmada)</strong>. Abrir WhatsApp ou importar uma venda não conta como reativação.</p>
       </section>
       <section class="panel">
-        <div class="section-title"><div><h3>Pódio do dia</h3><span>Top 3 lojas por quantidade de atendimentos na data selecionada</span></div></div>
+        <div class="section-title"><div><h3>Pódio do dia</h3><span id="reactivationPodiumSubtitle">Top 3 lojas por reativações confirmadas na data</span></div></div>
         <div id="podium" class="podium"></div>
       </section>
     </section>
@@ -376,6 +402,7 @@ button,.btn,select,input{border-radius:8px!important}
           <option value="Respondeu">Respondeu</option>
           <option value="Retorno agendado">Retorno agendado</option>
           <option value="Venda realizada">Venda realizada</option>
+          <option value="Cliente reativado">Cliente reativado (recompra confirmada)</option>
         </select>
         <input id="contactSearch" class="search" placeholder="Buscar cliente ou telefone">
       </div>
@@ -801,31 +828,49 @@ function tally(list,getter){const map=new Map(); for(const item of list){ const 
 function topSalesDate(){const dates=uniqueSales().map(s=>s.dataISO).filter(Boolean).sort(); return dates[dates.length-1] || isoDate(new Date());}
 function currentOverviewDate(){const d=parseBRDate($('overviewDate').value || overviewDate || topSalesDate()); return d ? isoDate(d) : topSalesDate();}
 
+function overviewLocalToday(){return isoDate(new Date());}
+function contactDayISO(record){
+ const d=new Date(record.created||'');
+ if(!Number.isFinite(d.getTime()))return '';
+ const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Recife',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(d);
+ const get=k=>parts.find(p=>p.type===k)?.value||'';
+ return `${get('year')}-${get('month')}-${get('day')}`;
+}
+function contactIdentity(record){return digits(record.telefone)||String(record.id||'').trim()||normalize(record.nome||'');}
+function contactMetricCount(store,dateISO,mode){
+ const unique=new Set();
+ for(const c of contacts){
+  if(c.loja!==store||contactDayISO(c)!==dateISO)continue;
+  if(mode==='reactivated'&&c.status!=='Cliente reativado')continue;
+  // Mesmo cliente com mais de um registro no dia é contado apenas uma vez.
+  const identity=contactIdentity(c);
+  if(identity)unique.add(identity);
+ }
+ return unique.size;
+}
 function renderOverview(){
-  const customers=customerAggregate('');
-  const recurring=customers.filter(c=>c.count>1).length;
-  $('metricCustomers').textContent=fmtNum(customers.length);
-  $('metricRecurring').textContent=fmtNum(recurring);
-  $('metricRate').textContent=customers.length ? Math.round(recurring/customers.length*100)+'%' : '0%';
-  $('metricInactive').textContent=fmtNum(customers.filter(c=>c.daysInactive>=90).length);
-  $('metricContacted').textContent=fmtNum(new Set(contacts.map(c=>c.loja+'|'+c.id)).size);
-
-  const dateISO=currentOverviewDate();
-  $('overviewDate').value = fmtDate(dateISO);
-  $('dailyDateLegend').textContent = 'Data em análise: '+fmtDate(dateISO);
-  const perf = stores.map(store=>{
-    const daySales=storeSales(store).filter(s=>s.dataISO===dateISO);
-    const revenue=daySales.reduce((sum,s)=>sum+s.valor,0);
-    const attendances=daySales.length;
-    return {store,revenue,attendances};
-  });
-  const max = Math.max(1, ...perf.map(p=>p.attendances));
-  $('dailyChart').innerHTML = perf.map(p=>`<div class="col"><div class="bar-box"><div class="bar" style="height:${Math.max(6,(p.attendances/max)*120)}px"><small>${fmtNum(p.attendances)}</small></div></div><label>${p.store}<br><span style="color:#8190a2">${fmtNum(p.attendances)} atendimento(s)</span></label></div>`).join('');
-  $('dailyTotalLegend').textContent = 'Total de atendimentos: '+fmtNum(perf.reduce((s,p)=>s+p.attendances,0));
-
-  const top=perf.slice().sort((a,b)=>b.attendances-a.attendances || b.revenue-a.revenue).slice(0,3);
-  const classes=['first','second','third'];
-  $('podium').innerHTML = top.map((p,i)=>`<div class="podium-card ${classes[i]||''}"><div class="podium-top"><div class="podium-rank">${i+1}º lugar</div><div class="podium-badge">${i+1}</div></div><div class="podium-store">${p.store}</div><div><div class="podium-label">Atendimentos do dia</div><div class="podium-value">${fmtNum(p.attendances)}</div></div><div class="podium-meta">Faturamento do dia: ${fmtBRL(p.revenue)}</div></div>`).join('') || '<div class="empty" style="grid-column:1/-1">Importe um CSV para visualizar o pódio diário.</div>';
+ const customers=customerAggregate('');
+ const recurring=customers.filter(c=>c.count>1).length;
+ $('metricCustomers').textContent=fmtNum(customers.length);
+ $('metricRecurring').textContent=fmtNum(recurring);
+ $('metricRate').textContent=customers.length?Math.round(recurring/customers.length*100)+'%':'0%';
+ $('metricInactive').textContent=fmtNum(customers.filter(c=>c.daysInactive>=90).length);
+ $('metricContacted').textContent=fmtNum(new Set(contacts.map(c=>c.loja+'|'+c.id)).size);
+ const selected=$('overviewMetric').value==='contacts'?'contacts':'reactivated';
+ const isReactivation=selected==='reactivated';
+ $('reactivationChartTitle').textContent=isReactivation?'Reativação diária por loja':'Contatos diários por loja';
+ $('reactivationChartSubtitle').textContent=isReactivation?'Clientes com recompra confirmada em contato registrado':'Clientes com contato registrado (sem duplicar o mesmo cliente no dia)';
+ $('reactivationPodiumSubtitle').textContent=isReactivation?'Top 3 lojas por reativações confirmadas':'Top 3 lojas por clientes contatados';
+ const dateISO=currentOverviewDate();
+ $('overviewDate').value=fmtDate(dateISO);
+ $('dailyDateLegend').textContent='Data em análise: '+fmtDate(dateISO);
+ const perf=stores.map(store=>({store,quantity:contactMetricCount(store,dateISO,selected)}));
+ const max=Math.max(1,...perf.map(p=>p.quantity));
+ $('dailyChart').innerHTML=perf.map(p=>`<div class="col ${p.quantity===0?'zero-store':''}"><div class="bar-box"><div class="bar ${p.quantity===0?'zero-bar':''}" style="height:${Math.max(8,p.quantity/max*120)}px" title="${esc(p.store)}: ${fmtNum(p.quantity)}"><small>${fmtNum(p.quantity)}</small></div></div><label>${p.store}<br><span>${fmtNum(p.quantity)} ${isReactivation?'reativação(ões)':'contato(s)'}</span></label></div>`).join('');
+ $('dailyTotalLegend').textContent=(isReactivation?'Reativações confirmadas: ':'Clientes contatados: ')+fmtNum(perf.reduce((n,p)=>n+p.quantity,0));
+ const top=perf.slice().sort((a,b)=>b.quantity-a.quantity||stores.indexOf(a.store)-stores.indexOf(b.store)).slice(0,3);
+ const classes=['first','second','third'];
+ $('podium').innerHTML=top.map((p,i)=>`<div class="podium-card ${classes[i]} ${p.quantity===0?'zero-result':''}"><div class="podium-top"><div class="podium-rank">${i+1}º lugar</div><div class="podium-badge">${i+1}</div></div><div class="podium-store">${p.store}</div><div><div class="podium-label">${isReactivation?'Reativações do dia':'Clientes contatados'}</div><div class="podium-value">${fmtNum(p.quantity)}</div></div><div class="podium-meta">${p.quantity===0?'Sem atividade registrada na data':'Atividade registrada em '+fmtDate(dateISO)}</div></div>`).join('');
 }
 
 function renderContacts(){
@@ -936,10 +981,10 @@ function render(){
 
 async function logContact(name,phone,id){
   if(!activeStore) return alert('Selecione uma loja para registrar contato.');
-  const opt=prompt(`RESULTADO DO CONTATO com ${name}\n1 = Contato realizado\n2 = Sem resposta\n3 = Respondeu\n4 = Retorno agendado\n5 = Venda realizada`,'1');
+  const opt=prompt(`RESULTADO DO CONTATO com ${name}\n1 = Contato realizado\n2 = Sem resposta\n3 = Respondeu\n4 = Retorno agendado\n5 = Venda realizada\n6 = Cliente reativado (recompra confirmada)`,'1');
   if(opt===null) return;
-  const map={'1':'Contato realizado','2':'Sem resposta','3':'Respondeu','4':'Retorno agendado','5':'Venda realizada'};
-  if(!map[opt.trim()]) return alert('Selecione uma opção válida de 1 a 5.');
+  const map={'1':'Contato realizado','2':'Sem resposta','3':'Respondeu','4':'Retorno agendado','5':'Venda realizada','6':'Cliente reativado'};
+  if(!map[opt.trim()]) return alert('Selecione uma opção válida de 1 a 6.');
   const notes=prompt('Observação (opcional):','');
   if(notes===null) return;
   contacts.push({id,nome:name,telefone:phone,loja:activeStore,status:map[opt.trim()],notes:notes.slice(0,500),created:new Date().toISOString()});
@@ -1157,8 +1202,9 @@ $('template').onclick=()=>{
 };
 $('clear').disabled=true; $('clear').title='Exclusão no banco não está habilitada nesta versão';
 $('clear').onclick=()=>{ if(confirm('Remover todas as vendas importadas deste navegador? Os registros de contato serão mantidos.')){ sales=[]; saveSales(); render(); }};
-$('useLatest').onclick=()=>{ $('overviewDate').value=fmtDate(topSalesDate()); renderOverview(); };
+$('useLatest').onclick=()=>{ $('overviewDate').value=fmtDate(new Date());renderOverview(); };
 $('applyOverviewDate').onclick=()=>renderOverview();
+$('overviewMetric').addEventListener('change',renderOverview);
 ['search','region','payment','segment','sortBy','dateFrom','dateTo'].forEach(id=>$(id).addEventListener(id==='search'||id==='dateFrom'||id==='dateTo'?'input':'change',()=>renderClients()));
 ['contactStore','contactStatus'].forEach(id=>$(id).addEventListener('change',renderContacts)); $('contactSearch').addEventListener('input',renderContacts);
 $('cards').addEventListener('click',e=>{const row=e.target.closest('[data-customer]');if(row){const c=filteredCustomers()[Number(row.dataset.customer)];showClientDrawer(c);}});
@@ -1266,7 +1312,7 @@ $('newPasswordForm').addEventListener('submit',async e=>{
  try{await activateCloud();$('authError').textContent=''}catch(err){$('authError').textContent=err.message}
 });
 
-buildStoreNavigation(); fillStoreSelects(); overviewDate=topSalesDate(); $('overviewDate').value=fmtDate(overviewDate); render(); nav('overview');
+buildStoreNavigation(); fillStoreSelects(); overviewDate=isoDate(new Date()); $('overviewDate').value=fmtDate(overviewDate); render(); nav('overview');
 (async()=>{
  if(!window.FIDELIZA_SUPABASE?.url||!window.FIDELIZA_SUPABASE?.publishableKey){$('authError').textContent='Configure URL e chave pública em config.js para ativar a conexão.';return;}
  cloudClient=window.supabase.createClient(window.FIDELIZA_SUPABASE.url,window.FIDELIZA_SUPABASE.publishableKey);
