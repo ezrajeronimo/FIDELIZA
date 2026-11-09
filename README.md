@@ -1,40 +1,27 @@
-# FIDELIZA 8.6 — Gestão de acessos + Visão Geral compartilhada
+# FIDELIZA 8.7 — Importação, pagamentos e exclusão por loja
 
 ## O que mudou
-- A gestão pode **criar usuário com e-mail e senha inicial**, sem depender de convite.
-- A gestão pode **editar nome, e-mail, perfil, loja, redefinir senha e excluir usuário**.
-- Usuários comuns podem **trocar a própria senha**.
-- **Todos os usuários autenticados** veem a Visão Geral e o ranking por loja.
-- Cada usuário comum continua vendo apenas **Clientes, Recorrência, Campanhas, Agendamentos e Relatórios da própria loja**.
-- O ranking e os indicadores globais vêm de uma **RPC com dados agregados**, sem retornar nomes ou telefones de outras lojas.
-- O dashboard consulta novos totais a cada ~30 segundos enquanto aberto, com opção de atualizar manualmente.
+- Filtro **Bairro / Região** removido da tela Clientes (e relatório de região removido da tela Relatórios).
+- Filtro de pagamento avalia **somente as vendas que correspondem à modalidade selecionada**, em vez de selecionar um cliente com histórico misturado e mostrar o faturamento de todas as compras. Filtro da financeira PAYJOY nunca inclui uma compra apenas no CREDITO 10X.
+- Modalidades compostas (ex.: `PIX, CREDITO 10X`) preservam ambas as categorias. CRED. PAYJOY/PARCELEX/CREFAZ/ODRES são distintas do cartão de crédito.
+- CSV com campos entre aspas, delimitadores `;` ou `,`, quebras de linha entre aspas e codificação UTF-8/Windows-1252.
+- Após importar, aparece um diagnóstico de linhas, vendas únicas, clientes distintos e linhas descartadas, incluindo vendas genéricas como `CLIENTES UNIGAMES`.
+- **Limpar vendas da loja** fica visível apenas para `admin`, exige selecionar uma loja e digitar `EXCLUIR NOMEDALOJA`, inicia download de backup JSON e faz a exclusão no Supabase com política RLS. Não exclui contatos nem agendamentos.
 
-## Ordem de instalação
-1. No Supabase **SQL Editor**, execute `visao-geral-segura.sql`. Confirme que retornou a função `fideliza_dashboard_snapshot`.
-2. No Supabase **Edge Functions > fideliza-admin-users > Code**, substitua **todo** o conteúdo do `index.ts` pelo arquivo `supabase/functions/fideliza-admin-users/index.ts` deste pacote e clique **Deploy updates**.
-3. Em **Edge Functions > Settings**, verifique o JWT do gateway. Se estiver desligado, o próprio código da função DEVE validar a sessão (`auth.getUser`) e perfil admin. Este código inclui as verificações; não use versões antigas.
-4. No GitHub **FIDELIZA**, substitua **somente** o `index.html`.
-5. **Não altere `config.js`** nem publique segredo `service_role` no GitHub.
-6. Recarregue o navegador e faça login como admin. Crie um usuário de teste com senha forte; entre com ele em janela anônima.
+## Instalação em ordem
+1. Antes de qualquer exclusão, faça backup do banco pela ferramenta apropriada do Supabase. Não use a limpeza sem cópia recuperável.
+2. Supabase → SQL Editor: execute `limpeza-admin.sql`. **Esse script não exclui vendas**; apenas habilita DELETE para admin.
+3. GitHub → repositório FIDELIZA: substitua **somente** o `index.html` pelo arquivo deste pacote.
+4. Preserve `config.js`, as Edge Functions e as demais tabelas do Supabase.
+5. Entre como administrador e **reimporte o CSV original** da loja, pois vendas importadas por versões antigas podem ter um código de pagamento incorreto. Use a seleção de loja quando o CSV não tiver a coluna Loja.
+6. Confirme filtros, números de clientes e modalidades de venda na ficha do cliente. Teste inicialmente com dados fictícios.
+7. Só depois de validar os dados, utilize a limpeza por loja, se necessário. O botão não serve para remover clientes individuais.
 
-## Testes obrigatórios (antes de liberar dados reais)
-- Perfil admin consegue abrir Administração, salvar usuário e redefinir senha.
-- Perfil de loja consegue entrar, ver Visão Geral e pódio **de todas as lojas**, mas **não consegue** abrir listas de outras lojas.
-- No Supabase, verifique que a **RLS de vendas, contatos e agendamentos** bloqueia SELECT de outra loja, mesmo por chamada direta à API.
-- O usuário comum não consegue chamar `fideliza-admin-users` para criar, excluir ou alterar contas (retorno 403).
-- A Visão Geral atualiza os totais em até cerca de 30 segundos enquanto o app estiver aberto e ativo.
+## Diagnóstico com o CSV fornecido do Guararapes
+Na cópia original do arquivo disponível neste projeto, testamos o importador localmente: foram lidas **16.363 linhas de dados**, consolidadas **4.989 vendas identificadas** e aproximadamente **4.166 clientes distintos** (após ignorar registros genéricos). Isso **não é uma contagem da sua base atual do RioMar**, nem comprova a quantidade exata de leads daquele arquivo: cada venda pode ocupar várias linhas e o mesmo cliente pode comprar várias vezes.
 
-## Segurança e limites
-- A senha é escolhida pela gestão, não é recuperável depois, mas pode ser **substituída**. Não envie senhas por canais públicos e recomende alteração após o primeiro login.
-- A criação usa `email_confirm: true`. Confirme a posse do e-mail e a identidade dos colaboradores antes de conceder acessos, especialmente admin.
-- Usuários comuns **não podem modificar identidade do sistema, outras contas ou importar vendas**.
-- Dados operacionais das lojas continuam protegidos pelas políticas RLS. A RPC pública para autenticados fornece apenas estatísticas agrupadas.
-- A API de gestão precisa ser publicada no Supabase Edge Functions; o arquivo TypeScript **não** vai no GitHub Pages.
-- Não altera as tabelas comerciais existentes nem apaga o histórico de dados ao excluir a conta de login.
+## Segurança
+A ação de exclusão utiliza o usuário conectado e a política RLS `fideliza_sales_delete_admin`. Usuários de loja não têm autorização de DELETE no banco, mesmo que alguém manipule o navegador. A base de clientes não é colocada no GitHub.
 
-## Dependências
-- O projeto Supabase já deve conter `fideliza_profiles`, `fideliza_sales`, `fideliza_contacts`, `fideliza_appointments`, `fideliza_settings`, as políticas anteriores e a função `fideliza_can_access(text)`.
-- A Edge Function deve ter disponíveis `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY` **somente como secrets no Supabase**.
-
-## Limites de validação
-A sintaxe JavaScript do HTML foi verificada com `node --check`. O SQL e a Edge Function precisam ser executados e testados no projeto Supabase real para confirmar comportamento e permissões.
+## Verificação
+Sintaxe JavaScript checada localmente. Importação e categorias de pagamento testadas com o CSV fornecido anteriormente. As políticas do SQL e operações no seu Supabase precisam de validação no projeto real.

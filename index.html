@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>UNIGAMES | FIDELIZA 6.0</title>
 <style>
+[hidden]{display:none!important}
+
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
 :root{
   --bg:#f5f7fa; --panel:#ffffff; --line:#e5ebf2; --text:#182332; --muted:#6d7888;
@@ -227,6 +229,8 @@ body[data-fideliza-theme] .mobile-header{background:var(--admin-nav)!important}
 @media(max-width:750px){.admin-user-actions{min-width:130px}.admin-account-table{min-width:790px}}
 </style>
 <style>
+[hidden]{display:none!important}
+
 #authGate{position:fixed;inset:0;z-index:900;background:#f3f6fa;display:grid;place-items:center;padding:22px}
 #authGate .auth-card{width:min(420px,100%);border:1px solid #dce4ee;background:#fff;border-radius:20px;padding:32px;box-shadow:0 18px 60px #11203920}
 #authGate h2{font:750 27px Manrope,sans-serif;letter-spacing:-.05em;margin:5px 0 10px}#authGate p{color:#66768b;font-size:13px;line-height:1.65}
@@ -236,6 +240,8 @@ body[data-fideliza-theme] .mobile-header{background:var(--admin-nav)!important}
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js"></script>
 <style>
+[hidden]{display:none!important}
+
 
 /* FIDELIZA 7.2 — identidade premium e microinterações */
 :root{--bg:#f3f6fa;--panel:#fff;--line:#dde5ee;--text:#14243c;--muted:#64758a;--nav:#071729;--nav2:#112b49;--nav3:#194c77;--brand:#0d3157;--soft:#eaf2f8;--green:#087f83;--shadow:0 8px 30px rgba(12,34,58,.055)}
@@ -279,6 +285,8 @@ button:focus-visible,.btn:focus-visible,.navitem:focus-visible,input:focus-visib
 
 </style>
 <style>
+[hidden]{display:none!important}
+
 
 /* FIDELIZA 8.0 — Executive Navy: refined information architecture */
 :root{--bg:#f5f7fa;--panel:#fff;--line:#e7ebf1;--text:#172437;--muted:#758398;--nav:#0b1524;--nav2:#12263f;--nav3:#203c5c;--brand:#18365b;--green:#16877e;--shadow:0 3px 16px rgba(13,34,57,.035)}
@@ -335,7 +343,7 @@ button,.btn,select,input{border-radius:8px!important}
       <div class="crumb">UNIGAMES / CRM / <span id="breadcrumb">Visão Geral</span></div>
       <h1 id="pageTitle">Visão Geral</h1>
     </div>
-    <span class="pill">FIDELIZA • VERSÃO 8.6</span>
+    <span class="pill">FIDELIZA • VERSÃO 8.7</span>
   </div>
 
   <header class="topbar"><div><span id="cloudStatus">Banco: aguardando login</span><button type="button" id="selfPasswordButton" style="display:none">Alterar minha senha</button><button type="button" id="logoutButton">Sair</button></div>
@@ -350,7 +358,7 @@ button,.btn,select,input{border-radius:8px!important}
       <button id="template">Baixar modelo CSV</button>
       <label class="btn primary" for="upload">Importar vendas CSV</label>
       <input id="upload" type="file" accept=".csv,text/csv" class="hidden">
-      <button id="clear">Limpar dados</button>
+      <button id="clear" type="button" hidden aria-label="Limpar vendas de uma loja (administrador)">Limpar vendas da loja</button>
     </div>
   </header>
 
@@ -414,11 +422,11 @@ button,.btn,select,input{border-radius:8px!important}
   </div>
 
   <div id="view-clients" class="view">
-    <div class="section-title" style="margin-bottom:14px"><div><h3>Clientes</h3><span>Base filtrada da loja selecionada</span></div></div>
+    <div class="section-title" style="margin-bottom:14px"><div><h3>Clientes</h3><span>Filtro de pagamento considera somente vendas naquela modalidade. O histórico completo permanece na ficha.</span></div></div>
     <div class="tools">
-      <input id="search" class="search" placeholder="Buscar cliente, telefone, bairro ou cidade">
+      <input id="search" class="search" placeholder="Buscar cliente ou telefone">
       <span class="store-context" id="storeContext">Selecione uma loja</span>
-      <select id="region"><option value="">Todos os bairros / regiões</option></select>
+      
       <select id="payment">
         <option value="">Todas as formas de pagamento</option>
         <option value="CREDIARIO_TODOS">Crediário — todas as financeiras</option>
@@ -484,7 +492,7 @@ button,.btn,select,input{border-radius:8px!important}
     <div class="section-title"><div><h3>Relatórios</h3><span>Indicadores da loja selecionada</span></div></div>
     <div class="report-grid">
       <section class="panel"><div class="section-title"><div><h3>Modalidades de pagamento</h3><span>Clientes por forma de pagamento</span></div></div><div id="reportPayments"></div></section>
-      <section class="panel"><div class="section-title"><div><h3>Regiões e bairros</h3><span>Concentração da base</span></div></div><div id="reportRegions"></div></section>
+      
     </div>
     <div class="report-grid section-space">
       <section class="panel"><div class="section-title"><div><h3>Clientes que mais compraram</h3><span>Quantidade de vendas</span></div></div><div id="reportTopSales"></div></section>
@@ -534,7 +542,7 @@ button,.btn,select,input{border-radius:8px!important}
       <p class="admin-help">Criação, exclusão, mudança de senha e permissões são executadas somente pela Edge Function com verificação do perfil administrador. A senha nunca fica salva no navegador.</p>
     </article>
   </section>
-  <div class="foot">FIDELIZA 8.6 • Dados sincronizados com Supabase após login. A segregação efetiva por loja depende das políticas RLS configuradas no banco. Proteja os dados de clientes conforme a LGPD.</div>
+  <div class="foot">FIDELIZA 8.7 • Dados sincronizados com Supabase após login. A segregação efetiva por loja depende das políticas RLS configuradas no banco. Proteja os dados de clientes conforme a LGPD.</div>
 </main>
 <dialog id="passwordDialog" style="border:1px solid #d6e1ed;border-radius:16px;max-width:430px;width:calc(100% - 32px);padding:24px;box-shadow:0 20px 70px #0b1b3040">
 <form id="passwordDialogForm"><h3 id="passwordDialogTitle">Redefinir senha</h3><p class="admin-help" id="passwordDialogHint"></p>
@@ -582,23 +590,56 @@ function parseBRDate(v){if(!v) return null; if(v instanceof Date && !isNaN(v)) r
 const fmtDate=d=>{const x=parseBRDate(d); return x?x.toLocaleDateString('pt-BR'):''};
 const isoDate=d=>{const x=parseBRDate(d); return x?x.toISOString().slice(0,10):''};
 function daysSince(date){const d=parseBRDate(date); if(!d) return 9999; return Math.floor((Date.now()-d.getTime())/86400000);}
-function csvSplit(line,sep){const out=[]; let cur='',q=false; for(let i=0;i<line.length;i++){const ch=line[i]; if(ch==='"'){ if(q&&line[i+1]==='"'){cur+='"'; i++;} else q=!q; } else if(ch===sep && !q){ out.push(cur); cur=''; } else cur+=ch; } out.push(cur); return out.map(x=>x.trim()); }
-function parseCSV(text){const clean=text.replace(/^\uFEFF/,'').replace(/\r/g,''); const lines=clean.split('\n').filter(l=>l.trim()); if(!lines.length) return []; const sample=lines.slice(0,5).join('\n'); const sep=(sample.match(/;/g)||[]).length >= (sample.match(/,/g)||[]).length ? ';' : ','; return lines.map(line=>csvSplit(line,sep));}
+// Leitura CSV com suporte a delimitador, campos entre aspas e quebras de linha internas.
+function parseCSV(text){
+ const t=String(text||'').replace(/^\uFEFF/,'');
+ const first=t.split(/\r?\n/).slice(0,7).join('\n');
+ const sep=(first.match(/;/g)||[]).length>=(first.match(/,/g)||[]).length?';':',';
+ const rows=[];let row=[],field='',quoted=false;
+ for(let i=0;i<t.length;i++){
+  const ch=t[i];
+  if(ch==='"'){
+   if(quoted&&t[i+1]==='"'){field+='"';i++;}else quoted=!quoted;
+  }else if(ch===sep&&!quoted){row.push(field.trim());field='';}
+  else if((ch==='\n'||ch==='\r')&&!quoted){
+   if(ch==='\r'&&t[i+1]==='\n')i++;
+   row.push(field.trim());field='';if(row.some(Boolean))rows.push(row);row=[];
+  }else field+=ch;
+ }
+ row.push(field.trim());if(row.some(Boolean))rows.push(row);
+ return rows;
+}
+async function decodeCSVFile(file){
+ const bytes=await file.arrayBuffer();
+ try{return new TextDecoder('utf-8',{fatal:true}).decode(bytes);}
+ catch{return new TextDecoder('windows-1252').decode(bytes);}
+}
 function detectStoreFromName(name=''){const n=normalize(name); return stores.find(s=>n.includes(s)) || ''}
-function normalizePayment(v){
- const s=normalize(v).replace(/\s+/g,' ').trim();
- if(!s) return 'OUTROS';
- // Apenas as financeiras abaixo são crediário; cartão de crédito NÃO é crediário.
- if(/(?:CRED\.?\s*)?PAYJOY/.test(s)) return 'CRED_PAYJOY';
- if(/(?:CRED\.?\s*)?PARCELEX/.test(s)) return 'CRED_PARCELEX';
- if(/(?:CRED\.?\s*)?CREFAZ/.test(s)) return 'CRED_CREFAZ';
- if(/(?:CRED\.?\s*)?ODRES/.test(s)) return 'CRED_ODRES';
- if(s==='CREDIARIO'||s==='CREDIÁRIO') return 'CREDIARIO';
- if(s.includes('PIX')) return 'PIX';
- if(s.includes('DEBIT')) return 'DEBITO';
- if(s.includes('DINHE')) return 'DINHEIRO';
- if(s.includes('CREDITO')||s.includes('CARTAO')||s.includes('VISA')||s.includes('MASTER')||s.includes('ELO')) return 'CREDITO';
- return 'OUTROS';
+function normalizePayment(v){return paymentCategories(v)[0]||'OUTROS';}
+function paymentCategories(v){
+ const raw=normalize(v).replace(/^TIPO PAGAMENTO\s*:\s*/,'').replace(/^FORMA DE PAGAMENTO\s*:\s*/,'').trim();
+ if(!raw)return ['OUTROS'];
+ const cats=[];
+ for(const item of raw.split(/[,;+\n]+/).map(x=>x.trim()).filter(Boolean)){
+  let cat='OUTROS';
+  if(/\bPAYJOY\b/.test(item))cat='CRED_PAYJOY';
+  else if(/\bPARCELEX\b/.test(item))cat='CRED_PARCELEX';
+  else if(/\bCREFAZ\b/.test(item))cat='CRED_CREFAZ';
+  else if(/\bODRES\b/.test(item))cat='CRED_ODRES';
+  else if(/\bCREDIARIO\b/.test(item))cat='CREDIARIO';
+  else if(/\bPIX\b/.test(item))cat='PIX';
+  else if(/\bDEBITO\b/.test(item))cat='DEBITO';
+  else if(/\bDINHEIRO\b/.test(item))cat='DINHEIRO';
+  else if(/\bCREDITO\b|\bCARTAO\b|\bVISA\b|\bMASTER\b|\bELO\b/.test(item))cat='CREDITO';
+  if(!cats.includes(cat))cats.push(cat);
+ }
+ return cats.length?cats:['OUTROS'];
+}
+function paymentsOfSale(s){
+ // Prioriza o texto original da compra, pois versões anteriores podiam classificar crédito como crediário.
+ if(typeof s.pagamentoOriginal==='string'&&s.pagamentoOriginal.trim())return paymentCategories(s.pagamentoOriginal);
+ if(Array.isArray(s.pagamentoCategorias)&&s.pagamentoCategorias.length)return [...new Set(s.pagamentoCategorias)];
+ return s.pagamentoCat?[s.pagamentoCat]:['OUTROS'];
 }
 const creditFinancing=['CRED_PAYJOY','CRED_PARCELEX','CRED_CREFAZ','CRED_ODRES','CREDIARIO'];
 const paymentLabels={CREDIARIO:'Crediário (sem financeira identificada)',CRED_PAYJOY:'Cred. PayJoy',CRED_PARCELEX:'Cred. Parcelex',CRED_CREFAZ:'Cred. Crefaz',CRED_ODRES:'Cred. Odres',PIX:'PIX',DEBITO:'Débito',CREDITO:'Cartão de crédito',DINHEIRO:'Dinheiro',OUTROS:'Outros'};
@@ -732,6 +773,7 @@ async function activateCloud(){
  $('authGate').style.display=pendingInviteMode && !$('newPasswordBox').hidden?'grid':'none';$('logoutButton').style.display='inline-block';
  $('cloudStatus').textContent='Conectado • '+(profile.role==='admin'?'Gestão':profile.store);
  $('adminMenuLink').hidden=profile.role!=='admin';
+ $('clear').hidden=profile.role!=='admin';
  if(profile.role==='store'){
    document.querySelector('[data-page="overview"]').style.display='flex';
    document.querySelectorAll('.store-group').forEach(g=>{if(g.dataset.storeGroup!==profile.store)g.style.display='none'});
@@ -793,7 +835,7 @@ function storeSales(store){return uniqueSales().filter(s=>!store || s.loja===sto
 function customerAggregate(store){
   const map = new Map();
   for(const sale of storeSales(store)){
-    const key = sale.customerKey || normalize(sale.nome) || sale.telefone || sale.id;
+    const key = sale.customerKey || sale.telefone || (sale.id&&sale.id!==normalize(sale.nome)?'ID:'+sale.id:'NOME:'+normalize(sale.nome));
     if(!key) continue;
     if(!map.has(key)) map.set(key,{
       id:sale.id||key,nome:sale.nome||'Cliente sem nome',telefone:sale.telefone||'',loja:sale.loja,bairro:sale.bairro||'',cidade:sale.cidade||'',sales:[],payments:new Set(),
@@ -803,7 +845,7 @@ function customerAggregate(store){
     if(!c.bairro && sale.bairro) c.bairro=sale.bairro;
     if(!c.cidade && sale.cidade) c.cidade=sale.cidade;
     c.sales.push(sale);
-    c.payments.add(sale.pagamentoCat);
+    paymentsOfSale(sale).forEach(p=>c.payments.add(p));
   }
   const list=[...map.values()].map(c=>{
     const sorted=c.sales.slice().sort((a,b)=>b.dataISO.localeCompare(a.dataISO));
@@ -824,7 +866,6 @@ function customerAggregate(store){
 }
 function filteredCustomers(){
   const q=normalize($('search').value);
-  const region=normalize($('region').value);
   const payment=$('payment').value;
   const segment=$('segment').value;
   const sortBy=$('sortBy').value;
@@ -834,14 +875,13 @@ function filteredCustomers(){
     let sales=c.sales.slice();
     if(from) sales=sales.filter(s=>parseBRDate(s.dataISO)>=from);
     if(to) sales=sales.filter(s=>parseBRDate(s.dataISO)<=to);
+    if(payment) sales=sales.filter(s=>paymentMatches(paymentsOfSale(s),payment));
     const scopedTotal=sales.reduce((sum,s)=>sum+s.valor,0);
     const scopedCount=sales.length;
     const scopedLast=sales[0]?.dataISO||'';
     return {...c, scopedSales:sales, scopedTotal, scopedCount, scopedLast};
   }).filter(c=>c.scopedCount>0);
   if(q) list=list.filter(c=>normalize(c.nome+' '+c.telefone+' '+c.bairro+' '+c.cidade).includes(q));
-  if(region) list=list.filter(c=>normalize(c.bairro||c.cidade).includes(region));
-  if(payment) list=list.filter(c=>paymentMatches(c.payments,payment));
   if(segment==='unique') list=list.filter(c=>c.count===1);
   if(segment==='repeat') list=list.filter(c=>c.count>1);
   if(segment==='inactive') list=list.filter(c=>c.daysInactive>=90);
@@ -927,10 +967,6 @@ function clientTag(c){return c.count>1?'<span class="tag repeat">Recorrente</spa
 function renderClients(){
   $('storeContext').textContent=activeStore||'Selecione uma loja';
   const list=filteredCustomers();
-  const regions=[...new Set(customerAggregate(activeStore).map(c=>c.bairro||c.cidade).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
-  const currentRegion=$('region').value;
-  $('region').innerHTML='<option value="">Todos os bairros / regiões</option>'+regions.map(r=>`<option value="${esc(r)}">${esc(r)}</option>`).join('');
-  $('region').value=currentRegion;
   $('clientCount').textContent=fmtNum(list.length)+' cliente(s) encontrado(s)';
   $('modeList').classList.toggle('active',clientDisplayMode==='list');
   $('modeCards').classList.toggle('active',clientDisplayMode==='cards');
@@ -939,9 +975,9 @@ function renderClients(){
   $('cards').classList.toggle('as-cards',clientDisplayMode==='cards');
   if(!list.length){$('cards').innerHTML='<div class="empty">Nenhum cliente encontrado para estes filtros.</div>';return;}
   if(clientDisplayMode==='list'){
-    $('cards').innerHTML=`<div class="table-wrap"><table class="directory-table"><thead><tr><th>Cliente</th><th>Situação</th><th>Compras</th><th>Faturamento</th><th>Última compra</th><th>Região</th><th></th></tr></thead><tbody>${list.map((c,i)=>`<tr tabindex="0" data-customer="${i}" aria-label="Abrir detalhes de ${esc(c.nome)}"><td><div class="directory-person"><span class="avatar">${esc(c.nome.slice(0,1).toUpperCase())}</span><span><strong>${esc(c.nome)}</strong><small>${esc(c.telefone||'Sem telefone')}</small></span></div></td><td>${clientTag(c)}</td><td><b>${fmtNum(c.scopedCount)}</b></td><td><b>${fmtBRL(c.scopedTotal)}</b></td><td>${fmtDate(c.scopedLast||c.lastDate)}</td><td>${esc(c.bairro||c.cidade||'Não informada')}</td><td><span class="row-arrow">↗</span></td></tr>`).join('')}</tbody></table></div>`;
+    $('cards').innerHTML=`<div class="table-wrap"><table class="directory-table"><thead><tr><th>Cliente</th><th>Situação</th><th>Compras</th><th>Faturamento</th><th>Última compra</th><th></th></tr></thead><tbody>${list.map((c,i)=>`<tr tabindex="0" data-customer="${i}" aria-label="Abrir detalhes de ${esc(c.nome)}"><td><div class="directory-person"><span class="avatar">${esc(c.nome.slice(0,1).toUpperCase())}</span><span><strong>${esc(c.nome)}</strong><small>${esc(c.telefone||'Sem telefone')}</small></span></div></td><td>${clientTag(c)}</td><td><b>${fmtNum(c.scopedCount)}</b></td><td><b>${fmtBRL(c.scopedTotal)}</b></td><td>${fmtDate(c.scopedLast||c.lastDate)}</td><td><span class="row-arrow">↗</span></td></tr>`).join('')}</tbody></table></div>`;
   }else{
-    $('cards').innerHTML=list.map((c,i)=>`<button type="button" class="client-mini-card" data-customer="${i}"><div class="mini-card-top"><span class="avatar">${esc(c.nome.slice(0,1).toUpperCase())}</span>${clientTag(c)}</div><strong>${esc(c.nome)}</strong><span class="mini">${esc(c.telefone||'Sem telefone')} • ${esc(c.bairro||c.cidade||'Sem região')}</span><div class="mini-card-values"><span><b>${fmtNum(c.scopedCount)}</b><small>compras</small></span><span><b>${fmtBRL(c.scopedTotal)}</b><small>faturamento</small></span></div><div class="mini-card-foot"><span>Última compra ${fmtDate(c.scopedLast||c.lastDate)}</span><span>Ver perfil ↗</span></div></button>`).join('');
+    $('cards').innerHTML=list.map((c,i)=>`<button type="button" class="client-mini-card" data-customer="${i}"><div class="mini-card-top"><span class="avatar">${esc(c.nome.slice(0,1).toUpperCase())}</span>${clientTag(c)}</div><strong>${esc(c.nome)}</strong><span class="mini">${esc(c.telefone||'Sem telefone')}</span><div class="mini-card-values"><span><b>${fmtNum(c.scopedCount)}</b><small>compras</small></span><span><b>${fmtBRL(c.scopedTotal)}</b><small>faturamento</small></span></div><div class="mini-card-foot"><span>Última compra ${fmtDate(c.scopedLast||c.lastDate)}</span><span>Ver perfil ↗</span></div></button>`).join('');
   }
 }
 function showClientDrawer(c){
@@ -951,11 +987,11 @@ function showClientDrawer(c){
   const waDigits=digits(c.telefone).replace(/^55(?=\d{10,11}$)/,'');
   const wa=waDigits.length>=10?`https://wa.me/55${waDigits}?text=${encodeURIComponent(WHATSAPP_GREETING)}`:'';
   const status=c.daysInactive>=90?'<span class="tag inactive">Inativo 90+ dias</span>':clientTag(c);
-  $('drawerContent').innerHTML=`<div class="drawer-identity"><span class="avatar large">${esc(c.nome.slice(0,1).toUpperCase())}</span><div><h2>${esc(c.nome)}</h2><div class="mini">${esc(c.loja)} • ${esc(c.bairro||'Bairro não informado')}${c.cidade?' / '+esc(c.cidade):''}</div><div style="margin-top:9px">${status}</div></div></div>
+  $('drawerContent').innerHTML=`<div class="drawer-identity"><span class="avatar large">${esc(c.nome.slice(0,1).toUpperCase())}</span><div><h2>${esc(c.nome)}</h2><div class="mini">${esc(c.loja)}</div><div style="margin-top:9px">${status}</div></div></div>
   <div class="drawer-actions">${wa?`<a class="primary drawer-wa" href="${wa}" target="_blank" rel="noopener noreferrer">Abrir WhatsApp ↗</a>`:'<span class="drawer-muted">Telefone indisponível</span>'}<button type="button" id="drawerSchedule">▦ Agendamento</button><button type="button" id="drawerLog">+ Registrar contato</button></div>
   <div class="drawer-section"><div class="drawer-section-title">Indicadores do cliente</div><div class="drawer-stats"><div><span>Compras realizadas</span><strong>${fmtNum(c.count)}</strong></div><div><span>Faturamento total</span><strong>${fmtBRL(c.total)}</strong></div><div><span>Última compra</span><strong>${fmtDate(c.lastDate)||'—'}</strong></div></div></div>
-  <div class="drawer-section"><div class="drawer-section-title">Dados comerciais</div><div class="drawer-field"><span>Telefone</span><b>${esc(c.telefone||'Não informado')}</b></div><div class="drawer-field"><span>Primeira compra</span><b>${fmtDate(c.firstDate)}</b></div><div class="drawer-field"><span>Modalidades</span><b>${esc(c.payments.map(p=>paymentLabels[p]||p).join(', ')||'Não informado')}</b></div></div>
-  <div class="drawer-section"><div class="drawer-section-title">Últimas compras <small>${fmtNum(c.sales.length)}</small></div><div class="timeline">${c.sales.slice(0,15).map(s=>`<div class="timeline-item"><span class="timeline-dot"></span><div><b>Compra ${esc(s.saleId||'')}</b><small>${fmtDate(s.dataISO)} • ${esc(paymentLabels[s.pagamentoCat]||s.pagamentoCat||'Não informado')}</small></div><strong>${fmtBRL(s.valor)}</strong></div>`).join('')||'<p class="mini">Sem compras registradas.</p>'}</div></div>
+  <div class="drawer-section"><div class="drawer-section-title">Dados comerciais</div><div class="drawer-field"><span>Telefone</span><b>${esc(c.telefone||'Não informado')}</b></div><div class="drawer-field"><span>Primeira compra</span><b>${fmtDate(c.firstDate)}</b></div><div class="drawer-field"><span>Modalidades</span><b>${esc(c.scopedSales.map(paymentsOfSale).flat().filter((v,i,a)=>a.indexOf(v)===i).map(p=>paymentLabels[p]||p).join(', ')||'Não informado')}</b></div></div>
+  <div class="drawer-section"><div class="drawer-section-title">Últimas compras <small>${fmtNum(c.scopedSales.length)}</small></div><div class="timeline">${c.scopedSales.slice(0,15).map(s=>`<div class="timeline-item"><span class="timeline-dot"></span><div><b>Compra ${esc(s.saleId||'')}</b><small>${fmtDate(s.dataISO)} • ${esc(paymentsOfSale(s).map(p=>paymentLabels[p]||p).join(' + ')||'Não informado')}</small></div><strong>${fmtBRL(s.valor)}</strong></div>`).join('')||'<p class="mini">Sem compras registradas.</p>'}</div></div>
   <div class="drawer-section"><div class="drawer-section-title">Histórico de contatos <small>${fmtNum(recent.length)}</small></div><div class="timeline">${recent.slice(0,15).map(r=>`<div class="timeline-item"><span class="timeline-dot contact-dot"></span><div><b>${esc(r.status)}</b><small>${new Date(r.created).toLocaleString('pt-BR')} • ${esc(r.notes||'Sem observações')}</small></div></div>`).join('')||'<p class="mini">Nenhum contato registrado.</p>'}</div></div>`;
   $('clientDrawer').classList.add('open'); $('drawerShade').classList.add('visible');
   $('clientDrawer').setAttribute('aria-hidden','false');$('drawerShade').setAttribute('aria-hidden','false');
@@ -994,12 +1030,10 @@ function renderReports(){
   const list=customerAggregate(activeStore);
   const paymentNames=paymentLabels;
   const payRows=tally(list,c=>c.payments.length?c.payments.map(p=>paymentNames[p]||p):['Não informado']);
-  const regionRows=tally(list,c=>c.bairro||c.cidade||'Não informado');
   const topSales=list.slice().sort((a,b)=>b.count-a.count||b.total-a.total).slice(0,10);
   const topRevenue=list.slice().sort((a,b)=>b.total-a.total||b.count-a.count).slice(0,10);
   const table=(head1,head2,rows,format=v=>v)=> rows.length ? `<div class="table-wrap"><table class="data-table"><thead><tr><th>${head1}</th><th>${head2}</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r[0])}</td><td>${format(r[1])}</td></tr>`).join('')}</tbody></table></div>` : '<div class="empty">Sem dados disponíveis.</div>';
   $('reportPayments').innerHTML=table('Forma de pagamento','Clientes',payRows,v=>fmtNum(v));
-  $('reportRegions').innerHTML=table('Região / bairro','Clientes',regionRows.slice(0,12),v=>fmtNum(v));
   $('reportTopSales').innerHTML = topSales.length ? `<div class="table-wrap"><table class="data-table"><thead><tr><th>Cliente</th><th>Vendas</th><th>Última compra</th></tr></thead><tbody>${topSales.map(c=>`<tr><td>${esc(c.nome)}</td><td>${fmtNum(c.count)}</td><td>${fmtDate(c.lastDate)}</td></tr>`).join('')}</tbody></table></div>` : '<div class="empty">Sem dados disponíveis.</div>';
   $('reportTopRevenue').innerHTML = topRevenue.length ? `<div class="table-wrap"><table class="data-table"><thead><tr><th>Cliente</th><th>Faturamento</th><th>Vendas</th></tr></thead><tbody>${topRevenue.map(c=>`<tr><td>${esc(c.nome)}</td><td>${fmtBRL(c.total)}</td><td>${fmtNum(c.count)}</td></tr>`).join('')}</tbody></table></div>` : '<div class="empty">Sem dados disponíveis.</div>';
 }
@@ -1026,11 +1060,11 @@ async function logContact(name,phone,id){
 }
 
 function inferHeader(rows){
-  const headerWords=['cliente','nome','fone','telefone','data','venda','tipo pgto','pagamento','valor','total','loja','bairro','cidade'];
+  const headerWords=['cliente','fone','data venda','tipo pgto','total da venda','nº','status'];
   let best=0, idx=0;
   rows.slice(0,20).forEach((row,i)=>{
     const joined=normalize(row.join(' '));
-    const score=headerWords.reduce((s,w)=>s+(joined.includes(normalize(w))?1:0),0);
+    const score=headerWords.reduce((s,w)=>s+(row.some(c=>normalize(c)===normalize(w))?2:0),0);
     if(score>best){best=score; idx=i;}
   });
   return idx;
@@ -1039,7 +1073,7 @@ function mapColumns(header){
   const h=header.map(normalize);
   const find=(...terms)=>h.findIndex(c=>terms.some(t=>c.includes(normalize(t))));
   return {
-    saleNo:find('Nº','NUMERO','N°','NO','VENDA','CODIGO VENDA'),
+    saleNo:find('Nº','N°','NUMERO VENDA','NÚMERO DA VENDA','VENDA Nº'),
     date:find('DATA VENDA','DATA','EMISSAO'),
     client:find('CLIENTE','NOME'),
     phone:find('FONE','TELEFONE','CELULAR','CONTATO'),
@@ -1052,47 +1086,57 @@ function mapColumns(header){
   };
 }
 function importRows(table,fileName=''){
-  const headerIndex=inferHeader(table);
-  const header=table[headerIndex];
-  const cols=mapColumns(header);
-  if(cols.client<0 || cols.date<0 || cols.total<0){ throw new Error('Colunas mínimas não encontradas. Necessário ter pelo menos Cliente, Data e Total/Valor.'); }
-  const selectedStore=$('importStore').value || detectStoreFromName(fileName) || '';
-  const grouped=new Map();
-  for(const row of table.slice(headerIndex+1)){
-    if(!row.some(Boolean)) continue;
-    const nome=(row[cols.client]||'').trim();
-    if(!nome || normalize(nome).includes('CLIENTES UNIGAMES')) continue;
-    const dataISO=isoDate(row[cols.date]);
-    if(!dataISO) continue;
-    const lojaRaw = cols.store>=0 ? (row[cols.store]||'').trim() : '';
-    const loja = detectStoreFromName(lojaRaw) || selectedStore || detectStoreFromName(fileName);
-    if(!loja) continue;
-    const valor=parseBRNumber(row[cols.total]);
-    const rawPhone=digits(cols.phone>=0 ? row[cols.phone] : ''); const telefone=rawPhone.length>=10 ? rawPhone : '';
-    const id=(cols.id>=0 ? String(row[cols.id]||'').trim() : '') || telefone || normalize(nome);
-    const saleNo=(cols.saleNo>=0 ? String(row[cols.saleNo]||'').trim() : String(row[0]||'').trim()) || `${dataISO}_${id}_${valor}`;
-    const key=`${loja}|${saleNo}`;
-    const rawPayment=cols.payment>=0 ? String(row[cols.payment]||'').trim() : '';
-    const payCat=normalizePayment(rawPayment);
-    const base={saleId:saleNo,id,nome:toTitle(nome),telefone,loja,bairro:toTitle(row[cols.neighborhood]||''),cidade:toTitle(row[cols.city]||''),dataISO,valor,pagamentoCat:payCat,pagamentoOriginal:rawPayment,customerKey:telefone||normalize(nome)};
-    if(!grouped.has(key)) grouped.set(key,base);
-    else{
-      const cur=grouped.get(key);
-      cur.valor = Math.max(cur.valor, valor);
-      if(!cur.telefone && telefone) cur.telefone=telefone;
-      if(!cur.bairro && base.bairro) cur.bairro=base.bairro;
-      if(!cur.cidade && base.cidade) cur.cidade=base.cidade;
-      if(cur.pagamentoCat==='OUTROS' && payCat!=='OUTROS') {cur.pagamentoCat=payCat;cur.pagamentoOriginal=rawPayment;}
-      if(cur.pagamentoCat==='CREDITO' && creditFinancing.includes(payCat)){cur.pagamentoCat=payCat;cur.pagamentoOriginal=rawPayment;}
-    }
-  }
-  const imported=[...grouped.values()];
-  if(!imported.length) throw new Error('Nenhuma venda válida foi encontrada no arquivo. Verifique a loja selecionada e as colunas do CSV.');
-  const existing=new Map(uniqueSales().map(s=>[s.loja+'|'+s.saleId,s]));
-  imported.forEach(s=>existing.set(s.loja+'|'+s.saleId,s));
-  sales=[...existing.values()].sort((a,b)=>(a.dataISO+b.loja).localeCompare(b.dataISO+a.loja));
-  overviewDate=topSalesDate();
-  return imported.length;
+ const headerIndex=inferHeader(table),header=table[headerIndex],cols=mapColumns(header);
+ if(cols.client<0||cols.date<0||cols.total<0)throw new Error('Cabeçalho incompleto: é necessário Cliente, Data Venda e Total da Venda.');
+ const selectedStore=$('importStore').value||detectStoreFromName(fileName)||'';
+ const stats={linhas:Math.max(0,table.length-headerIndex-1),vazias:0,genericos:0,semData:0,semLoja:0,semNome:0,importadas:0,clientes:0,semTelefone:0};
+ const grouped=new Map();
+ let seq=0;
+ for(const row of table.slice(headerIndex+1)){
+  if(!row.some(Boolean)){stats.vazias++;continue;}
+  const nome=(row[cols.client]||'').trim(),n=normalize(nome);
+  if(!n){stats.semNome++;continue;}
+  if(/^(CLIENTES? UNIGAMES|CLIENTE(S)? (NAO IDENTIFICADO|NÃO IDENTIFICADO|AVULSO)|CONSUMIDOR FINAL|CLIENTE AVULSO)$/.test(n)){stats.genericos++;continue;}
+  const dataISO=isoDate(row[cols.date]);if(!dataISO){stats.semData++;continue;}
+  const lojaRaw=cols.store>=0?(row[cols.store]||'').trim():'';
+  const loja=detectStoreFromName(lojaRaw)||selectedStore||detectStoreFromName(fileName);
+  if(!loja){stats.semLoja++;continue;}
+  const valor=parseBRNumber(row[cols.total]);
+  let telefone=digits(cols.phone>=0?row[cols.phone]:'');
+  if(telefone.startsWith('55')&&telefone.length>=12)telefone=telefone.slice(2);
+  if(telefone.length!==10&&telefone.length!==11)telefone='';
+  if(!telefone)stats.semTelefone++;
+  const idOriginal=cols.id>=0?String(row[cols.id]||'').trim():'';
+  // Nunca usar número da venda como ID do cliente.
+  const clientKey=idOriginal?'ID:'+idOriginal:telefone?'TEL:'+telefone:'NOME:'+n;
+  const id=idOriginal||telefone||n;
+  const rawSaleNo=cols.saleNo>=0?String(row[cols.saleNo]||'').trim():'';
+  const saleNo=rawSaleNo||`${dataISO}_${clientKey}_${++seq}`;
+  const key=`${loja}|${saleNo}`;
+  const rawPayment=cols.payment>=0?String(row[cols.payment]||'').trim():'';
+  const categories=paymentCategories(rawPayment);
+  const base={saleId:saleNo,id,nome:toTitle(nome),telefone,loja,bairro:toTitle(row[cols.neighborhood]||''),cidade:toTitle(row[cols.city]||''),dataISO,valor,pagamentoCat:categories[0],pagamentoCategorias:categories,pagamentoOriginal:rawPayment,customerKey:clientKey};
+  if(!grouped.has(key)){grouped.set(key,base);continue;}
+  const cur=grouped.get(key);
+  cur.valor=Math.max(cur.valor,valor);
+  if(!cur.telefone&&telefone)cur.telefone=telefone;
+  if(!cur.bairro&&base.bairro)cur.bairro=base.bairro;
+  if(!cur.cidade&&base.cidade)cur.cidade=base.cidade;
+  if(!cur.customerKey.startsWith('ID:')&&clientKey.startsWith('ID:')){cur.customerKey=clientKey;cur.id=id;}
+  // Vendas com múltiplas formas (PIX + CRÉDITO etc.) mantêm todas as modalidades.
+  cur.pagamentoCategorias=[...new Set([...(cur.pagamentoCategorias||[]),...categories])];
+  cur.pagamentoCat=cur.pagamentoCategorias[0];
+  cur.pagamentoOriginal=[...new Set([cur.pagamentoOriginal,rawPayment].filter(Boolean))].join(', ');
+ }
+ const imported=[...grouped.values()];
+ if(!imported.length)throw new Error('Nenhuma venda válida. Selecione a loja e confira as colunas do CSV.');
+ stats.importadas=imported.length;
+ stats.clientes=new Set(imported.map(s=>s.customerKey)).size;
+ const existing=new Map(uniqueSales().map(s=>[s.loja+'|'+s.saleId,s]));
+ imported.forEach(s=>existing.set(s.loja+'|'+s.saleId,s));
+ sales=[...existing.values()];
+ overviewDate=topSalesDate();
+ return stats;
 }
 
 
@@ -1219,27 +1263,58 @@ $('appointmentCardContent').addEventListener('click',e=>{const b=e.target.closes
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeScheduleModal();closeAppointmentCard();}});
 
 $('upload').addEventListener('change', async e=>{
-  const file=e.target.files?.[0]; if(!file) return;
-  try{
-    const text=await file.text();
-    const table=parseCSV(text);
-    const n=importRows(table,file.name);
-    await saveSales();
-    alert(`${n.toLocaleString('pt-BR')} venda(s) importada(s) com sucesso.`);
-    render();
-  }catch(err){ alert('Não foi possível importar: '+err.message); console.error(err); }
-  e.target.value='';
+ const file=e.target.files?.[0];if(!file)return;
+ if(!isAdmin()){alert('A importação é exclusiva de administradores.');e.target.value='';return;}
+ const previousSales=sales.slice();
+ const btn=document.querySelector('label[for="upload"]');
+ const oldText=btn.textContent;btn.textContent='Importando...';
+ try{
+  const text=await decodeCSVFile(file);
+  const table=parseCSV(text);
+  const st=importRows(table,file.name);
+  await saveSales();
+  await refreshCloudData();
+  const message=[
+   `Arquivo: ${file.name}`,
+   `Linhas analisadas: ${fmtNum(st.linhas)}`,
+   `Vendas distintas importadas: ${fmtNum(st.importadas)}`,
+   `Clientes distintos identificados: ${fmtNum(st.clientes)}`,
+   `Linhas genéricas (sem cliente identificado): ${fmtNum(st.genericos)}`,
+   `Linhas sem nome: ${fmtNum(st.semNome)} | sem data válida: ${fmtNum(st.semData)} | sem loja identificada: ${fmtNum(st.semLoja)}`,
+   `Linhas sem telefone válido: ${fmtNum(st.semTelefone)} (podem entrar por nome/ID)`,
+   'Atenção: linhas de itens não representam clientes distintos.'
+  ].join('\n');
+  alert('IMPORTAÇÃO CONCLUÍDA\n\n'+message);
+ }catch(err){sales=previousSales;alert('Não foi possível concluir a importação: '+err.message);console.error(err);}
+ finally{e.target.value='';btn.textContent=oldText;}
 });
 $('template').onclick=()=>{
   const sample='id;nome;telefone;loja;bairro;cidade;data;valor;pagamento\nC001;Cliente Exemplo;81999999999;GUARARAPES;Piedade;Jaboatão dos Guararapes;01/10/2026;199,90;CRED. PAYJOY\nC001;Cliente Exemplo;81999999999;GUARARAPES;Piedade;Jaboatão dos Guararapes;20/10/2026;89,90;CREDITO 1X\n';
   const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob(['\ufeff'+sample],{type:'text/csv;charset=utf-8'})); a.download='modelo_fideliza.csv'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),1000);
 };
-$('clear').disabled=true; $('clear').title='Exclusão no banco não está habilitada nesta versão';
-$('clear').onclick=()=>{ if(confirm('Remover todas as vendas importadas deste navegador? Os registros de contato serão mantidos.')){ sales=[]; saveSales(); render(); }};
+$('clear').onclick=async()=>{
+ if(!isAdmin()){alert('Apenas administradores podem limpar vendas.');return;}
+ const store=$('importStore').value;
+ if(!stores.includes(store)){alert('Selecione uma loja em "Base de vendas" para limpar SOMENTE as vendas dessa loja.');return;}
+ const count=storeSales(store).length;
+ const confirmText=prompt(`Operação destrutiva: excluir ${fmtNum(count)} venda(s) da loja ${store}.\nClientes e indicadores desta loja serão afetados.\nContatos e agendamentos serão preservados.\n\nPara confirmar, digite exatamente: EXCLUIR ${store}`,'');
+ if(confirmText!==`EXCLUIR ${store}`)return;
+ const backup=JSON.stringify({store,exported_at:new Date().toISOString(),sales:storeSales(store)},null,2);
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([backup],{type:'application/json'}));a.download=`FIDELIZA-BACKUP-${store}-${localDay(new Date())}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+ if(!confirm('Um backup JSON da loja foi preparado para download. CONFIRMA a exclusão das vendas no SUPABASE?'))return;
+ const button=$('clear');button.disabled=true;button.textContent='Excluindo...';
+ try{
+  const {error}=await cloudClient.from('fideliza_sales').delete().eq('store',store);
+  if(error)throw error;
+  await refreshCloudData();
+  alert(`Vendas da loja ${store} excluídas. As demais lojas, contatos e agendamentos foram preservados.`);
+ }catch(err){alert('Não foi possível limpar a base: '+err.message+'\nConfirme que o SQL de segurança v8.7 foi executado.');}
+ finally{button.disabled=false;button.textContent='Limpar vendas da loja';}
+};
 $('useLatest').onclick=async()=>{ $('overviewDate').value=fmtDate(new Date());renderOverview();if(cloudReady)await fetchDashboardSnapshot(); };
 $('applyOverviewDate').onclick=async()=>{renderOverview();if(cloudReady)await fetchDashboardSnapshot();};
 $('overviewMetric').addEventListener('change',renderOverview);
-['search','region','payment','segment','sortBy','dateFrom','dateTo'].forEach(id=>$(id).addEventListener(id==='search'||id==='dateFrom'||id==='dateTo'?'input':'change',()=>renderClients()));
+['search','payment','segment','sortBy','dateFrom','dateTo'].forEach(id=>$(id).addEventListener(id==='search'||id==='dateFrom'||id==='dateTo'?'input':'change',()=>renderClients()));
 ['contactStore','contactStatus'].forEach(id=>$(id).addEventListener('change',renderContacts)); $('contactSearch').addEventListener('input',renderContacts);
 $('cards').addEventListener('click',e=>{const row=e.target.closest('[data-customer]');if(row){const c=filteredCustomers()[Number(row.dataset.customer)];showClientDrawer(c);}});
 $('cards').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('tr[data-customer]')){e.preventDefault();showClientDrawer(filteredCustomers()[Number(e.target.dataset.customer)]);}});
