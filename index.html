@@ -134,6 +134,40 @@ html,body{max-width:100%;overflow-x:hidden}
  .podium{gap:6px!important}.podium-card{padding:11px 7px!important}.podium-store{font-size:11px!important}.podium-value{font-size:21px!important}.podium-badge{width:22px;height:22px}.podium-label{font-size:8px}.podium-meta{font-size:9px}
 }
 @media(max-width:390px){.podium{grid-template-columns:1fr!important}.podium-card{display:grid;grid-template-columns:1fr 1fr;align-items:center}.podium-top{grid-column:1/-1}.podium-meta{grid-column:1/-1}.metrics{grid-template-columns:1fr 1fr!important}.tools{grid-template-columns:1fr}.tools>*{grid-column:auto!important}}
+
+/* FIDELIZA 8.1 | Agenda comercial */
+.agenda-bubble{margin-left:auto;font-size:10px;color:#cce4f8;font-weight:800}
+.agenda-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:5px 0 19px}
+.agenda-head h2{font:750 28px Manrope,sans-serif;margin:7px 0;letter-spacing:-.04em}.agenda-head p{font-size:13px;color:#738296;margin:0}
+.agenda-panel{padding:19px;background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
+.agenda-toolbar,.agenda-switch,.agenda-controls{display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.agenda-switch strong{font:750 18px Manrope,sans-serif;min-width:155px;text-align:center;text-transform:capitalize}
+.agenda-switch button{font-size:22px;padding:5px 13px}.agenda-weekdays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));margin-top:17px}
+.agenda-weekdays span{text-align:center;font-size:10px;font-weight:800;color:#8291a5;padding:10px}
+.agenda-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+.agenda-day{height:108px;overflow:hidden;padding:8px;background:#fbfcfe;border:1px solid #e7edf5;border-radius:10px;display:flex;flex-direction:column;gap:5px;min-width:0}
+.agenda-day.outside{opacity:.4}.agenda-day.today{border-color:#3d81ab;background:#eef6fc}.agenda-day-number{font-size:11px;font-weight:800;color:#40546c}
+.agenda-event{display:block;width:100%;padding:5px 7px;border:0;border-left:3px solid #2a6eac;border-radius:5px;background:#dfebfb;color:#18446d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left;font-size:10px;cursor:pointer}
+.agenda-event.overdue{background:#fae6e6;border-color:#cc6565;color:#944747}.agenda-event.completed{background:#e3f3eb;border-color:#4c9a73;color:#246849}
+.agenda-more{font-size:10px;color:#718198;font-weight:700}.agenda-alerts{display:grid;gap:10px;margin:0 0 14px}
+.agenda-alert{display:flex;gap:9px;align-items:center;border:1px solid #c7dcef;background:#ecf6ff;color:#234d70;padding:12px 15px;border-radius:12px;font-size:12px}
+.agenda-alert.urgent{background:#fff1ec;color:#914b3c;border-color:#f0cfc4}
+.agenda-upcoming{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.agenda-up-card{background:#fafcff;border:1px solid #e5edf5;padding:16px;text-align:left;border-radius:12px;cursor:pointer;display:grid;gap:8px}
+.agenda-up-card strong{font:750 15px Manrope,sans-serif}.agenda-up-card small{color:#75859a}
+.agenda-modal-shade{position:fixed;inset:0;background:rgba(5,16,30,.66);z-index:120}
+.agenda-modal,.agenda-card-dialog{position:fixed;z-index:121;top:50%;left:50%;transform:translate(-50%,-50%);max-height:92vh;overflow:auto;background:#fff;border-radius:18px;box-shadow:0 35px 100px #02091480;color:#1a2b40}
+.agenda-modal{width:min(690px,94vw);padding:25px}.agenda-modal-top{display:flex;align-items:start;justify-content:space-between;margin-bottom:20px}.agenda-modal-top h2{font:750 23px Manrope,sans-serif;margin:7px 0}.agenda-modal-top .eyebrow{color:#6286aa}
+.agenda-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.agenda-form label{display:grid;gap:6px;color:#52647a;font-weight:700;font-size:12px}.agenda-form input,.agenda-form select,.agenda-form textarea{min-width:0;width:100%;font-size:13px;border:1px solid #dbe4ef;border-radius:9px;padding:10px;background:#fafcff;color:#1d2f44}.agenda-form .wide,.agenda-form-actions{grid-column:1/-1}.agenda-form textarea{resize:vertical}.agenda-form-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:9px}
+.agenda-card-dialog{width:min(540px,94vw);background:#10203b;color:#eff5ff;padding:30px;max-height:88vh}.agenda-card-close{position:sticky;top:0;float:right;background:#243a5b;color:#fff;border:0;border-radius:50%;width:34px;height:34px;padding:0;z-index:2}
+.ag-card-name{font:750 24px Manrope,sans-serif;line-height:1.25;margin:8px 0}.ag-card-sub{color:#9fb5d3;font-size:13px;line-height:1.6}.ag-card-status{display:inline-flex;color:#54d49a;background:#123e3b;border:1px solid #206d58;border-radius:99px;padding:7px 12px;font-size:11px;font-weight:800}
+.ag-card-top{padding-bottom:20px;border-bottom:1px solid #314967}.ag-card-detail{display:grid;grid-template-columns:115px minmax(0,1fr);gap:10px;padding:10px 0;border-bottom:1px solid #263e5d;font-size:13px}.ag-card-detail span{color:#90a6c5}.ag-card-detail b{font-weight:600;overflow-wrap:anywhere}
+.ag-card-note{padding:14px;background:#193353;color:#c9d9ee;border-radius:10px;margin:14px 0;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}
+.ag-card-code{border:1px dashed #78b7f5;background:#1b385d;text-align:center;border-radius:12px;padding:17px;margin-top:16px}.ag-card-code small{display:block;letter-spacing:.15em;color:#83bdf3;font-weight:800}.ag-card-code strong{display:block;font:800 28px Manrope,sans-serif;letter-spacing:.08em;margin:6px 0}
+.ag-card-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}.ag-card-actions button,.ag-card-actions a{border:1px solid #3f648a;background:#234366;color:#fff;border-radius:8px;padding:10px 13px;font-weight:700;font-size:12px;text-decoration:none;cursor:pointer}
+.ag-card-actions .complete{background:#1f7955;border-color:#1f7955}.agenda-up-card:hover,.agenda-event:hover{filter:brightness(.96)}
+@media(max-width:900px){.agenda-upcoming{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.agenda-panel{padding:11px}.agenda-day{height:78px;padding:4px;gap:3px}.agenda-weekdays span{font-size:9px;padding:5px}.agenda-event{font-size:8px;padding:3px}.agenda-day-number{font-size:10px}.agenda-upcoming,.agenda-form{grid-template-columns:1fr}.agenda-switch strong{min-width:120px}.ag-card-detail{grid-template-columns:90px 1fr}.agenda-card-dialog{padding:20px}}
+
 </style>
 <style>
 #authGate{position:fixed;inset:0;z-index:900;background:#f3f6fa;display:grid;place-items:center;padding:22px}
@@ -262,6 +296,7 @@ button,.btn,select,input{border-radius:8px!important}
     </div>
   </header>
 
+  <div id="globalAgendaReminder" class="agenda-alerts" style="margin-bottom:12px" role="status"></div>
   <div id="view-overview" class="view active">
     <section class="hero">
       <div class="eyebrow">FIDELIZA / EXECUTIVE DASHBOARD</div>
@@ -375,6 +410,15 @@ button,.btn,select,input{border-radius:8px!important}
     <p class="note section-space">Estas campanhas apenas preparam listas e filtros. O sistema não dispara mensagens em massa automaticamente.</p>
   </div>
 
+<div id="view-appointments" class="view">
+  <div class="agenda-head"><div><div class="eyebrow">AGENDA COMERCIAL / <span id="agendaStoreLabel">LOJA</span></div><h2>Agendamentos de clientes</h2><p>Organize visitas, acompanhe os próximos compromissos e confirme o retorno dos clientes.</p></div><button id="newAppointment" class="primary" type="button">+ Novo agendamento</button></div>
+  <div id="agendaAlerts" class="agenda-alerts" role="status"></div>
+  <section class="agenda-panel"><div class="agenda-toolbar"><div class="agenda-switch"><button id="agendaPrev" aria-label="Mês anterior">‹</button><strong id="agendaMonthTitle"></strong><button id="agendaNext" aria-label="Próximo mês">›</button></div><div class="agenda-controls"><button id="agendaToday">Hoje</button><select id="agendaStatus"><option value="">Todos os status</option><option value="agendado">Agendado</option><option value="confirmado">Confirmado</option><option value="concluido">Concluído</option><option value="cancelado">Cancelado</option></select></div></div>
+  <div class="agenda-weekdays"><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span><span>DOM</span></div><div id="agendaCalendar" class="agenda-calendar"></div></section>
+  <section class="agenda-panel" style="margin-top:14px"><div class="section-title"><div><h3>Próximas visitas</h3><span>Selecione um agendamento para visualizar o card</span></div></div><div id="agendaUpcoming" class="agenda-upcoming"></div></section>
+  <p class="note">Os alertas aparecem quando o usuário abre ou atualiza o FIDELIZA. Para receber notificações automáticas com o sistema fechado, será necessário configurar um serviço de envio.</p>
+</div>
+
   <div id="view-reports" class="view">
     <div class="section-title"><div><h3>Relatórios</h3><span>Indicadores da loja selecionada</span></div></div>
     <div class="report-grid">
@@ -399,11 +443,30 @@ button,.btn,select,input{border-radius:8px!important}
   <div class="drawer-top"><div><div class="eyebrow">FIDELIZA / PERFIL 360°</div><strong>Ficha do cliente</strong></div><button type="button" id="drawerClose" class="drawer-close" aria-label="Fechar ficha">✕</button></div>
   <div id="drawerContent" class="drawer-content"></div>
 </aside>
+<div id="agendaModalShade" class="agenda-modal-shade" hidden></div>
+<section id="agendaModal" class="agenda-modal" role="dialog" aria-modal="true" aria-labelledby="agendaModalTitle" hidden>
+  <div class="agenda-modal-top"><div><div class="eyebrow">FIDELIZA / AGENDA COMERCIAL</div><h2 id="agendaModalTitle">Novo agendamento</h2></div><button type="button" id="agendaModalClose" aria-label="Fechar">✕</button></div>
+  <form id="agendaForm" class="agenda-form">
+    <label>Nome do cliente <input id="scheduleName" required maxlength="150" placeholder="Nome completo"></label>
+    <label>Telefone com DDD <input id="schedulePhone" inputmode="tel" maxlength="20" placeholder="(81) 99999-9999"></label>
+    <label>Loja <select id="scheduleStore" required></select></label>
+    <label>Data da visita <input id="scheduleDate" type="date" required></label>
+    <label>Horário <input id="scheduleTime" type="time" required value="14:00"></label>
+    <label>Tipo de atendimento <select id="scheduleType"><option value="Venda de produto">Venda de produto</option><option value="Retirada">Retirada</option><option value="Orçamento">Orçamento</option><option value="Assistência">Assistência</option><option value="Outros">Outros</option></select></label>
+    <label>Produto ou interesse <input id="scheduleProduct" maxlength="180" placeholder="Ex.: PlayStation 5 Digital"></label>
+    <label>Canal <select id="scheduleChannel"><option>WhatsApp</option><option>Presencial</option><option>Instagram</option><option>Telefone</option><option>Outros</option></select></label>
+    <label class="wide">Observações <textarea id="scheduleNotes" rows="3" maxlength="1000" placeholder="Detalhes para o atendimento da loja"></textarea></label>
+    <div class="agenda-form-actions"><button type="button" id="agendaCancel">Cancelar</button><button type="submit" id="agendaSave" class="primary">Salvar agendamento</button></div>
+  </form>
+</section>
+<section id="appointmentCardModal" class="agenda-card-dialog" role="dialog" aria-modal="true" aria-label="Detalhes do agendamento" hidden><button id="appointmentCardClose" class="agenda-card-close" type="button" aria-label="Fechar card">✕</button><div id="appointmentCardContent"></div></section>
+<div id="appointmentCardShade" class="agenda-modal-shade" hidden></div>
 
 <script>
 const stores=['GUARARAPES','RECIFE','RIOMAR','TACARUNA','PATTEO','PNWS','QUIOSQUE'];
 const stateKey='fideliza_v6_sales';
 const contactKey='fideliza_v6_contacts';
+const WHATSAPP_GREETING='Que bom falar com você! 👋';
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const digits=s=>String(s||'').replace(/\D+/g,'');
@@ -443,6 +506,8 @@ function safeForCSV(v){return '"'+String(v??'').replace(/^[\s]*[=+@-]/,m=>"'"+m)
 function storageGet(key,fallback){try{const v=JSON.parse(localStorage.getItem(key)); return v??fallback;}catch{return fallback;}}
 let sales = [];
 let contacts = [];
+let appointments = [];
+let agendaMonth=new Date(new Date().getFullYear(),new Date().getMonth(),1);
 let cloudClient=null; let cloudProfile=null; let cloudReady=false;
 let activeStore='';
 let overviewDate='';
@@ -459,9 +524,10 @@ async function saveContacts(){
  if(error)throw error;
 }
 async function refreshCloudData(){
- sales=[];contacts=[];
+ sales=[];contacts=[];appointments=[];
  for(let start=0;;start+=1000){const {data,error}=await cloudClient.from('fideliza_sales').select('payload').range(start,start+999);if(error)throw error;sales.push(...data.map(r=>r.payload));if(data.length<1000)break;}
  for(let start=0;;start+=1000){const {data,error}=await cloudClient.from('fideliza_contacts').select('payload').order('created_at',{ascending:false}).range(start,start+999);if(error)throw error;contacts.push(...data.map(r=>r.payload));if(data.length<1000)break;}
+ for(let start=0;;start+=1000){const {data,error}=await cloudClient.from('fideliza_appointments').select('*').order('scheduled_at',{ascending:true}).range(start,start+999);if(error)throw new Error('Agendamentos indisponíveis: execute o arquivo agenda.sql no Supabase. '+error.message);appointments.push(...data);if(data.length<1000)break;}
  render();
 }
 async function activateCloud(){
@@ -488,6 +554,7 @@ function buildStoreNavigation(){
       <button type="button" class="navitem sub-nav" data-page="clients" data-store-page="${store}"><span class="navicon">♙</span>Clientes</button>
       <button type="button" class="navitem sub-nav" data-page="retention" data-store-page="${store}"><span class="navicon">↻</span>Recorrência</button>
       <button type="button" class="navitem sub-nav" data-page="campaigns" data-store-page="${store}"><span class="navicon">◈</span>Campanhas</button>
+      <button type="button" class="navitem sub-nav" data-page="appointments" data-store-page="${store}"><span class="navicon">▦</span>Agendamentos <span class="agenda-bubble" data-agenda-badge="${store}"></span></button>
       <button type="button" class="navitem sub-nav" data-page="reports" data-store-page="${store}"><span class="navicon">▤</span>Relatórios</button>
     </div></div>`).join('');
   document.querySelectorAll('.store-nav').forEach(b=>b.addEventListener('click',()=>selectStore(b.dataset.store,'clients')));
@@ -513,8 +580,8 @@ function nav(page){
     menu.classList.toggle('hidden', !expanded);
     menu.querySelectorAll('.sub-nav').forEach(sb=>sb.classList.toggle('active', expanded && sb.dataset.page===page));
   });
-  $('breadcrumb').textContent = page==='overview' ? 'Visão Geral' : activeStore+' / '+({clients:'Clientes',retention:'Recorrência',campaigns:'Campanhas',reports:'Relatórios'}[page]);
-  $('pageTitle').textContent = page==='overview' ? 'Visão Geral' : activeStore+' — '+({clients:'Clientes',retention:'Recorrência',campaigns:'Campanhas',reports:'Relatórios'}[page]);
+  $('breadcrumb').textContent = page==='overview' ? 'Visão Geral' : activeStore+' / '+({clients:'Clientes',retention:'Recorrência',campaigns:'Campanhas',appointments:'Agendamentos',reports:'Relatórios'}[page]);
+  $('pageTitle').textContent = page==='overview' ? 'Visão Geral' : activeStore+' — '+({clients:'Clientes',retention:'Recorrência',campaigns:'Campanhas',appointments:'Agendamentos',reports:'Relatórios'}[page]);
 }
 function selectStore(store,page){if(cloudProfile?.role==='store'&&store!==cloudProfile.store)return;activeStore=store; render(); nav(page||'clients'); window.scrollTo({top:0,behavior:'instant'});}
 
@@ -657,10 +724,10 @@ function showClientDrawer(c){
   selectedClientKey=clientKey(c);
   const recent=contacts.filter(x=>x.loja===c.loja&&(x.id===c.id||(c.telefone&&x.telefone===c.telefone)||(normalize(x.nome)===normalize(c.nome)))).sort((a,b)=>b.created.localeCompare(a.created));
   const waDigits=digits(c.telefone).replace(/^55(?=\d{10,11}$)/,'');
-  const wa=waDigits.length>=10?`https://wa.me/55${waDigits}`:'';
+  const wa=waDigits.length>=10?`https://wa.me/55${waDigits}?text=${encodeURIComponent(WHATSAPP_GREETING)}`:'';
   const status=c.daysInactive>=90?'<span class="tag inactive">Inativo 90+ dias</span>':clientTag(c);
   $('drawerContent').innerHTML=`<div class="drawer-identity"><span class="avatar large">${esc(c.nome.slice(0,1).toUpperCase())}</span><div><h2>${esc(c.nome)}</h2><div class="mini">${esc(c.loja)} • ${esc(c.bairro||'Bairro não informado')}${c.cidade?' / '+esc(c.cidade):''}</div><div style="margin-top:9px">${status}</div></div></div>
-  <div class="drawer-actions">${wa?`<a class="primary drawer-wa" href="${wa}" target="_blank" rel="noopener noreferrer">Abrir WhatsApp ↗</a>`:'<span class="drawer-muted">Telefone indisponível</span>'}<button type="button" id="drawerLog">+ Registrar contato</button></div>
+  <div class="drawer-actions">${wa?`<a class="primary drawer-wa" href="${wa}" target="_blank" rel="noopener noreferrer">Abrir WhatsApp ↗</a>`:'<span class="drawer-muted">Telefone indisponível</span>'}<button type="button" id="drawerSchedule">▦ Agendamento</button><button type="button" id="drawerLog">+ Registrar contato</button></div>
   <div class="drawer-section"><div class="drawer-section-title">Indicadores do cliente</div><div class="drawer-stats"><div><span>Compras realizadas</span><strong>${fmtNum(c.count)}</strong></div><div><span>Faturamento total</span><strong>${fmtBRL(c.total)}</strong></div><div><span>Última compra</span><strong>${fmtDate(c.lastDate)||'—'}</strong></div></div></div>
   <div class="drawer-section"><div class="drawer-section-title">Dados comerciais</div><div class="drawer-field"><span>Telefone</span><b>${esc(c.telefone||'Não informado')}</b></div><div class="drawer-field"><span>Primeira compra</span><b>${fmtDate(c.firstDate)}</b></div><div class="drawer-field"><span>Modalidades</span><b>${esc(c.payments.map(p=>paymentLabels[p]||p).join(', ')||'Não informado')}</b></div></div>
   <div class="drawer-section"><div class="drawer-section-title">Últimas compras <small>${fmtNum(c.sales.length)}</small></div><div class="timeline">${c.sales.slice(0,15).map(s=>`<div class="timeline-item"><span class="timeline-dot"></span><div><b>Compra ${esc(s.saleId||'')}</b><small>${fmtDate(s.dataISO)} • ${esc(paymentLabels[s.pagamentoCat]||s.pagamentoCat||'Não informado')}</small></div><strong>${fmtBRL(s.valor)}</strong></div>`).join('')||'<p class="mini">Sem compras registradas.</p>'}</div></div>
@@ -669,6 +736,7 @@ function showClientDrawer(c){
   $('clientDrawer').setAttribute('aria-hidden','false');$('drawerShade').setAttribute('aria-hidden','false');
   document.body.classList.add('drawer-open');
   $('drawerClose').focus();
+  $('drawerSchedule').addEventListener('click',()=>openScheduleModal(c));
   $('drawerLog').addEventListener('click',async()=>{await logContact(c.nome,c.telefone,c.id);const updated=customerAggregate(activeStore).find(x=>clientKey(x)===selectedClientKey);if(updated)showClientDrawer(updated);});
 }
 function closeClientDrawer(){ $('clientDrawer').classList.remove('open');$('drawerShade').classList.remove('visible');$('clientDrawer').setAttribute('aria-hidden','true');$('drawerShade').setAttribute('aria-hidden','true');document.body.classList.remove('drawer-open');selectedClientKey=''; }
@@ -717,6 +785,7 @@ function render(){
   renderOverview();
   if(activeStore){ renderClients(); renderRetention(); renderCampaigns(); renderReports(); }
   renderContacts();
+  renderAgenda();
 }
 
 async function logContact(name,phone,id){
@@ -801,6 +870,108 @@ function importRows(table,fileName=''){
   return imported.length;
 }
 
+
+// 8.1 — Agendamentos sincronizados e segregados por RLS no Supabase.
+const pad2=x=>String(x).padStart(2,'0');
+const localDay=(d)=>`${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`;
+const formatAppointmentDate=v=>new Date(v).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'America/Recife'});
+const statusNames={agendado:'Agendado',confirmado:'Confirmado',concluido:'Concluído',cancelado:'Cancelado'};
+function whatsappLink(phone){const raw=digits(phone).replace(/^55(?=\d{10,11}$)/,'');return raw.length>=10&&raw.length<=11?'https://wa.me/55'+raw+'?text='+encodeURIComponent(WHATSAPP_GREETING):'';}
+function selectedStoreAppointments(){return appointments.filter(a=>a.store===activeStore);}
+function agendaDateKey(a){return new Date(a.scheduled_at).toLocaleDateString('sv-SE',{timeZone:'America/Recife'});}
+function agendaTime(a){return new Date(a.scheduled_at).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',timeZone:'America/Recife'});}
+function activeAppointments(){return appointments.filter(a=>a.status!=='cancelado'&&a.status!=='concluido');}
+function renderAgenda(){
+ const rightNow=Date.now(),deadline=rightNow+48*60*60*1000;
+ const due=appointments.filter(a=>a.status!=='cancelado'&&a.status!=='concluido'&&new Date(a.scheduled_at).getTime()<=deadline);
+ $('globalAgendaReminder').innerHTML=due.length?`<div class="agenda-alert ${due.some(a=>new Date(a.scheduled_at).getTime()<rightNow)?'urgent':''}"><strong>▦ ${due.length} visita(s) para acompanhar</strong><span>Há agendamentos vencidos ou próximos (até 48 horas).</span><button type="button" id="openAgendaReminder">Ver calendário</button></div>`:'';
+ if(due.length)$('openAgendaReminder').onclick=()=>{const store=cloudProfile?.role==='store'?cloudProfile.store:(activeStore||due[0].store);selectStore(store,'appointments');};
+ if(!activeStore){const m=new Map();due.forEach(a=>m.set(a.store,(m.get(a.store)||0)+1));document.querySelectorAll('[data-agenda-badge]').forEach(el=>el.textContent=m.get(el.dataset.agendaBadge)||'');return;}
+ $('agendaStoreLabel').textContent=activeStore;
+ const month=agendaMonth.getMonth(),year=agendaMonth.getFullYear();
+ $('agendaMonthTitle').textContent=agendaMonth.toLocaleDateString('pt-BR',{month:'long',year:'numeric'});
+ const byStatus=$('agendaStatus').value;
+ const entries=selectedStoreAppointments().filter(a=>!byStatus||a.status===byStatus);
+ const first=(new Date(year,month,1).getDay()+6)%7;
+ const cells=Math.ceil((first+new Date(year,month+1,0).getDate())/7)*7;
+ const todayKey=localDay(new Date());
+ $('agendaCalendar').innerHTML=Array.from({length:cells},(_,index)=>{
+  const d=new Date(year,month,1-first+index);const key=localDay(d);
+  const matches=entries.filter(a=>agendaDateKey(a)===key);
+  return `<div class="agenda-day ${d.getMonth()===month?'':'outside'} ${key===todayKey?'today':''}"><span class="agenda-day-number">${d.getDate()}</span>${matches.slice(0,3).map(a=>`<button type="button" data-agenda-id="${a.id}" class="agenda-event ${a.status==='concluido'?'completed':(key<todayKey&&a.status!=='cancelado'?'overdue':'')}" title="${esc(a.client_name)}">${agendaTime(a)} ${esc(a.client_name)}</button>`).join('')}${matches.length>3?`<span class="agenda-more">+${matches.length-3} outros</span>`:''}</div>`;
+ }).join('');
+ const upcoming=selectedStoreAppointments().filter(a=>a.status!=='concluido'&&a.status!=='cancelado').sort((a,b)=>a.scheduled_at.localeCompare(b.scheduled_at));
+ $('agendaUpcoming').innerHTML=upcoming.length?upcoming.slice(0,12).map(a=>`<button type="button" class="agenda-up-card" data-agenda-id="${a.id}"><small>${formatAppointmentDate(a.scheduled_at)} • ${esc(statusNames[a.status]||a.status)}</small><strong>${esc(a.client_name)}</strong><span class="mini">${esc(a.product||'Visita à loja')} • ${esc(a.channel||'')}</span></button>`).join(''):'<div class="empty">Ainda não há visitas pendentes nesta loja.</div>';
+ const now=Date.now(), twoDays=now+48*60*60*1000;
+ const urgent=upcoming.filter(a=>new Date(a.scheduled_at).getTime()<=twoDays);
+ $('agendaAlerts').innerHTML=urgent.length?`<div class="agenda-alert ${urgent.some(a=>new Date(a.scheduled_at).getTime()<now)?'urgent':''}"><strong>◉ ${urgent.length} agendamento(s) para acompanhar</strong><span>Visitas vencidas ou previstas nas próximas 48 horas. Abra os cards abaixo para atualizar o status.</span></div>`:'';
+ const byStore=new Map(); activeAppointments().filter(a=>new Date(a.scheduled_at).getTime()<=twoDays).forEach(a=>byStore.set(a.store,(byStore.get(a.store)||0)+1));
+ document.querySelectorAll('[data-agenda-badge]').forEach(el=>{const n=byStore.get(el.dataset.agendaBadge)||0;el.textContent=n?n:'';});
+}
+function openScheduleModal(c=null){
+ if(!cloudReady||!activeStore)return alert('Selecione uma loja e faça login.');
+ closeClientDrawer();
+ $('agendaForm').reset();
+ $('scheduleStore').innerHTML=stores.filter(s=>cloudProfile?.role!=='store'||cloudProfile.store===s).map(s=>`<option value="${s}">${s}</option>`).join('');
+ $('scheduleStore').value=activeStore;
+ $('scheduleStore').disabled=cloudProfile?.role==='store';
+ if(c){$('scheduleName').value=c.nome||'';$('schedulePhone').value=c.telefone||'';}
+ const d=new Date();d.setHours(d.getHours()+1);$('scheduleDate').value=localDay(d);$('scheduleTime').value=`${pad2(d.getHours())}:00`;
+ $('agendaModalShade').hidden=false;$('agendaModal').hidden=false; $('scheduleName').focus();
+}
+function closeScheduleModal(){$('agendaModal').hidden=true;$('agendaModalShade').hidden=true;}
+async function saveAppointment(ev){
+ ev.preventDefault();if(!cloudReady)return;
+ const store=cloudProfile?.role==='store'?cloudProfile.store:$('scheduleStore').value;
+ const date=$('scheduleDate').value,time=$('scheduleTime').value;
+ if(!date||!time||!store)return alert('Preencha loja, data e horário.');
+ // O calendário e os horários são da região de Recife (UTC-03 sem horário de verão).
+ const when=new Date(`${date}T${time}:00-03:00`);
+ if(isNaN(when.getTime()))return alert('Data ou horário inválido.');
+ const phone=digits($('schedulePhone').value).replace(/^55(?=\d{10,11}$)/,'');
+ if(phone && (phone.length<10||phone.length>11))return alert('Informe um telefone com DDD válido ou deixe o campo vazio.');
+ const code='UNI-'+Math.random().toString(36).slice(2,6).toUpperCase();
+ const payload={store,client_name:$('scheduleName').value.trim(),phone,scheduled_at:when.toISOString(),type:$('scheduleType').value,product:$('scheduleProduct').value.trim(),channel:$('scheduleChannel').value,notes:$('scheduleNotes').value.trim(),status:'agendado',code};
+ const btn=$('agendaSave');btn.disabled=true;btn.textContent='Salvando...';
+ try{
+  const {data,error}=await cloudClient.from('fideliza_appointments').insert(payload).select('*').single();
+  if(error)throw error;
+  appointments.push(data);closeScheduleModal();agendaMonth=new Date(Number(date.slice(0,4)),Number(date.slice(5,7))-1,1);renderAgenda();nav('appointments');showAppointmentCard(data.id);
+ }catch(err){alert('Não foi possível salvar o agendamento: '+err.message);}finally{btn.disabled=false;btn.textContent='Salvar agendamento';}
+}
+function closeAppointmentCard(){$('appointmentCardModal').hidden=true;$('appointmentCardShade').hidden=true;}
+function showAppointmentCard(id){const a=appointments.find(x=>String(x.id)===String(id));if(!a)return;
+ const wa=whatsappLink(a.phone);const date=formatAppointmentDate(a.scheduled_at);
+ $('appointmentCardContent').innerHTML=`<div class="ag-card-top"><div class="ag-card-status">${esc(statusNames[a.status]||a.status)}</div><div class="ag-card-name">${esc(a.client_name)}</div><div class="ag-card-sub">${esc(a.phone||'Telefone não informado')}</div><div class="ag-card-sub">${date}</div></div>
+  <div class="ag-card-detail"><span>Tipo</span><b>${esc(a.type)}</b></div><div class="ag-card-detail"><span>Produto</span><b>${esc(a.product||'Não informado')}</b></div><div class="ag-card-detail"><span>Loja</span><b>${esc(a.store)}</b></div><div class="ag-card-detail"><span>Canal</span><b>${esc(a.channel)}</b></div><div class="ag-card-detail"><span>Visita</span><b>${date}</b></div>
+  ${a.notes?`<div class="ag-card-note">${esc(a.notes)}</div>`:''}
+  <div class="ag-card-code"><small>CÓDIGO DE ATENDIMENTO DIGITAL</small><strong>${esc(a.code)}</strong><span class="ag-card-sub">Apresente na loja ao chegar</span></div>
+  <div class="ag-card-actions">${wa?`<a href="${wa}" rel="noopener noreferrer" target="_blank">WhatsApp ↗</a>`:''}${a.status!=='concluido'?`<button class="complete" data-appointment-status="concluido" data-id="${a.id}">✓ Concluir</button>`:''}${a.status==='agendado'?`<button data-appointment-status="confirmado" data-id="${a.id}">Confirmar</button>`:''}${a.status!=='cancelado'&&a.status!=='concluido'?`<button data-appointment-status="cancelado" data-id="${a.id}">Cancelar</button>`:''}<button data-card-copy="${a.id}">Copiar detalhes</button></div>`;
+ $('appointmentCardShade').hidden=false;$('appointmentCardModal').hidden=false;
+}
+async function changeAppointmentStatus(id,status){
+ const a=appointments.find(x=>String(x.id)===String(id));if(!a||!cloudReady)return;
+ const {error}=await cloudClient.from('fideliza_appointments').update({status}).eq('id',a.id).eq('store',a.store);
+ if(error)return alert('Não foi possível atualizar: '+error.message);
+ a.status=status;renderAgenda();showAppointmentCard(id);
+}
+function copyAppointment(id){const a=appointments.find(x=>String(x.id)===String(id));if(!a)return;const text=`AGENDAMENTO FIDELIZA\nCliente: ${a.client_name}\nTelefone: ${a.phone||'Não informado'}\nData: ${formatAppointmentDate(a.scheduled_at)}\nLoja: ${a.store}\nProduto: ${a.product||'Não informado'}\nCanal: ${a.channel}\nCódigo: ${a.code}\nObservações: ${a.notes||'—'}`;navigator.clipboard?.writeText(text).then(()=>alert('Detalhes copiados.')).catch(()=>prompt('Copie os detalhes:',text));}
+$('newAppointment').addEventListener('click',()=>openScheduleModal());
+$('agendaModalClose').addEventListener('click',closeScheduleModal);
+$('agendaCancel').addEventListener('click',closeScheduleModal);
+$('agendaModalShade').addEventListener('click',closeScheduleModal);
+$('agendaForm').addEventListener('submit',saveAppointment);
+$('agendaToday').addEventListener('click',()=>{agendaMonth=new Date(new Date().getFullYear(),new Date().getMonth(),1);renderAgenda();});
+$('agendaPrev').addEventListener('click',()=>{agendaMonth=new Date(agendaMonth.getFullYear(),agendaMonth.getMonth()-1,1);renderAgenda();});
+$('agendaNext').addEventListener('click',()=>{agendaMonth=new Date(agendaMonth.getFullYear(),agendaMonth.getMonth()+1,1);renderAgenda();});
+$('agendaStatus').addEventListener('change',renderAgenda);
+$('agendaCalendar').addEventListener('click',e=>{const b=e.target.closest('[data-agenda-id]');if(b)showAppointmentCard(b.dataset.agendaId);});
+$('agendaUpcoming').addEventListener('click',e=>{const b=e.target.closest('[data-agenda-id]');if(b)showAppointmentCard(b.dataset.agendaId);});
+$('appointmentCardClose').addEventListener('click',closeAppointmentCard);
+$('appointmentCardShade').addEventListener('click',closeAppointmentCard);
+$('appointmentCardContent').addEventListener('click',e=>{const b=e.target.closest('[data-appointment-status],[data-card-copy]');if(!b)return;if(b.dataset.appointmentStatus)changeAppointmentStatus(b.dataset.id,b.dataset.appointmentStatus);else if(b.dataset.cardCopy)copyAppointment(b.dataset.cardCopy);});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeScheduleModal();closeAppointmentCard();}});
+
 $('upload').addEventListener('change', async e=>{
   const file=e.target.files?.[0]; if(!file) return;
   try{
@@ -853,7 +1024,7 @@ buildStoreNavigation(); fillStoreSelects(); overviewDate=topSalesDate(); $('over
  if(!window.FIDELIZA_SUPABASE?.url||!window.FIDELIZA_SUPABASE?.publishableKey){$('authError').textContent='Configure URL e chave pública em config.js para ativar a conexão.';return;}
  cloudClient=window.supabase.createClient(window.FIDELIZA_SUPABASE.url,window.FIDELIZA_SUPABASE.publishableKey);
  try{await activateCloud();}catch(e){$('authError').textContent=e.message;}
- cloudClient.auth.onAuthStateChange((_event,session)=>{if(!session){cloudReady=false;cloudProfile=null;sales=[];contacts=[];render();$('authGate').style.display='grid';}});
+ cloudClient.auth.onAuthStateChange((_event,session)=>{if(!session){cloudReady=false;cloudProfile=null;sales=[];contacts=[];appointments=[];render();$('authGate').style.display='grid';}});
 })();
 $('authForm').addEventListener('submit',async e=>{e.preventDefault();if(!cloudClient)return;const email=$('authEmail').value.trim(),password=$('authPassword').value;
  $('authError').textContent='Autenticando...';const {error}=await cloudClient.auth.signInWithPassword({email,password});

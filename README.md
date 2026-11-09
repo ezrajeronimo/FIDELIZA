@@ -1,23 +1,22 @@
-# FIDELIZA 8.0 — Executive Navy
+# FIDELIZA 8.1 — Agendamentos por loja
 
-## Instalação
-1. Faça backup do seu `index.html` atual (versão 7.2).
-2. Substitua **apenas** o `index.html` na raiz do repositório GitHub `FIDELIZA`.
-3. **Mantenha seu `config.js` atual**. O arquivo `config.example.js` é somente documentação e não precisa ser enviado.
-4. Confirme em **Commit changes** e aguarde o GitHub Pages publicar.
-5. Teste login, navegação por loja, carregamento dos clientes, ficha 360°, registro de contato, importação e exportação.
+## Atualizações
+- WhatsApp abre com `Que bom falar com você! 👋` preenchido. O vendedor ainda precisa clicar em enviar.
+- Botão **Agendamento** ao lado de WhatsApp no perfil 360° do cliente.
+- Formulário de agendamento e card com nome, telefone, data, produto, loja, canal e código de atendimento.
+- Calendário mensal em cada loja e lista de próximas visitas.
+- Avisos de agendamento para próximas 48 horas ou atrasados **quando o CRM é aberto ou atualizado**. Não são notificações push em segundo plano.
+- Agendamentos salvos no Supabase com RLS por loja.
 
-## Alterações da versão 8.0
-- Visual Executive Navy: identidade UNIGAMES, menos gradientes, melhor espaçamento e contraste.
-- Dashboard compacto, refinado, com indicadores e atualização manual da base.
-- Nova lista de clientes com colunas e alternância para cards.
-- Ficha 360° em painel lateral: dados comerciais, histórico de compras, contatos e WhatsApp.
-- Mantidos filtros por loja, bairro, recorrência, quantidade de vendas, faturamento, período brasileiro e modalidades de pagamento.
-- Mantidas as tabelas Supabase `fideliza_sales`, `fideliza_contacts`, `fideliza_profiles` e o login.
+## Instalação (obrigatória nesta ordem)
+1. No Supabase SQL Editor, execute `agenda.sql` para criar a tabela de agendamentos e suas políticas RLS. **Preserve as tabelas anteriores.**
+2. No GitHub, substitua **somente `index.html`** pelo deste pacote. Mantenha seu `config.js` existente (com URL principal do Supabase e publishable key).
+3. Aguarde GitHub Pages e atualize o navegador; entre no FIDELIZA.
+4. Entre na loja > Clientes > abra uma ficha > Agendamento; salve um teste fictício.
+5. Abra loja > Agendamentos; confirme que aparece no calendário e no Table Editor > fideliza_appointments.
 
-## Limites importantes
-- Não foi acrescentada nenhuma tabela, campo ou política SQL.
-- A medição de atendimentos no gráfico ainda depende dos dados presentes na base; apenas dados de vendas não permitem medir todos os atendimentos reais.
-- As políticas RLS existentes devem permanecer ativas e ser testadas para cada usuário/loja.
-- Não coloque dados de clientes ou chaves secretas no repositório público.
-- Faça um teste funcional no GitHub Pages após a publicação.
+## Notificações
+Os lembretes são exibidos na interface quando o sistema carrega, atualiza ou a loja é acessada. Notificações enviadas automaticamente todos os dias, mesmo com o navegador fechado, exigem agendamento no servidor (por exemplo Supabase Cron + Edge Function ou automação externa) e não fazem parte desta versão.
+
+## Segurança
+O GitHub deve conter apenas HTML e configuração pública; não publique planilhas com dados pessoais nem chaves secretas. As regras RLS precisam estar ativas no Supabase para cada loja.
