@@ -170,7 +170,7 @@ html,body{max-width:100%;overflow-x:hidden}
 
 
 
-/* FIDELIZA 8.3 — Identidade e controle de usuários */
+/* FIDELIZA 8.4 — Identidade e controle de usuários */
 :root{--admin-nav:#0b1524;--admin-accent:#18365b;--admin-contrast:#244f79}
 body{--nav:var(--admin-nav);--brand:var(--admin-accent);--nav3:var(--admin-contrast)}
 body[data-fideliza-theme="executive"]{--admin-nav:#0b1524;--admin-accent:#18365b;--admin-contrast:#244f79}
@@ -309,7 +309,7 @@ button,.btn,select,input{border-radius:8px!important}
       <div class="crumb">UNIGAMES / CRM / <span id="breadcrumb">Visão Geral</span></div>
       <h1 id="pageTitle">Visão Geral</h1>
     </div>
-    <span class="pill">FIDELIZA • VERSÃO 8.3</span>
+    <span class="pill">FIDELIZA • VERSÃO 8.4</span>
   </div>
 
   <header class="topbar"><div><span id="cloudStatus">Banco: aguardando login</span><button type="button" id="logoutButton">Sair</button></div>
@@ -475,8 +475,8 @@ button,.btn,select,input{border-radius:8px!important}
       <article class="admin-panel">
         <div class="section-title"><div><h3>Identidade do sistema</h3><span>Visível no login e em todos os dispositivos</span></div></div>
         <div class="admin-logo-preview"><div id="adminLogoPreview" class="brand-logo mark">UN</div><div><strong>FIDELIZA</strong><span>Visual da sua organização</span></div></div>
-        <label class="admin-field">Foto ou logo do sistema <input type="file" id="adminLogoFile" accept="image/png,image/jpeg,image/webp"></label>
-        <div class="admin-help">Imagem PNG, JPG ou WebP de até 2 MB. Será redimensionada e salva no banco sem precisar alterar arquivos no GitHub.</div>
+        <label class="admin-field">Foto ou logo do sistema <input type="file" id="adminLogoFile" accept="image/png,image/jpeg,image/webp,image/gif"></label>
+        <div class="admin-help">PNG, JPG, WebP ou GIF animado de até 8 MB. A imagem será armazenada no Supabase Storage, preservando a animação no login, menu e celular.</div>
         <div class="admin-theme-label">Paleta de cores</div>
         <div class="admin-swatches" id="adminThemeChoices">
           <label><input type="radio" name="systemTheme" value="executive"><span class="swatch-circle swatch-executive"></span><span>Executive Navy</span></label>
@@ -505,7 +505,7 @@ button,.btn,select,input{border-radius:8px!important}
       <p class="admin-help">Para manter a segurança, alterações de permissões e convites são processados por uma função protegida no Supabase, nunca diretamente pelo navegador.</p>
     </article>
   </section>
-  <div class="foot">FIDELIZA 8.3 • Dados sincronizados com Supabase após login. A segregação efetiva por loja depende das políticas RLS configuradas no banco. Proteja os dados de clientes conforme a LGPD.</div>
+  <div class="foot">FIDELIZA 8.4 • Dados sincronizados com Supabase após login. A segregação efetiva por loja depende das políticas RLS configuradas no banco. Proteja os dados de clientes conforme a LGPD.</div>
 </main>
 <div id="drawerShade" class="drawer-shade" aria-hidden="true"></div>
 <aside id="clientDrawer" class="client-drawer" role="dialog" aria-modal="true" aria-label="Detalhes do cliente" aria-hidden="true">
@@ -578,8 +578,9 @@ let contacts = [];
 let appointments = [];
 let agendaMonth=new Date(new Date().getFullYear(),new Date().getMonth(),1);
 let cloudClient=null; let cloudProfile=null; let cloudReady=false;
-let brandConfig={theme:'executive',logo_data:null};
-let pendingLogoData=undefined;
+let brandConfig={theme:'executive',logo_data:null,logo_url:null};
+let pendingLogoFile=undefined;
+let pendingLogoPreviewUrl=null;
 const invitationLanding=location.origin+location.pathname;
 let pendingInviteMode=/#(?:.*(?:type=invite|type=recovery|type=signup))/.test(location.hash);
 
@@ -605,24 +606,36 @@ async function refreshCloudData(){
  render();
 }
 function isAdmin(){return cloudReady && cloudProfile?.role==='admin'}
+function currentBrandImage(cfg){
+ if(cfg?.logo_url && typeof cfg.logo_url==='string' && /^https:\/\/[a-z0-9.-]+\.supabase\.co\/storage\/v1\/object\/public\/fideliza-branding\//i.test(cfg.logo_url)) return cfg.logo_url;
+ if(cfg?.logo_data && /^data:image\/(png|jpeg|webp|gif);base64,[a-zA-Z0-9+/=]+$/.test(cfg.logo_data)) return cfg.logo_data;
+ return null;
+}
+function displayLogo(element,src){
+ if(!element) return;
+ element.replaceChildren();
+ if(src){
+   const img=document.createElement('img');img.src=src;img.alt='Logo FIDELIZA';
+   img.decoding='async';element.appendChild(img);element.classList.add('has-image');
+ }else{element.textContent='UN';element.classList.remove('has-image');}
+}
 function applyBranding(){
  const cfg=brandConfig||{};
  const theme=['executive','ocean','graphite'].includes(cfg.theme)?cfg.theme:'executive';
  document.body.dataset.fidelizaTheme=theme;
- document.querySelectorAll('.brand-logo').forEach(el=>{
-   el.textContent='';
-   if(cfg.logo_data && /^data:image\/(png|jpeg|webp);base64,[a-zA-Z0-9+/=]+$/.test(cfg.logo_data)){
-     const img=document.createElement('img');img.src=cfg.logo_data;img.alt='Logo FIDELIZA';el.appendChild(img);el.classList.add('has-image');
-   } else {el.textContent='UN';el.classList.remove('has-image');}
- });
- const preview=$('adminLogoPreview');if(preview){preview.textContent='';if(cfg.logo_data){const img=document.createElement('img');img.src=cfg.logo_data;img.alt='Logo FIDELIZA';preview.appendChild(img);preview.classList.add('has-image')}else{preview.textContent='UN';preview.classList.remove('has-image')}}
+ const logo=currentBrandImage(cfg);
+ document.querySelectorAll('.brand-logo').forEach(el=>displayLogo(el,logo));
+ const preview=$('adminLogoPreview');if(preview) displayLogo(preview,logo);
  const selected=document.querySelector(`input[name="systemTheme"][value="${theme}"]`);if(selected)selected.checked=true;
 }
 async function loadBranding(){
  if(!cloudClient)return;
- const {data,error}=await cloudClient.from('fideliza_settings').select('theme,logo_data').eq('id',1).maybeSingle();
+ const {data,error}=await cloudClient.from('fideliza_settings').select('theme,logo_url,logo_data').eq('id',1).maybeSingle();
  if(error){console.warn('Identidade não carregada:',error.message);return;}
  if(data){brandConfig=data;applyBranding();}
+}
+function releaseLogoPreview(){
+ if(pendingLogoPreviewUrl){URL.revokeObjectURL(pendingLogoPreviewUrl);pendingLogoPreviewUrl=null;}
 }
 function requireAdmin(){if(!isAdmin())throw new Error('Somente administradores podem executar esta ação.');}
 async function adminAction(body){
@@ -1184,29 +1197,54 @@ $('adminLogoFile').addEventListener('change',async e=>{
  const msg=$('adminBrandMessage');
  try{
    requireAdmin();
-   if(!['image/png','image/jpeg','image/webp'].includes(file.type)||file.size>2*1024*1024)throw new Error('Use PNG, JPG ou WebP com até 2 MB.');
-   const bitmap=await createImageBitmap(file);
-   const scale=Math.min(1,240/Math.max(bitmap.width,bitmap.height));
-   const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(bitmap.width*scale));canvas.height=Math.max(1,Math.round(bitmap.height*scale));
-   canvas.getContext('2d').drawImage(bitmap,0,0,canvas.width,canvas.height);bitmap.close?.();
-   const url=canvas.toDataURL('image/png');if(url.length>220000)throw new Error('Logo muito grande. Use uma imagem menor.');
-   pendingLogoData=url;
-   const img=document.createElement('img');img.src=url;img.alt='Prévia do logo';$('adminLogoPreview').textContent='';$('adminLogoPreview').appendChild(img);$('adminLogoPreview').classList.add('has-image');
-   msg.textContent='Prévia pronta. Clique em Salvar identidade para publicar.';msg.classList.remove('error');
- }catch(err){msg.textContent=err.message;msg.classList.add('error');}
+   const allowed=['image/png','image/jpeg','image/webp','image/gif'];
+   if(!allowed.includes(file.type)) throw new Error('Use PNG, JPG, WebP ou GIF.');
+   if(file.size>8*1024*1024) throw new Error('O arquivo ultrapassa 8 MB. Escolha uma imagem menor.');
+   if(file.size===0) throw new Error('O arquivo está vazio.');
+   // O GIF é exibido como arquivo original: canvas destruiria os quadros da animação.
+   releaseLogoPreview();
+   pendingLogoFile=file;
+   pendingLogoPreviewUrl=URL.createObjectURL(file);
+   displayLogo($('adminLogoPreview'),pendingLogoPreviewUrl);
+   msg.textContent=(file.type==='image/gif'?'Prévia do GIF animado pronta. ':'Prévia pronta. ')+ 'Clique em Salvar identidade para publicar em todas as lojas.';
+   msg.classList.remove('error');
+ }catch(err){pendingLogoFile=undefined;msg.textContent=err.message;msg.classList.add('error');}
 });
-$('adminResetLogo').addEventListener('click',()=>{if(!isAdmin())return;pendingLogoData=null;$('adminLogoPreview').textContent='UN';$('adminLogoPreview').classList.remove('has-image');$('adminBrandMessage').textContent='Clique em Salvar identidade para aplicar a restauração.'});
+$('adminResetLogo').addEventListener('click',()=>{
+ if(!isAdmin())return;
+ releaseLogoPreview();pendingLogoFile=null;$('adminLogoFile').value='';
+ displayLogo($('adminLogoPreview'),null);
+ $('adminBrandMessage').textContent='Clique em Salvar identidade para restaurar a logo UN em todos os dispositivos.';
+ $('adminBrandMessage').classList.remove('error');
+});
 $('adminSaveBrand').addEventListener('click',async()=>{
- const msg=$('adminBrandMessage');const b=$('adminSaveBrand');b.disabled=true;
+ const msg=$('adminBrandMessage'),b=$('adminSaveBrand');b.disabled=true;
  try{
    requireAdmin();
    const theme=document.querySelector('input[name="systemTheme"]:checked')?.value||'executive';
-   const next={theme,logo_data:pendingLogoData===undefined?(brandConfig.logo_data||null):pendingLogoData};
-   const {error}=await cloudClient.from('fideliza_settings').update(next).eq('id',1);
-   if(error)throw error;
-   brandConfig=next;pendingLogoData=undefined;applyBranding();msg.textContent='Identidade atualizada e salva no Supabase.';msg.classList.remove('error');
- }catch(err){msg.textContent='Falha ao salvar: '+err.message;msg.classList.add('error')}
- finally{b.disabled=false}
+   const next={theme,logo_url:brandConfig.logo_url||null,logo_data:brandConfig.logo_data||null};
+   if(pendingLogoFile===null){next.logo_url=null;next.logo_data=null;}
+   else if(pendingLogoFile){
+     const file=pendingLogoFile;
+     const extensions={'image/gif':'gif','image/png':'png','image/jpeg':'jpg','image/webp':'webp'};
+     const ext=extensions[file.type];
+     if(!ext)throw new Error('Tipo de imagem não permitido.');
+     // Nomes únicos evitam problemas de cache e dispensam sobrescrita.
+     const path=`logos/${crypto.randomUUID()}.${ext}`;
+     msg.textContent='Enviando logo para o Supabase...';msg.classList.remove('error');
+     const {error:uploadError}=await cloudClient.storage.from('fideliza-branding').upload(path,file,{contentType:file.type,cacheControl:'3600',upsert:false});
+     if(uploadError)throw new Error('Falha no upload da logo: '+uploadError.message+' — execute o SQL da versão 8.4.');
+     const {data:publicUrl}=cloudClient.storage.from('fideliza-branding').getPublicUrl(path);
+     if(!publicUrl?.publicUrl)throw new Error('Não foi possível gerar o endereço público da logo.');
+     next.logo_url=publicUrl.publicUrl;next.logo_data=null;
+   }
+   // O select confirma que o registro foi salvo, não apenas que a solicitação retornou sem erro.
+   const {data,error}=await cloudClient.from('fideliza_settings').update(next).eq('id',1).select('theme,logo_url,logo_data').single();
+   if(error)throw new Error(error.message+' — execute o SQL da versão 8.4 no Supabase.');
+   brandConfig=data;pendingLogoFile=undefined;releaseLogoPreview();$('adminLogoFile').value='';applyBranding();
+   msg.textContent='Identidade salva no Supabase. O tema e a logo aparecerão em todos os dispositivos.';msg.classList.remove('error');
+ }catch(err){msg.textContent='Falha ao salvar: '+err.message;msg.classList.add('error');}
+ finally{b.disabled=false;}
 });
 $('adminInviteForm').addEventListener('submit',async e=>{
  e.preventDefault();const msg=$('adminInviteMessage'),b=e.target.querySelector('button[type="submit"]');b.disabled=true;

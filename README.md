@@ -1,31 +1,27 @@
-# FIDELIZA 8.3 — Administração e identidade
+# FIDELIZA 8.4 — Tema + GIF animado
 
-## Novidades
-- Login com nome do sistema animado e respeito a `prefers-reduced-motion`.
-- Logo/foto do sistema alterável pelo administrador, exibida também no login.
-- Três temas: **Executive Navy**, **Ocean Blue** e **Graphite**.
-- Painel **Administração** para administrador visualizar usuários, enviar convites e atualizar perfil/loja.
-- Usuário de loja: somente sua unidade, com consulta de clientes, WhatsApp, registro de contatos e agendamentos. Sem configurações, permissões, exportação ou importação de vendas.
+## O que foi corrigido
+- Corrige a ausência da tabela `public.fideliza_settings` que impedia salvar as paletas.
+- Logo aceita **PNG, JPEG, WebP e GIF animado** (até 8 MB).
+- Imagens são enviadas ao bucket público `fideliza-branding` no **Supabase Storage**, não à tabela de configurações.
+- GIF é armazenado sem passar por canvas ou conversão, preservando seus quadros de animação.
+- A logo aparece no login, menu e celular, incluindo antes do usuário se autenticar.
+- Alteração de identidade e upload protegidos pelas políticas RLS e função `fideliza_is_admin()`.
+- Mantém login, Supabase, vendas, filtros, WhatsApp, agendamentos e área de administração da versão 8.3.
 
-## Instalar, nesta ordem
+## Instalação (nesta ordem)
+1. Faça backup do banco e do `index.html` atual.
+2. Abra **Supabase → SQL Editor → New query**, cole **TODO** o conteúdo de `identidade-gif.sql` e clique **Run**.
+3. Confirme que aparece uma linha com `id = 1` no resultado; a tabela `fideliza_settings` e o bucket `fideliza-branding` estarão criados.
+4. No GitHub `ezrajeronimo/FIDELIZA`, substitua **somente** o `index.html` pelo novo. Não altere `config.js`.
+5. Abra o FIDELIZA, recarregue com `Command + Shift + R` e entre como administrador.
+6. Vá a **Administração → Identidade do sistema**; selecione Ocean Blue e clique **Salvar identidade**. Depois selecione um GIF e salve.
+7. Teste a logo animada saindo da sessão e abrindo a tela de login.
 
-1. Abra **Supabase → SQL Editor** e execute `admin.sql`. Ele adiciona a tabela `fideliza_settings`, as permissões e restringe a gravação de vendas para administradores. Não apaga tabelas existentes.
-2. No Supabase, crie a **Edge Function** `fideliza-admin-users` e cole o conteúdo de `supabase/functions/fideliza-admin-users/index.ts` (ou faça deploy com Supabase CLI). A função usa `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY` fornecidas como variáveis secretas no **servidor**. Nunca publique a secret key no GitHub.
-3. **Função Edge:** desative a verificação JWT do *gateway* para esta função apenas caso seu projeto utilize a nova `sb_publishable_...`. **A própria função valida o token de login e a função `admin` no servidor antes de executar qualquer operação.** Restrinja outras funções do projeto normalmente.
-4. Em **Authentication → URL Configuration**, configure o **Site URL** como `https://ezrajeronimo.github.io/FIDELIZA/` e autorize esse mesmo endereço em **Redirect URLs**. Confirme que o serviço de e-mail do Supabase permite enviar convites; o envio de e-mails de produção pode exigir SMTP próprio.
-5. No GitHub, substitua somente o `index.html` pelo do pacote. Mantenha o `config.js` já funcional.
-6. Abra o site, faça login como administrador, entre em **Administração**, salve um tema/logo e envie um convite para um e-mail de teste. Ao receber, o usuário define sua senha e passa a acessar o sistema segundo o perfil atribuído.
+**Não execute `admin.sql` antigo por cima desta migração se não houver motivo:** `identidade-gif.sql` é a correção específica para logo/tema. A função Edge de convites de usuários continua sendo uma configuração separada, necessária caso o convite apresente erro.
 
-### Permissões
-- **Administrador:** todas as lojas, identidade, convites e permissões, importação de vendas e ações comerciais.
-- **Usuário comum:** apenas sua loja; consultar clientes, abrir WhatsApp, registrar contato, criar/acompanhar agendamentos; não altera tema, usuários, perfis nem base importada.
-- As regras relevantes são implementadas no Supabase; esconder botões isoladamente não seria seguro.
-
-### Segurança
-- `fideliza_settings.logo_data` é imagem pública de identidade visual (não contém informações pessoais). PNG/JPG/WebP reduzido antes do upload.
-- A Edge Function jamais entrega nem aceita senhas dos colaboradores. Os convidados recebem um link e definem a própria senha.
-- A chave `service_role` fica **somente** no ambiente de execução da Edge Function.
-- Faça backup antes de executar migrações e teste primeiro com um colaborador de exemplo.
-
-### Observação
-O teste de sintaxe do JavaScript foi realizado. A integração com seu Supabase e o envio real de e-mails exigem publicação e testes no projeto.
+## Observações de segurança
+- O bucket é **público apenas para leitura**: a logo deve ser uma imagem institucional, nunca dados pessoais.
+- Upload restrito aos administradores no Supabase. Imagens antigas podem permanecer no bucket para não quebrar caches/URLs já publicados; faça manutenção periódica se necessário.
+- Não coloque chaves `service_role` ou secret keys no GitHub.
+- SQL e JavaScript devem ser testados no seu projeto real antes de distribuir às lojas. O código passa pela verificação de sintaxe, mas não executamos a migração no seu Supabase.
